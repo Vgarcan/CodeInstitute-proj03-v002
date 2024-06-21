@@ -1,7 +1,10 @@
 from flask_pymongo import PyMongo
 from flask_login import LoginManager
-from flask_wtf.csrf import CSRFProtect
 
 mongo = PyMongo()
 login_manager = LoginManager()
-csrf = CSRFProtect()
+
+@login_manager.user_loader
+def load_user(user_id):
+    from .users.models import User
+    return User.get(user_id)

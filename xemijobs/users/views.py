@@ -1,11 +1,11 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
-from flask_login import login_user, logout_user, login_required, current_user
+from flask_login import login_user, logout_user, login_required
 from .forms import RegistrationForm, LoginForm
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask import current_app
+from ..extensions import mongo
 
-users = Blueprint('users', __name__, template_folder='templates', static_folder='static')
+users = Blueprint('users', __name__)
 
 @users.route('/')
 def index():
@@ -17,7 +17,6 @@ def register():
     if form.validate_on_submit():
         username = form.username.data
         password = generate_password_hash(form.password.data)
-        mongo = current_app.extensions['pymongo']
 
         existing_user = mongo.db.users.find_one({'username': username})
         if existing_user is None:
@@ -34,7 +33,6 @@ def login():
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
-        mongo = current_app.extensions['pymongo']
         
         user_data = mongo.db.users.find_one({'username': username})
         if user_data and check_password_hash(user_data['password'], password):
