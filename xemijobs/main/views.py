@@ -9,3 +9,4 @@ def index():
 @main.route('/page1')
 def app_another():
     return "<h1>this is main's PAGE1</h1>"
+

@@ -5,7 +5,7 @@ from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from ..extensions import mongo
 
-users = Blueprint('users', __name__)
+users = Blueprint('users', __name__, template_folder='templates', static_folder='static')
 
 @users.route('/')
 def index():
@@ -17,9 +17,15 @@ def register():
     if form.validate_on_submit():
         username = form.username.data
         password = generate_password_hash(form.password.data)
+        print(f"Registering user: {username}")
 
         existing_user = mongo.db.users.find_one({'username': username})
+        print(f"Existing user: {existing_user}")
+
+        # If the user doesn't exist, insert them into the database
         if existing_user is None:
+            print(f"Inserting user: {username}")
+            # mongo.db.users.insert_one({'username': username, 'password':  generate_password_hash(form.password.data)})
             mongo.db.users.insert_one({'username': username, 'password': password})
             flash('User registered successfully!', 'success')
             return redirect(url_for('users.login'))
@@ -50,3 +56,14 @@ def logout():
     logout_user()
     flash('You have been logged out!', 'success')
     return redirect(url_for('index'))
+
+
+
+@users.route('/test_mongo')
+def test_mongo():
+    try:
+        from flask import jsonify
+        collections = mongo.db.list_collection_names()
+        return jsonify(collections)
+    except Exception as e:
+        return str(e), 500
