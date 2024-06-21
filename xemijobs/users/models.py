@@ -10,7 +10,6 @@ class User(UserMixin):
     
     @staticmethod
     def get(username):
-        # mongo = current_app.extensions['pymongo']
         user_data = mongo.db.users.find_one({'username': username})
         if user_data:
             return User(username=user_data['username'], password=user_data['password'])

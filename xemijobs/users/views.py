@@ -23,14 +23,15 @@ def register():
         print(f"Existing user: {existing_user}")
 
         # If the user doesn't exist, insert them into the database
-        if existing_user is None:
+        if existing_user == None:
             print(f"Inserting user: {username}")
             # mongo.db.users.insert_one({'username': username, 'password':  generate_password_hash(form.password.data)})
             mongo.db.users.insert_one({'username': username, 'password': password})
             flash('User registered successfully!', 'success')
             return redirect(url_for('users.login'))
-        else:
+        elif existing_user['username'] == username :
             flash('Username already exists!', 'danger')
+            return redirect(url_for('users.register'))
     return render_template('register.html', form=form)
 
 @users.route('/login', methods=['GET', 'POST'])
