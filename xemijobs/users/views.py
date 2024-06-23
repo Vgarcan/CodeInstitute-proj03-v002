@@ -103,13 +103,3 @@ def logout():
 @role_checker('user')
 def dashboard():
     return "<h1>this is user's DASHBOARD</h1>"
-
-
-@users.route('/test_mongo')
-def test_mongo():
-    try:
-        from flask import jsonify
-        collections = mongo.db.list_collection_names()
-        return jsonify(collections)
-    except Exception as e:
-        return str(e), 500
