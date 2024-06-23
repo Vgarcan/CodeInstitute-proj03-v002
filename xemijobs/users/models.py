@@ -1,20 +1,35 @@
 from flask_login import UserMixin
-# from flask import current_app
 from ..extensions import mongo
 from xemijobs.extensions import login_manager
+from bson import ObjectId
 
 class User(UserMixin):
-    def __init__(self, username, password):
+    def __init__(self, username, password, _id):
         self.username = username
         self.password = password
+        self.id = _id  
     
     @staticmethod
     def get(username):
         user_data = mongo.db.users.find_one({'username': username})
         if user_data:
-            return User(username=user_data['username'], password=user_data['password'])
+            return User(
+                username=user_data['username'], 
+                password=user_data['password'],
+                _id=str(user_data['_id'])
+            )
         return None
+    
+    def get_id(self):
+        return self.id
 
 @login_manager.user_loader
-def load_user(username):
-    return User.get(username)
+def load_user(user_id):
+    user_data = mongo.db.users.find_one({'_id': ObjectId(user_id)})
+    if user_data:
+        return User(
+            username=user_data['username'], 
+            password=user_data['password'],
+            _id=str(user_data['_id'])
+        )
+    return None

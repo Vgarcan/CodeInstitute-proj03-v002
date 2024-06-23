@@ -1,12 +1,5 @@
 from flask import Flask
 from .extensions import mongo, login_manager
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
-
-print(f"MONGO_URI: {os.getenv('MONGO_URI')}")
-print(f"SECRET_KEY: {os.getenv('SECRET_KEY')}")
 
 
 def create_app():

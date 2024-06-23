@@ -19,6 +19,17 @@
 
     <form method="POST" action="">
         {{ form.hidden_tag() }}
+        {% for field in form %}
+            {% if field.label != "CSRF Token" %}
+                {{ field.label }}<br>
+                {{ field(size=32) }}<br>
+                {% for error in field.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+                <br><br>
+            {% endif %}
+        {% endfor %}
+        <!-- {{ form.hidden_tag() }}
         <p>
             {{ form.username.label }}<br>
             {{ form.username(size=32) }}<br>
@@ -40,7 +51,7 @@
                 <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <p>{{ form.submit() }}</p>
+        <p>{{ form.submit() }}</p> -->
     </form>
 </body>
 </html>
