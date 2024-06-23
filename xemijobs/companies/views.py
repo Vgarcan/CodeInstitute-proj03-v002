@@ -4,6 +4,7 @@ from .forms import RegistrationForm, LoginForm
 from .models import Company
 from werkzeug.security import generate_password_hash, check_password_hash
 from ..extensions import mongo
+from ..decoratros import role_checker
 
 
 companies = Blueprint('companies', __name__, template_folder='templates', static_folder='static')
@@ -90,6 +91,7 @@ def login():
 
 @companies.route('/logout')
 @login_required
+@role_checker('company')
 def logout():
     logout_user()
     flash('You have been logged out!', 'success')
@@ -98,6 +100,7 @@ def logout():
 
 @companies.route('/dashboard')
 @login_required
+@role_checker('company')
 def dashboard():
     return "<h1>this is company's DASHBOARD</h1>"
 
