@@ -3,7 +3,7 @@ from ..extensions import mongo
 from bson import ObjectId, BSON
 from xemijobs.extensions import login_manager
 
-class User(UserMixin):
+class Company(UserMixin):
     def __init__(self, username, password, _id):
         self.username = username
         self.password = password
@@ -13,7 +13,7 @@ class User(UserMixin):
     def get(username):
         user_data = mongo.db.users.find_one({'username': username})
         if user_data:
-            return User(
+            return Company(
                 username=user_data['username'], 
                 password=user_data['password'],
                 _id=str(user_data['_id'])  
@@ -26,13 +26,12 @@ class User(UserMixin):
 @login_manager.user_loader
 def load_user(user_id):
     try:
-        user_data = mongo.db.users.find_one({'_id': ObjectId(user_id)})
+        user_data = mongo.db.companies.find_one({'_id': ObjectId(user_id)})
         if user_data:
-            return User(
+            return Company(
                 username=user_data['username'], 
                 password=user_data['password'],
                 _id=str(user_data['_id']) 
             )
-    except Exception as e:
-        print ("==============> Exception:", e)
+    except BSON.errors.InvalidId:
         return None
