@@ -14,6 +14,17 @@ def index():
 
 @users.route('/register', methods=['GET', 'POST'])
 def register():
+    """
+    Handles user registration.
+
+    Parameters:
+    form (RegistrationForm): The form object containing the user's registration details.
+
+    Returns:
+    render_template: If the form is not submitted or contains errors, render the registration template with the form.
+    redirect: If the user is successfully registered, redirect to the login page.
+    flash: If the username already exists, display a flash message.
+    """
     form = RegistrationForm()
     if form.validate_on_submit():
         username = form.username.data
@@ -42,20 +53,39 @@ def register():
 
 @users.route('/login', methods=['GET', 'POST'])
 def login():
+    """
+    Handles user login.
+
+    Parameters:
+    form (LoginForm): The form object containing the user's login credentials.
+
+    Returns:
+    render_template: If the form is not submitted or contains errors, render the login template with the form.
+    redirect: If the user is successfully logged in, redirect to the dashboard page.
+    flash: If the username or password is invalid, display a flash message.
+    """
     form = LoginForm()
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
         
+        # Fetch user data from MongoDB
         user_data = mongo.db.users.find_one({'username': username})
+        
+        # Check if user exists and password is correct
         if user_data and check_password_hash(user_data['password'], password):
-            user = User(user_data['_id'],user_data['username'], user_data['password'])
-            login_user(user)
+            # Create a User object and log in the user
+            user = User(user_data['username'], user_data['password'], user_data['_id'])
+            login_user(user, 'users')
+            
+            # Display success flash message and redirect to dashboard
             flash('Logged in successfully!', 'success')
-            return redirect(url_for('main.index'))
+            return redirect(url_for('users.dashboard'))
         else:
+            # Display error flash message
             flash('Invalid username or password!', 'danger')
 
+    # Render the login template with the form
     return render_template('login.html', form=form)
 
 @users.route('/logout')
@@ -63,8 +93,13 @@ def login():
 def logout():
     logout_user()
     flash('You have been logged out!', 'success')
-    return redirect(url_for('index'))
+    return redirect(url_for('main.index'))
 
+
+@users.route('/dashboard')
+@login_required
+def dashboard():
+    return "<h1>this is user's DASHBOARD</h1>"
 
 
 @users.route('/test_mongo')
