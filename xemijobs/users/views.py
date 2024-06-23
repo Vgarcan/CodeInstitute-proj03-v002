@@ -33,10 +33,7 @@ def register():
         elif existing_user['username'] == username :
             flash('Username already exists!', 'danger')
             return redirect(url_for('users.register'))
-        
-    # elif not form.validate_on_submit():
-    #     flash('Form not validated!', 'danger')
-    #     return redirect(url_for('users.register'))
+
     
     for field_name, field_object in form._fields.items():
             print(f"Field Name: {field_name}, Field Label: {field_object.label.text}")
