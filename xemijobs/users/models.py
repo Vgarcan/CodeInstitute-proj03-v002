@@ -4,10 +4,11 @@ from bson import ObjectId, BSON
 from xemijobs.extensions import login_manager
 
 class User(UserMixin):
-    def __init__(self, username, password, _id):
+    def __init__(self, username, password, _id, role):
         self.username = username
         self.password = password
         self.id = str(_id) 
+        self.role = role
     
     @staticmethod
     def get(username):
@@ -16,7 +17,8 @@ class User(UserMixin):
             return User(
                 username=user_data['username'], 
                 password=user_data['password'],
-                _id=str(user_data['_id'])  
+                _id=str(user_data['_id']),
+                role = user_data['role'] 
             )
         return None
     
@@ -31,7 +33,8 @@ def load_user(user_id):
             return User(
                 username=user_data['username'], 
                 password=user_data['password'],
-                _id=str(user_data['_id']) 
+                _id=str(user_data['_id']),
+                role = user_data['role']  
             )
     except Exception as e:
         print ("==============> Exception:", e)

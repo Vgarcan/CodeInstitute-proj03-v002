@@ -37,7 +37,7 @@ def register():
         # If the user doesn't exist, insert them into the database
         if existing_user == None:
             print(f"Inserting user: {username}")
-            mongo.db.users.insert_one({'username': username, 'password': password})
+            mongo.db.users.insert_one({'username': username, 'password': password, 'role':'user'})
             flash('User registered successfully!', 'success')
             return redirect(url_for('users.login'))
         
@@ -75,8 +75,8 @@ def login():
         # Check if user exists and password is correct
         if user_data and check_password_hash(user_data['password'], password):
             # Create a User object and log in the user
-            user = User(user_data['username'], user_data['password'], user_data['_id'])
-            login_user(user, 'users')
+            user = User(user_data['username'], user_data['password'], user_data['_id'], user_data['role'])
+            login_user(user)
             
             # Display success flash message and redirect to dashboard
             flash('Logged in successfully!', 'success')

@@ -4,19 +4,21 @@ from bson import ObjectId, BSON
 from xemijobs.extensions import login_manager
 
 class Company(UserMixin):
-    def __init__(self, username, password, _id):
+    def __init__(self, username, password, _id, role):
         self.username = username
         self.password = password
-        self.id = str(_id) 
+        self.id = str(_id)
+        self.role = role 
     
     @staticmethod
     def get(username):
-        user_data = mongo.db.users.find_one({'username': username})
+        user_data = mongo.db.company.find_one({'username': username})
         if user_data:
             return Company(
                 username=user_data['username'], 
                 password=user_data['password'],
-                _id=str(user_data['_id'])  
+                _id=str(user_data['_id']),
+                role = user_data['role']
             )
         return None
     
@@ -31,7 +33,10 @@ def load_user(user_id):
             return Company(
                 username=user_data['username'], 
                 password=user_data['password'],
-                _id=str(user_data['_id']) 
+                _id=str(user_data['_id']),
+                role = user_data['role'] 
             )
-    except BSON.errors.InvalidId:
+    except Exception as e:
+        print ("==============> Exception:", e)
         return None
+

@@ -1,6 +1,6 @@
 from flask_pymongo import PyMongo
 from flask_login import LoginManager
-from bson import BSON, ObjectId
+# from bson import BSON, ObjectId
 
 mongo = PyMongo()
 login_manager = LoginManager()
