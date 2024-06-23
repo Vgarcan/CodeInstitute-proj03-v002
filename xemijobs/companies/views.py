@@ -16,14 +16,14 @@ def index():
 @companies.route('/register', methods=['GET', 'POST'])
 def register():
     """
-    Handles user registration.
+    Handles company registration.
 
     Parameters:
-    form (RegistrationForm): The form object containing the user's registration details.
+    form (RegistrationForm): The form object containing the company's registration details.
 
     Returns:
     render_template: If the form is not submitted or contains errors, render the registration template with the form.
-    redirect: If the user is successfully registered, redirect to the login page.
+    redirect: If the company is successfully registered, redirect to the login page.
     flash: If the username already exists, display a flash message.
     """
     form = RegistrationForm()
@@ -55,14 +55,14 @@ def register():
 @companies.route('/login', methods=['GET', 'POST'])
 def login():
     """
-    Handles user login.
+    Handles company login.
 
     Parameters:
-    form (LoginForm): The form object containing the user's login credentials.
+    form (LoginForm): The form object containing the company's login credentials.
 
     Returns:
     render_template: If the form is not submitted or contains errors, render the login template with the form.
-    redirect: If the user is successfully logged in, redirect to the dashboard page.
+    redirect: If the company is successfully logged in, redirect to the dashboard page.
     flash: If the username or password is invalid, display a flash message.
     """
     form = LoginForm()
