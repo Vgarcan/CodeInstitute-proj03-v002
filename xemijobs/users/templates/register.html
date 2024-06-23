@@ -9,14 +9,12 @@
 
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-            {% for category, message in messages %}
-                <div class="alert alert-{{ category }}">
-                    {{ message }}
-                </div>
-            {% endfor %}
+            {% set category, message = messages[-1] %}
+            <ul>
+                <li class="{{ category }}">{{ message }}</li>
+            </ul>
         {% endif %}
     {% endwith %}
-
     <form method="POST" action="">
         {{ form.hidden_tag() }}
         {% for field in form %}

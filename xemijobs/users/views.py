@@ -93,7 +93,7 @@ def login():
 def logout():
     logout_user()
     flash('You have been logged out!', 'success')
-    return redirect(url_for('main.index'))
+    return redirect(url_for('users.login'))
 
 
 @users.route('/dashboard')
