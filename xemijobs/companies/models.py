@@ -12,19 +12,54 @@ class Company(UserMixin):
     
     @staticmethod
     def get(username):
+        """
+        Retrieve a Company object by its username.
+
+        Parameters:
+        username (str): The unique username of the company.
+
+        Returns:
+        Company: A Company object if found, otherwise None.
+
+        Raises:
+        None
+
+        Example:
+        company = Company.get('john_doe')
+        if company:
+            print(f"Company found: {company.username}")
+        else:
+            print("Company not found.")
+        """
         user_data = mongo.db.company.find_one({'username': username})
         if user_data:
             return Company(
                 username=user_data['username'], 
                 password=user_data['password'],
                 _id=str(user_data['_id']),
-                role = user_data['role']
+                role=user_data['role']
             )
         return None
-    
+        
+    @staticmethod
     def get_by_id(user_id):
+        """
+        Retrieve a Company object by its unique identifier.
+
+        Parameters:
+        user_id (str): The unique identifier of the company.
+
+        Returns:
+        Company: A Company object if found, otherwise None.
+
+        Raises:
+        Exception: If an error occurs during the database query.
+        """
         try:
+            # Attempt to find the company in the database using the provided user_id
             user_data = mongo.db.users.find_one({'_id': ObjectId(user_id)})
+            
+            # If a company is found, create a new Company object and return it
             if user_data:
                 return Company(
                     username=user_data['username'], 
@@ -33,6 +68,7 @@ class Company(UserMixin):
                     role=user_data['role']
                 )
         except Exception as e:
+            # If an error occurs, print the error message and return None
             print("==============> Exception in get_by_id:", e)
             return None
     

@@ -7,15 +7,27 @@ login_manager = LoginManager()
 
 @login_manager.user_loader
 def load_user(user_id):
+    """
+    This function is used by Flask-Login to reload the user object from the user ID stored in the session.
+    It tries to load a User first, if not found, it tries to load a Company.
+
+    Parameters:
+    user_id (str): The unique identifier of the user or company.
+
+    Returns:
+    User or Company object: The loaded user or company object if found, otherwise None.
+    """
     from .users.models import User
     from .companies.models import Company
     
-    # Intentar cargar un usuario
+    # Tries to load a User
     user = User.get_by_id(user_id)
     if user:
         return user
     
-    # Intentar cargar una compañía
+    ##! If the user is null:
+    
+    # Tries to load a Company
     company = Company.get_by_id(user_id)
     if company:
         return company
