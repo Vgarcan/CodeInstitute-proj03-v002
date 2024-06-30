@@ -22,20 +22,19 @@ class User(UserMixin):
             )
         return None
     
+    def get_by_id(user_id):
+        try:
+            user_data = mongo.db.users.find_one({'_id': ObjectId(user_id)})
+            if user_data:
+                return User(
+                    username=user_data['username'], 
+                    password=user_data['password'],
+                    _id=str(user_data['_id']),
+                    role=user_data['role']
+                )
+        except Exception as e:
+            print("==============> Exception in get_by_id:", e)
+            return None
+    
     def get_id(self):
         return self.id
-
-@login_manager.user_loader
-def load_user(user_id):
-    try:
-        user_data = mongo.db.users.find_one({'_id': ObjectId(user_id)})
-        if user_data:
-            return User(
-                username=user_data['username'], 
-                password=user_data['password'],
-                _id=str(user_data['_id']),
-                role = user_data['role']  
-            )
-    except Exception as e:
-        print ("==============> Exception:", e)
-        return None
