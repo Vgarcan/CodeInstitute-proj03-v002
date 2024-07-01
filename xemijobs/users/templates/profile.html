@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>PROFILE</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% set category, message = messages[-1] %}
+            <ul>
+                <li class="{{ category }}">{{ message }}</li>
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        {% for field in form %}
+
+            {% if field.label.text != "CSRF Token" %}
+
+                {% if field.label.text == 'Register' %}
+
+                    <button type="submit" class="btn btn-primary">UPDATE INFO</button>
+
+                {% else %}
+                
+                    {% if field.label.text == 'Username' %}
+
+                        {{ field.label.text }}<br>
+                        {{ field(size=32, placeholder=data.username) }}<br>
+                        {% for error in field.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                        <br><br>  
+                        
+                    {% elif field.label.text == 'Password' %}
+
+                        {{ field.label.text }}<br>
+                        {{ field(size=32, placeholder='Enter your new Password') }}<br>
+                        {% for error in field.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                        <br><br>  
+
+                    {% elif field.label.text == 'confirm_password' %}
+
+                        {{ field.label.text }}<br>
+                        {{ field(size=32, placeholder= 'Confirm your Password') }}<br>
+                        {% for error in field.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                        <br><br>  
+                    
+                    {% endif %}
+
+                {% endif %}
+
+            {% endif %}
+                    
+        {% endfor %}
+
+    </form>
+
+</body>
+</html>

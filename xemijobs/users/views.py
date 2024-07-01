@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from .forms import RegistrationForm, LoginForm
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -103,3 +103,36 @@ def logout():
 @role_checker('user')
 def dashboard():
     return "<h1>this is user's DASHBOARD</h1>"
+
+
+
+@users.route('/profile', methods=['GET', 'POST'])
+@login_required
+@role_checker('user')
+def profile():
+    
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        username = form.username.data
+        password = generate_password_hash(form.password.data)
+        print(f"Registering user: {username}")
+
+        existing_user = mongo.db.users.find_one({'username': username})
+        print(f"Existing user: {existing_user}")
+
+        # If the user doesn't exist, insert them into the database
+        if existing_user == None:
+            print(f"Inserting user: {username}")
+            mongo.db.users.insert_one({'username': username, 'password': password, 'role':'user'})
+            flash('User registered successfully!', 'success')
+            return redirect(url_for('users.login'))
+        
+        elif existing_user['username'] == username :
+            flash('Username already exists!', 'danger')
+            return redirect(url_for('users.profile'))
+
+    
+    for field_name, field_object in form._fields.items():
+            print(f"Field Name: {field_name}, Field Label: {field_object.label.text}")
+    
+    return render_template('profile.html', form=form, data= current_user)

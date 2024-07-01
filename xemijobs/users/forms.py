@@ -10,7 +10,6 @@ class RegistrationForm(FlaskForm):
 
     # name = StringField('Name', validators=[DataRequired(), Length(min=1, max=50)])
     # surname = StringField('Surname', validators=[DataRequired(), Length(min=1, max=50)])
-
     
     submit = SubmitField('Register')
 
