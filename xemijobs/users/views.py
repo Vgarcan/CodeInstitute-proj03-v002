@@ -1,17 +1,19 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, login_required, current_user
-from .forms import RegistrationForm, LoginForm
+from .forms import RegistrationForm, LoginForm, ProfileForm
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
-from ..extensions import mongo
+from ..extensions import mongo, ObjectId
 from ..decoratros import role_checker
 
 
 users = Blueprint('users', __name__, template_folder='templates', static_folder='static')
 
+
 @users.route('/')
 def index():
     return "<h1>this is user's INDEX</h1>"
+
 
 @users.route('/register', methods=['GET', 'POST'])
 def register():
@@ -45,12 +47,12 @@ def register():
         elif existing_user['username'] == username :
             flash('Username already exists!', 'danger')
             return redirect(url_for('users.register'))
-
     
     for field_name, field_object in form._fields.items():
             print(f"Field Name: {field_name}, Field Label: {field_object.label.text}")
     
     return render_template('register.html', form=form)
+
 
 @users.route('/login', methods=['GET', 'POST'])
 def login():
@@ -74,6 +76,7 @@ def login():
         user_data = mongo.db.users.find_one({'username': username})
         
         # Check if user exists and password is correct
+        ## check_password_hash() ches if the hashed passwords marches given password
         if user_data and check_password_hash(user_data['password'], password):
             # Create a User object and log in the user
             user = User(user_data['username'], user_data['password'], user_data['_id'], user_data['role'])
@@ -89,6 +92,7 @@ def login():
     # Render the login template with the form
     return render_template('login.html', form=form)
 
+
 @users.route('/logout')
 @login_required
 @role_checker('user')
@@ -102,37 +106,51 @@ def logout():
 @login_required
 @role_checker('user')
 def dashboard():
+    print (current_user.username)
     return "<h1>this is user's DASHBOARD</h1>"
-
 
 
 @users.route('/profile', methods=['GET', 'POST'])
 @login_required
 @role_checker('user')
 def profile():
-    
-    form = RegistrationForm()
+    form = ProfileForm()
+
+    # Pre-fill the form with current user's username
+    form.username.data = current_user.username
+
     if form.validate_on_submit():
         username = form.username.data
-        password = generate_password_hash(form.password.data)
-        print(f"Registering user: {username}")
+        current_password = form.current_password.data
+        new_password = form.new_password.data
 
+        print(check_password_hash(current_user.password, current_password))
+        if check_password_hash(current_user.password, current_password):
+            # If the new password is provided
+            if new_password:
+                # Hash the new password
+                hashed_password = generate_password_hash(new_password)
+            # If the new password is not provided
+            else:
+                # Keep the current password if new is not provided
+                hashed_password = current_user.password
+
+        print(f"UPDATING USER: {username}")
+
+        # Check if the username already exists and it's not the current user's username
         existing_user = mongo.db.users.find_one({'username': username})
-        print(f"Existing user: {existing_user}")
+        print(f"USER: {existing_user}")
 
-        # If the user doesn't exist, insert them into the database
-        if existing_user == None:
-            print(f"Inserting user: {username}")
-            mongo.db.users.insert_one({'username': username, 'password': password, 'role':'user'})
-            flash('User registered successfully!', 'success')
-            return redirect(url_for('users.login'))
-        
-        elif existing_user['username'] == username :
+        if existing_user and str(ObjectId(existing_user['_id'])) != current_user.id:
             flash('Username already exists!', 'danger')
             return redirect(url_for('users.profile'))
 
-    
-    for field_name, field_object in form._fields.items():
-            print(f"Field Name: {field_name}, Field Label: {field_object.label.text}")
-    
-    return render_template('profile.html', form=form, data= current_user)
+        # Update user information in the database
+        mongo.db.users.update_one(
+            {'_id': current_user.get_id()},
+            {"$set": {'username': username, 'password': hashed_password}})
+
+        flash('Profile updated successfully!', 'success')
+        return redirect(url_for('users.dashboard'))
+
+    return render_template('profile.html', form=form, data=current_user)

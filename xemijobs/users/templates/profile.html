@@ -22,41 +22,19 @@
 
             {% if field.label.text != "CSRF Token" %}
 
-                {% if field.label.text == 'Register' %}
+                {% if field.name == 'submit' %}
 
                     <button type="submit" class="btn btn-primary">UPDATE INFO</button>
 
                 {% else %}
                 
-                    {% if field.label.text == 'Username' %}
-
-                        {{ field.label.text }}<br>
-                        {{ field(size=32, placeholder=data.username) }}<br>
-                        {% for error in field.errors %}
-                            <span style="color: red;">[{{ error }}]</span>
-                        {% endfor %}
-                        <br><br>  
-                        
-                    {% elif field.label.text == 'Password' %}
-
-                        {{ field.label.text }}<br>
-                        {{ field(size=32, placeholder='Enter your new Password') }}<br>
-                        {% for error in field.errors %}
-                            <span style="color: red;">[{{ error }}]</span>
-                        {% endfor %}
-                        <br><br>  
-
-                    {% elif field.label.text == 'confirm_password' %}
-
-                        {{ field.label.text }}<br>
-                        {{ field(size=32, placeholder= 'Confirm your Password') }}<br>
-                        {% for error in field.errors %}
-                            <span style="color: red;">[{{ error }}]</span>
-                        {% endfor %}
-                        <br><br>  
+                    {{ field.label.text }}<br>
+                    {{ field(size=32) }}<br>
+                    {% for error in field.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                    <br><br>  
                     
-                    {% endif %}
-
                 {% endif %}
 
             {% endif %}
