@@ -31,7 +31,7 @@ class Company(UserMixin):
         else:
             print("Company not found.")
         """
-        user_data = mongo.db.company.find_one({'username': username})
+        user_data = mongo.db.companies.find_one({'username': username})
         if user_data:
             return Company(
                 username=user_data['username'], 
@@ -57,7 +57,7 @@ class Company(UserMixin):
         """
         try:
             # Attempt to find the company in the database using the provided user_id
-            user_data = mongo.db.users.find_one({'_id': ObjectId(user_id)})
+            user_data = mongo.db.companies.find_one({'_id': ObjectId(user_id)})
             
             # If a company is found, create a new Company object and return it
             if user_data:

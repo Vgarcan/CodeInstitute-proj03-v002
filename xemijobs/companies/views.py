@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from .forms import RegistrationForm, LoginForm
 from .models import Company
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -11,6 +11,7 @@ companies = Blueprint('companies', __name__, template_folder='templates', static
 
 @companies.route('/')
 def index():
+    print(current_user.username, 'role ====> ', current_user.role)
     return "<h1>this is company's INDEX</h1>"
 
 @companies.route('/register', methods=['GET', 'POST'])
@@ -78,6 +79,7 @@ def login():
             # Create a User object and log in the user
             user = Company(user_data['username'], user_data['password'], user_data['_id'], user_data['role'])
             login_user(user)
+            print (current_user.username, "\n", current_user.role)
             
             # Display success flash message and redirect to dashboard
             flash('Logged in successfully!', 'success')
@@ -104,12 +106,3 @@ def logout():
 def dashboard():
     return "<h1>this is company's DASHBOARD</h1>"
 
-
-@companies.route('/test_mongo')
-def test_mongo():
-    try:
-        from flask import jsonify
-        collections = mongo.db.list_collection_names()
-        return jsonify(collections)
-    except Exception as e:
-        return str(e), 500
