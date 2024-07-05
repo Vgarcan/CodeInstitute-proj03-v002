@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, login_required, current_user
-from .forms import RegistrationForm, LoginForm
+from .forms import RegistrationForm, LoginForm, ProfileForm
 from .models import Company
 from werkzeug.security import generate_password_hash, check_password_hash
-from ..extensions import mongo
+from ..extensions import mongo, ObjectId
 from ..decoratros import role_checker
 
 
@@ -104,5 +104,51 @@ def logout():
 @login_required
 @role_checker('company')
 def dashboard():
+    print (current_user.username)
     return "<h1>this is company's DASHBOARD</h1>"
 
+
+@companies.route('/profile', methods=['GET', 'POST'])
+@login_required
+@role_checker('company')
+def profile():
+    form = ProfileForm()
+
+    # Pre-fill the form with current user's username
+    # form.username.data = current_user.username
+
+    if form.validate_on_submit():
+        username = form.username.data
+        current_password = form.current_password.data
+        new_password = form.new_password.data
+
+        print(check_password_hash(current_user.password, current_password))
+        if check_password_hash(current_user.password, current_password):
+            # If the new password is provided
+            if new_password:
+                # Hash the new password
+                hashed_password = generate_password_hash(new_password)
+            # If the new password is not provided
+            else:
+                # Keep the current password if new is not provided
+                hashed_password = current_user.password
+
+        print(f"UPDATING USER: {username}")
+
+        # Check if the username already exists and it's not the current user's username
+        existing_user = mongo.db.companies.find_one({'username': username})
+        print(f"USER: {existing_user}")
+
+        if existing_user and str(ObjectId(existing_user['_id'])) != current_user.id:
+            flash('Username already exists!', 'danger')
+            return redirect(url_for('companies.profile'))
+
+        # Update user information in the database
+        mongo.db.companies.update_one(
+            {'_id': ObjectId(current_user.get_id())},
+            {"$set": {'username': username, 'password': hashed_password}})
+
+        flash('Profile updated successfully!', 'success')
+        return redirect(url_for('companies.dashboard'))
+
+    return render_template('profile.html', form=form, data=current_user)

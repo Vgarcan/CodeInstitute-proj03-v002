@@ -19,6 +19,7 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired(), Length(min=6, max=36)])
     submit = SubmitField('Login')
 
+## LOGIN FORM (USER)
 class ProfileForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
     current_password = PasswordField('Current Password', validators=[Optional()])

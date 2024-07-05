@@ -117,7 +117,7 @@ def profile():
     form = ProfileForm()
 
     # Pre-fill the form with current user's username
-    form.username.data = current_user.username
+    # form.username.data = current_user.username
 
     if form.validate_on_submit():
         username = form.username.data
@@ -135,7 +135,7 @@ def profile():
                 # Keep the current password if new is not provided
                 hashed_password = current_user.password
 
-        print(f"UPDATING USER: {username}")
+        print(f"UPDATING TO USER: {username}")
 
         # Check if the username already exists and it's not the current user's username
         existing_user = mongo.db.users.find_one({'username': username})
@@ -146,9 +146,15 @@ def profile():
             return redirect(url_for('users.profile'))
 
         # Update user information in the database
-        mongo.db.users.update_one(
-            {'_id': current_user.get_id()},
-            {"$set": {'username': username, 'password': hashed_password}})
+        try: 
+            mongo.db.users.update_one(
+                {'_id':ObjectId(current_user.get_id())},
+                {"$set": {'username': username, 'password': hashed_password}})
+            
+        except Exception as e:
+            print(f"Error updating user: {e}")
+            flash('Error updating user!', 'danger')
+            return redirect(url_for('users.profile'))
 
         flash('Profile updated successfully!', 'success')
         return redirect(url_for('users.dashboard'))
