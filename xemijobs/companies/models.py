@@ -75,3 +75,21 @@ class Company(UserMixin):
     def get_id(self):
         return self.id
 
+# TODO:
+# Include the CRUD-Funtions in the model
+
+#! create the {CRUD-functions}
+
+    ## Create
+    #! no Login needed
+    ##? create_new_userComp function
+    ## Read
+    #! no Login needed
+    ##? get_by_id function - fetch one userComp by the id
+    ##? get_by_username function - fetch one userComp by username
+    ## Update
+    #! only COMPANIES
+    ##? update_profile function
+    ## Delete
+    #! only COMPANIES
+    ##? delete_user function

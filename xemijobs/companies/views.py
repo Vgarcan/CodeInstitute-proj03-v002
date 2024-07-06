@@ -39,6 +39,7 @@ def register():
         # If the user doesn't exist, insert them into the database
         if existing_user == None:
             print(f"Inserting user: {username}")
+            ###! change this line for the method from the model
             mongo.db.companies.insert_one({'username': username, 'password': password, 'role':'company'})
             flash('User registered successfully!', 'success')
             return redirect(url_for('companies.login'))
@@ -72,6 +73,7 @@ def login():
         password = form.password.data
         
         # Fetch user data from MongoDB
+        ###! change this line for the method from the model
         user_data = mongo.db.companies.find_one({'username': username})
         
         # Check if user exists and password is correct
@@ -136,6 +138,7 @@ def profile():
         print(f"UPDATING USER: {username}")
 
         # Check if the username already exists and it's not the current user's username
+        ###! change this line for the method from the model
         existing_user = mongo.db.companies.find_one({'username': username})
         print(f"USER: {existing_user}")
 
@@ -144,6 +147,7 @@ def profile():
             return redirect(url_for('companies.profile'))
 
         # Update user information in the database
+        ###! change this line for the method from the model
         mongo.db.companies.update_one(
             {'_id': ObjectId(current_user.get_id())},
             {"$set": {'username': username, 'password': hashed_password}})

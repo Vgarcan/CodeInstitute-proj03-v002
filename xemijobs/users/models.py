@@ -68,3 +68,22 @@ class User(UserMixin):
     
     def get_id(self):
         return self.id
+
+# TODO:
+# Include the CRUD-Funtions in the model
+
+#! create the {CRUD-functions}
+
+    ## Create
+    #! no Login needed
+    ##? create_new_user function
+    ## Read
+    #! no Login needed
+    ##? get_by_id function - fetch one user by the id
+    ##? get_by_username function - fetch one user by username
+    ## Update
+    #! only USERS
+    ##? update_profile function
+    ## Delete
+    #! only USERS
+    ##? delete_user function
