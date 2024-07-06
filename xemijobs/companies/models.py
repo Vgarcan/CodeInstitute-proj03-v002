@@ -61,7 +61,7 @@ class Company(UserMixin):
             'password': password,
             'role': role
         }
-        mongo.db.users.insert_one(new_user_data)
+        mongo.db.companies.insert_one(new_user_data)
     ## Read
     #! no Login needed
     ##? get_by_id function - fetch one userComp by the id
