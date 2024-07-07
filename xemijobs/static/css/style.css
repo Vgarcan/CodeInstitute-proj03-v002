@@ -1,0 +1,32 @@
+:root {
+    --primary-color: #1F2937;
+    --secondary-color: #3B82F6;
+    --accent-color: #10B981;
+    --background-color: #F3F4F6;
+    --main-text-color: #1F2937;
+    --secondary-text-color: #666666;
+    --white-color: #FFFFFF;
+    --light-gray-color: #E5E7EB;
+    --hover-accent-color: #0F9F79;
+    --hover-button-color: #cf8168;
+}
+
+body {
+    background-color: var(--background-color);
+    font-family: 'Poppins', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: var(--main-text-color);
+}
+
+header {
+    background-color: var(--primary-color);
+}

@@ -6,7 +6,7 @@ main = Blueprint('main', __name__, template_folder='templates', static_folder='s
 
 @main.route('/')
 def index():
-    return "<h1>this is main's INDEX</h1>"
+    return render_template('main/index.html')
 
 @main.route('/page1')
 def app_another():
