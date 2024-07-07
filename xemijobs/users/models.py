@@ -14,28 +14,42 @@ class User(UserMixin):
     def get_id(self):
         return self.id
 
-# TODO:
-# Include the CRUD-Funtions in the model
-
-#! create the {CRUD-functions}
+#! CRUD-functions
 
     ## Create
     #! no Login needed
-    ##? create_new_user function
     @staticmethod
     def create_new_user(username, password, role):
-        # Create a new user document in the database
+        """
+        This function creates a new user in the database.
+
+        Parameters:
+        username (str): The username of the new user.
+        password (str): The password of the new user.
+        role (str): The role of the new user.
+
+        Returns:
+        None
+
+        Raises:
+        None
+
+        Note:
+        This function does not perform any checks to ensure that the username is unique.
+        It is assumed that the caller will handle any necessary validation.
+        """
+
         new_user_data = {
             'username': username,
             'password': password,
             'role': role
         }
+        
         mongo.db.users.insert_one(new_user_data)
 
 
     ## Read
     #! no Login needed
-    ##? get_by_id function - fetch one user by the id
     @staticmethod
     def get_by_id(user_id):
         """
@@ -52,10 +66,8 @@ class User(UserMixin):
         Exception: If any error occurs during the database query.
         """
         try:
-            # Attempt to find the user in the database using their unique ID
             user_data = mongo.db.users.find_one({'_id': ObjectId(user_id)})
             if user_data:
-            # If a user is found, create a new User instance and return it
                 return User(
                     username=user_data['username'], 
                     password=user_data['password'],
@@ -63,12 +75,10 @@ class User(UserMixin):
                     role=user_data['role']
                 )
         except Exception as e:
-            # If an error occurs, print the error message and return None
             print("==============> Exception in get_by_id:", e)
             return None
    
 
-    ##? get_by_username function - fetch one user by username
     @staticmethod
     def get(username):
         """
@@ -97,23 +107,51 @@ class User(UserMixin):
 
     ## Update
     #! only USERS
-    ##? update_profile function
     @staticmethod
     def update_profile(**profile_data):
-        # Retrieve the current user's ID
+        """
+        Updates the profile of the currently logged-in user in the database.
+
+        Parameters:
+        profile_data (dict): A dictionary containing the fields and their new values to be updated.
+            The keys of the dictionary should match the fields in the user document in the database.
+
+        Returns:
+        None
+
+        Raises:
+        None
+
+        Note:
+        This function assumes that the 'current_user' object is available and represents the currently logged-in user.
+        It retrieves the unique ID of the current user and uses it to update the corresponding user document in the database.
+        """
         current_user_id = str(current_user.get_id())
-        # Update the user's profile in the database
         mongo.db.users.update_one(
             {'_id': ObjectId(current_user_id)},
-            {"$set": profile_data})
+            {"$set": profile_data}
+        )
         
 
     ## Delete
     #! only USERS
-    ##? delete_user function
     @staticmethod
     def delete_user():
-        # Retrieve the current user's ID
+        """
+        Deletes the currently logged-in user from the database.
+
+        Parameters:
+        None
+
+        Returns:
+        None
+
+        Raises:
+        None
+
+        Note:
+        This function assumes that the 'current_user' object is available and represents the currently logged-in user.
+        It retrieves the unique ID of the current user and uses it to delete the corresponding user document in the database.
+        """
         current_user_id = str(current_user.get_id())
-        # Delete the user from the database
         mongo.db.users.delete_one({'_id': ObjectId(current_user_id)})

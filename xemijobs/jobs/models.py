@@ -1,24 +1,8 @@
-
-# from form data:
-    # post_title
-    # location
-    # salary
-    # job_type
-    # description
-    # ends_on
-# from views 
-    # published_on
-    # comp_name
-    # comp_id
-# from model
-    # job_id
-
-# TODO:
-# Import Section
 from flask_login import UserMixin, current_user
 from ..extensions import mongo
 from bson import ObjectId, BSON
-# class JOB
+
+
 class Job:
     def __init__(self, post_title, location, salary, job_type, description, ends_on, published_on, comp_name, comp_id, _id):
         self.post_title = post_title
@@ -35,11 +19,10 @@ class Job:
     def get_id(self):
         return self.id
 
-    #! create the {CRUD-functions}
+    #! CRUD-functions
 
     ## Create
     #! only COMPANIES
-    ##? create_new_job function
     @staticmethod
     def create_new_job(**job_data):
         """
@@ -75,9 +58,9 @@ class Job:
         """
         mongo.db.jobs.insert_one(**job_data)
 
+
     ## Read
     #! no Login needed
-    ##? get_by_id function - ftech one job
     @staticmethod
     def get_by_id(job_id):
         """
@@ -116,7 +99,8 @@ class Job:
                 comp_id=str(job_data['comp_id']),
                 _id=str(job_data['_id'])
             )
-    ##? get_all_jobs function - ftech all jobs
+    
+
     @staticmethod
     def get_all_jobs():
         """
@@ -152,9 +136,9 @@ class Job:
             _id=str(job_data['_id'])
         ) for job_data in jobs_data]
     
+    
     ## Update
     #! only COMPANIES
-    ##? update_job function
     @staticmethod
     def update_job(job_id, **job_data):
         """
@@ -188,9 +172,10 @@ class Job:
             {'_id': ObjectId(job_id)},
             {"$set": job_data}
         )
+
+
     ## Delete
     #! only COMPANIES
-    ##? delete_job function
     @staticmethod
     def delete_job(job_id):
         """

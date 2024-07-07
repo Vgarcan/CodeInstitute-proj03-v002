@@ -73,9 +73,6 @@ def login():
         username = form.username.data
         password = form.password.data
         
-        # Fetch user data from MongoDB
-        ###! change this line for the method from the model
-        # user_data = mongo.db.users.find_one({'username': username})
         user_data = User.get(username)
         print('==============>>>>', user_data.username)
         
@@ -83,7 +80,6 @@ def login():
         ## check_password_hash() ches if the hashed passwords marches given password
         if user_data and check_password_hash(user_data.password, password):
             # Create a User object and log in the user
-            ###! change this line for the method from the model
             user = User.get_by_id(user_data.id)
             login_user(user)
             
@@ -102,6 +98,18 @@ def login():
 @login_required
 @role_checker('user')
 def logout():
+    """
+    Logs out the current user.
+
+    This function logs out the current user by calling the `logout_user()` function from the `flask_login` module.
+    It also displays a success flash message using the `flash()` function from the `flask` module.
+
+    Parameters:
+    None
+
+    Returns:
+    redirect: A redirect response to the login page (`users.login`)
+    """
     logout_user()
     flash('You have been logged out!', 'success')
     return redirect(url_for('users.login'))
@@ -119,10 +127,18 @@ def dashboard():
 @login_required
 @role_checker('user')
 def profile():
-    form = ProfileForm()
+    """
+    Handles user profile updates.
 
-    # Pre-fill the form with current user's username
-    # form.username.data = current_user.username
+    Parameters:
+    form (ProfileForm): The form object containing the user's profile details.
+
+    Returns:
+    render_template: If the form is not submitted or contains errors, render the profile template with the form and current user data.
+    redirect: If the user profile is successfully updated, redirect to the dashboard page.
+    flash: If the username already exists, display a flash message.
+    """
+    form = ProfileForm()
 
     if form.validate_on_submit():
         username = form.username.data
@@ -147,19 +163,16 @@ def profile():
             '_id': current_user.id,
         }
 
-
-        # Check if the username already exists and it's not the current user's username
-        ###! change this line for the method from the model
         existing_user = User.get(profile_data['username'])
         print(f"USER: {existing_user}")
 
+        # Check if the username already exists and it's not the current user's username
         if existing_user and str(ObjectId(existing_user['_id'])) != current_user.id:
             flash('Username already exists!', 'danger')
             return redirect(url_for('users.profile'))
 
         # Update user information in the database
         try: 
-            ###! change this line for the method from the model
             User.update_profile(profile_data=profile_data)
         except Exception as e:
             print(f"Error updating user: {e}")
@@ -167,6 +180,7 @@ def profile():
             return redirect(url_for('users.profile'))
 
         flash('Profile updated successfully!', 'success')
+
         return redirect(url_for('users.dashboard'))
 
     return render_template('profile.html', form=form, data=current_user)

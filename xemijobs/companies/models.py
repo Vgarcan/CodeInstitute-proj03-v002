@@ -45,26 +45,39 @@ class Company(UserMixin):
     def get_id(self):
         return self.id
 
-# TODO:
-# Include the CRUD-Funtions in the model
-
-#! create the {CRUD-functions}
+#! CRUD-functions
 
     ## Create
     #! no Login needed
-    ##? create_new_userComp function
     @staticmethod
     def create_new_user(username, password, role):
-        # Create a new user document in the database
+        """
+        Create a new user in the companies collection.
+
+        Parameters:
+        username (str): The unique username of the company.
+        password (str): The password for the company.
+        role (str): The role of the company (e.g., 'admin', 'employee').
+
+        Returns:
+        None
+
+        Raises:
+        None
+
+        Example:
+        Company.create_new_user('john_doe', 'password123', 'admin')
+        """
         new_user_data = {
             'username': username,
             'password': password,
             'role': role
         }
         mongo.db.companies.insert_one(new_user_data)
+
+
     ## Read
     #! no Login needed
-    ##? get_by_id function - fetch one userComp by the id
     @staticmethod
     def get_by_id(user_id):
         """
@@ -78,6 +91,13 @@ class Company(UserMixin):
 
         Raises:
         Exception: If an error occurs during the database query.
+
+        Example:
+        company = Company.get_by_id('5f17c170a1b54a0017979d99')
+        if company:
+            print(f"Company found: {company.username}")
+        else:
+            print("Company not found.")
         """
         try:
             # Attempt to find the company in the database using the provided user_id
@@ -97,7 +117,6 @@ class Company(UserMixin):
             return None
    
 
-    ##? get_by_username function - fetch one userComp by username
     @staticmethod
     def get(username):
         """
@@ -132,21 +151,67 @@ class Company(UserMixin):
 
     ## Update
     #! only COMPANIES
-    ##? update_profile function
     @staticmethod
     def update_profile(**profile_data):
+        """
+        Update the current user's profile in the database.
+
+        Parameters:
+        profile_data (dict): A dictionary containing the fields and values to update.
+                            The keys of the dictionary should match the fields in the database.
+
+        Returns:
+        None
+
+        Raises:
+        None
+
+        Example:
+        company = Company.get('john_doe')
+        if company:
+            company.update_profile(email='new_email@example.com', phone='1234567890')
+            print("Company profile updated successfully.")
+        else:
+            print("Company not found.")
+
+        Note:
+        This method assumes that the current user is authenticated and authorized to update their own profile.
+        """
         # Retrieve the current user's ID
         current_user_id = str(current_user.get_id())
         # Update the user's profile in the database
         mongo.db.companies.update_one(
             {'_id': ObjectId(current_user_id)},
             {"$set": profile_data})
+        
     
     ## Delete
     #! only COMPANIES
-    ##? delete_user function
     @staticmethod
     def delete_user():
+        """
+        Delete the current user from the companies collection.
+
+        Parameters:
+        None
+
+        Returns:
+        None
+
+        Raises:
+        None
+
+        Example:
+        company = Company.get('john_doe')
+        if company:
+            company.delete_user()
+            print("Company deleted successfully.")
+        else:
+            print("Company not found.")
+
+        Note:
+        This method assumes that the current user is authenticated and authorized to delete their own profile.
+        """
         # Retrieve the current user's ID
         current_user_id = str(current_user.get_id())
         # Delete the user from the database

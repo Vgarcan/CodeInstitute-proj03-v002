@@ -26,6 +26,16 @@ def register():
     render_template: If the form is not submitted or contains errors, render the registration template with the form.
     redirect: If the company is successfully registered, redirect to the login page.
     flash: If the username already exists, display a flash message.
+
+    Function Steps:
+    1. Initialize a RegistrationForm object.
+    2. If the form is submitted and valid:
+        2.1. Get the username and password from the form.
+        2.2. Hash the password.
+        2.3. Check if a user with the same username already exists.
+        2.4. If the user does not exist, create a new user in the database and redirect to the login page.
+        2.5. If the user already exists, display a flash message and redirect to the registration page.
+    3. If the form is not submitted or contains errors, render the registration template with the form.
     """
     form = RegistrationForm()
     if form.validate_on_submit():
@@ -38,8 +48,6 @@ def register():
 
         # If the user doesn't exist, insert them into the database
         if existing_user == None:
-            print(f"Inserting user: {username}")
-            ###! change this line for the method from the model
             Company.create_new_user(username, password, 'company')
             flash('User registered successfully!', 'success')
             return redirect(url_for('companies.login'))
@@ -48,10 +56,6 @@ def register():
             flash('Username already exists!', 'danger')
             return redirect(url_for('companies.register'))
 
-    
-    for field_name, field_object in form._fields.items():
-            print(f"Field Name: {field_name}, Field Label: {field_object.label.text}")
-    
     return render_template('register.html', form=form)
 
 @companies.route('/login', methods=['GET', 'POST'])
@@ -66,6 +70,21 @@ def login():
     render_template: If the form is not submitted or contains errors, render the login template with the form.
     redirect: If the company is successfully logged in, redirect to the dashboard page.
     flash: If the username or password is invalid, display a flash message.
+
+    Function Steps:
+    1. Initialize a LoginForm object.
+    2. If the form is submitted and valid:
+        2.1. Get the username and password from the form.
+        2.2. Fetch user data from MongoDB using the username.
+        2.3. Check if user exists and password is correct.
+        2.4. If user exists and password is correct:
+            2.4.1. Create a User object using the fetched user data.
+            2.4.2. Log in the user.
+            2.4.3. Print the current user's username and role.
+            2.4.4. Display a success flash message and redirect to the dashboard page.
+        2.5. If user does not exist or password is incorrect:
+            2.5.1. Display an error flash message.
+    3. If the form is not submitted or contains errors, render the login template with the form.
     """
     form = LoginForm()
     if form.validate_on_submit():
@@ -73,7 +92,6 @@ def login():
         password = form.password.data
         
         # Fetch user data from MongoDB
-        ###! change this line for the method from the model
         user_data = Company.get(username)
         
         # Check if user exists and password is correct
@@ -97,6 +115,19 @@ def login():
 @login_required
 @role_checker('company')
 def logout():
+    """
+    Logs out the current user.
+
+    This function is decorated with @login_required to ensure that only authenticated users can access this route.
+    It also uses the @role_checker decorator to restrict access to only users with the 'company' role.
+
+    Parameters:
+    None
+
+    Returns:
+    redirect: Redirects the user to the login page after successful logout.
+    flash: Displays a success flash message indicating that the user has been logged out.
+    """
     logout_user()
     flash('You have been logged out!', 'success')
     return redirect(url_for('companies.login'))
@@ -114,10 +145,33 @@ def dashboard():
 @login_required
 @role_checker('company')
 def profile():
-    form = ProfileForm()
+    """
+    Handles company profile updates.
 
-    # Pre-fill the form with current user's username
-    # form.username.data = current_user.username
+    Parameters:
+    form (ProfileForm): The form object containing the company's profile details.
+
+    Returns:
+    render_template: If the form is not submitted or contains errors, render the profile template with the form and current user data.
+    redirect: If the profile is successfully updated, redirect to the dashboard page.
+    flash: If the username already exists, display a flash message.
+
+    Function Steps:
+    1. Initialize a ProfileForm object.
+    2. If the form is submitted and valid:
+        2.1. Get the username, current password, and new password from the form.
+        2.2. Check if the current password is correct.
+        2.3. If the new password is provided, hash it. If not, keep the current password.
+        2.4. Prepare the profile data to be updated.
+        2.5. Fetch the existing user data from MongoDB using the username.
+        2.6. Check if the username already exists and it's not the current user's username.
+        2.7. If the username already exists, display a flash message and redirect to the profile page.
+        2.8. If the username is unique, update the user's profile in MongoDB.
+        2.9. If an error occurs during the update, display an error flash message and redirect to the profile page.
+        3.0. If the profile is successfully updated, display a success flash message and redirect to the dashboard page.
+    3. If the form is not submitted or contains errors, render the profile template with the form and current user data.
+    """
+    form = ProfileForm()
 
     if form.validate_on_submit():
         username = form.username.data
@@ -142,19 +196,15 @@ def profile():
             '_id': current_user.id,
         }
 
-        # Check if the username already exists and it's not the current user's username
-        ###! change this line for the method from the model
         existing_user = Company.get(profile_data['username'])
         print(f"USER: {existing_user}")
 
+        # Check if the username already exists and it's not the current user's username
         if existing_user and str(ObjectId(existing_user['_id'])) != current_user.id:
             flash('Username already exists!', 'danger')
             return redirect(url_for('companies.profile'))
 
-        # Update user information in the database
-        ###! change this line for the method from the model
         try: 
-            ###! change this line for the method from the model
             Company.update_profile(profile_data=profile_data)
         except Exception as e:
             print(f"Error updating user: {e}")
