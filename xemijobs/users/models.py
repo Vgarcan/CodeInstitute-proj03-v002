@@ -1,4 +1,4 @@
-from flask_login import UserMixin
+from flask_login import UserMixin, current_user
 from ..extensions import mongo
 from bson import ObjectId, BSON
 from xemijobs.extensions import login_manager
@@ -67,7 +67,7 @@ class User(UserMixin):
             print("==============> Exception in get_by_id:", e)
             return None
    
-   
+
     ##? get_by_username function - fetch one user by username
     @staticmethod
     def get(username):
@@ -101,7 +101,7 @@ class User(UserMixin):
     @staticmethod
     def update_profile(**profile_data):
         # Retrieve the current user's ID
-        current_user_id = str(login_manager.current_user.get_id())
+        current_user_id = str(current_user.get_id())
         # Update the user's profile in the database
         mongo.db.users.update_one(
             {'_id': ObjectId(current_user_id)},
@@ -114,6 +114,6 @@ class User(UserMixin):
     @staticmethod
     def delete_user():
         # Retrieve the current user's ID
-        current_user_id = str(login_manager.current_user.get_id())
+        current_user_id = str(current_user.get_id())
         # Delete the user from the database
         mongo.db.users.delete_one({'_id': ObjectId(current_user_id)})

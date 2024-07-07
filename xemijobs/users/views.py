@@ -32,6 +32,7 @@ def register():
     if form.validate_on_submit():
         username = form.username.data
         password = generate_password_hash(form.password.data)
+        role = 'user'
         print(f"Registering user: {username}")
 
         existing_user = mongo.db.users.find_one({'username': username})
@@ -40,8 +41,7 @@ def register():
         # If the user doesn't exist, insert them into the database
         if existing_user == None:
             print(f"Inserting user: {username}")
-            ###! change this line for the method from the model
-            mongo.db.users.insert_one({'username': username, 'password': password, 'role':'user'})
+            User.create_new_user(username, password, role)
             flash('User registered successfully!', 'success')
             return redirect(url_for('users.login'))
         
@@ -75,14 +75,16 @@ def login():
         
         # Fetch user data from MongoDB
         ###! change this line for the method from the model
-        user_data = mongo.db.users.find_one({'username': username})
+        # user_data = mongo.db.users.find_one({'username': username})
+        user_data = User.get(username)
+        print('==============>>>>', user_data.username)
         
         # Check if user exists and password is correct
         ## check_password_hash() ches if the hashed passwords marches given password
-        if user_data and check_password_hash(user_data['password'], password):
+        if user_data and check_password_hash(user_data.password, password):
             # Create a User object and log in the user
             ###! change this line for the method from the model
-            user = User(user_data['username'], user_data['password'], user_data['_id'], user_data['role'])
+            user = User.get_by_id(user_data.id)
             login_user(user)
             
             # Display success flash message and redirect to dashboard
@@ -139,10 +141,16 @@ def profile():
                 hashed_password = current_user.password
 
         print(f"UPDATING TO USER: {username}")
+        profile_data = {
+            'username': form.username.data,
+            'password': hashed_password,
+            '_id': current_user.id,
+        }
+
 
         # Check if the username already exists and it's not the current user's username
         ###! change this line for the method from the model
-        existing_user = mongo.db.users.find_one({'username': username})
+        existing_user = User.get(profile_data['username'])
         print(f"USER: {existing_user}")
 
         if existing_user and str(ObjectId(existing_user['_id'])) != current_user.id:
@@ -152,10 +160,7 @@ def profile():
         # Update user information in the database
         try: 
             ###! change this line for the method from the model
-            mongo.db.users.update_one(
-                {'_id':ObjectId(current_user.get_id())},
-                {"$set": {'username': username, 'password': hashed_password}})
-            
+            User.update_profile(profile_data=profile_data)
         except Exception as e:
             print(f"Error updating user: {e}")
             flash('Error updating user!', 'danger')

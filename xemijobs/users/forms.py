@@ -22,7 +22,7 @@ class LoginForm(FlaskForm):
 ## LOGIN FORM (USER)
 class ProfileForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
-    current_password = PasswordField('Current Password', validators=[Optional()])
+    current_password = PasswordField('Current Password', validators=[DataRequired()])
     new_password = PasswordField('New Password', validators=[Optional(), Length(min=6, max=20)])
     confirm_password = PasswordField('Confirm New Password', validators=[Optional(), EqualTo('new_password')])
     submit = SubmitField('Update Profile')
