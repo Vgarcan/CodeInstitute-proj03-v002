@@ -1,4 +1,4 @@
-from flask_login import UserMixin
+from flask_login import UserMixin, current_user
 from ..extensions import mongo
 from bson import ObjectId, BSON
 from xemijobs.extensions import login_manager
@@ -136,7 +136,7 @@ class Company(UserMixin):
     @staticmethod
     def update_profile(**profile_data):
         # Retrieve the current user's ID
-        current_user_id = str(login_manager.current_user.get_id())
+        current_user_id = str(current_user.get_id())
         # Update the user's profile in the database
         mongo.db.companies.update_one(
             {'_id': ObjectId(current_user_id)},
@@ -148,6 +148,6 @@ class Company(UserMixin):
     @staticmethod
     def delete_user():
         # Retrieve the current user's ID
-        current_user_id = str(login_manager.current_user.get_id())
+        current_user_id = str(current_user.get_id())
         # Delete the user from the database
         mongo.db.companies.delete_one({'_id': ObjectId(current_user_id)})
