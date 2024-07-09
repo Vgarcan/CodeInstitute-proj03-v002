@@ -1,55 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-</head>
-<body>
-    <h1>Register</h1>
+{% extends "xemijobs/base.html" %}
 
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% set category, message = messages[-1] %}
-            <ul>
-                <li class="{{ category }}">{{ message }}</li>
-            </ul>
-        {% endif %}
-    {% endwith %}
-    <form method="POST" action="">
-        {{ form.hidden_tag() }}
-        {% for field in form %}
-            {% if field.label.text != "CSRF Token" %}
-                {{ field.label }}<br>
-                {{ field(size=32) }}<br>
-                {% for error in field.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-                <br><br>
-            {% endif %}
-        {% endfor %}
-        <!-- {{ form.hidden_tag() }}
-        <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}<br>
-            {% for error in form.username.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}<br>
-            {% for error in form.password.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.confirm_password.label }}<br>
-            {{ form.confirm_password(size=32) }}<br>
-            {% for error in form.confirm_password.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.submit() }}</p> -->
-    </form>
-</body>
-</html>
+{% block main_content %}
+
+    <h2>Register</h2>
+    {% set form_action = url_for('users.register') %}
+    {% set submit_text = "Register" %}
+    {% include 'widgets/form1.html' %}
+
+{% endblock main_content %}
+
