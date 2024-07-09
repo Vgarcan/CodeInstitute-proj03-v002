@@ -25,4 +25,7 @@ def create_app():
     from .jobs.views import jobs as job_bp
     app.register_blueprint(job_bp, url_prefix='/job')
     
+    from .applications.views import applications as appl_bp
+    app.register_blueprint(appl_bp, url_prefix='/apply')
+    
     return app
