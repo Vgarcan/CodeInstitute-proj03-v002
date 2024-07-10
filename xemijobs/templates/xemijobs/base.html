@@ -21,7 +21,14 @@
     <main>
 
         <!-- Shows ALERT Widget -->
-        {% with messages = get_flashed_messages(with_categories=true) %} {% for category, message in messages %} {% include 'widgets/alert.html' %} {% endfor %} {% endwith %} {% block main_content %}
+        {% with messages = get_flashed_messages(with_categories=true) %} 
+            {% for category, message in messages %} 
+                {% include 'widgets/alert.html' %} 
+            {% endfor %} 
+        {% endwith %} 
+        
+        <!-- Main Content -->
+        {% block main_content %}
         <h1>Base.html</h1>
         {% endblock main_content %}
     </main>

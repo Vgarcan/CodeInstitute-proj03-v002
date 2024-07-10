@@ -11,7 +11,10 @@ companies = Blueprint('companies', __name__, template_folder='templates', static
 
 @companies.route('/')
 def index():
-    print(current_user.username, 'role ====> ', current_user.role)
+    try:
+        print(current_user.username, 'role ====> ', current_user.role)
+    except Exception as e:
+        print(f"Error: {e}")
     return "<h1>this is company's INDEX</h1>"
 
 @companies.route('/register', methods=['GET', 'POST'])
@@ -56,7 +59,7 @@ def register():
             flash('Username already exists!', 'danger')
             return redirect(url_for('companies.register'))
 
-    return render_template('register.html', form=form)
+    return render_template('companies/register.html', form=form)
 
 @companies.route('/login', methods=['GET', 'POST'])
 def login():
@@ -109,7 +112,7 @@ def login():
             flash('Invalid username or password!', 'danger')
 
     # Render the login template with the form
-    return render_template('login.html', form=form)
+    return render_template('companies/login.html', form=form)
 
 @companies.route('/logout')
 @login_required
@@ -138,7 +141,7 @@ def logout():
 @role_checker('company')
 def dashboard():
     print (current_user.username)
-    return render_template('dashboard.html')
+    return render_template('companies/dashboard.html')
 
 
 @companies.route('/profile', methods=['GET', 'POST'])
@@ -200,7 +203,7 @@ def profile():
         print(f"USER: {existing_user}")
 
         # Check if the username already exists and it's not the current user's username
-        if existing_user and str(ObjectId(existing_user['_id'])) != current_user.id:
+        if existing_user and str(existing_user.id) != current_user.id:
             flash('Username already exists!', 'danger')
             return redirect(url_for('companies.profile'))
 
@@ -214,4 +217,4 @@ def profile():
         flash('Profile updated successfully!', 'success')
         return redirect(url_for('companies.dashboard'))
 
-    return render_template('profile.html', form=form, data=current_user)
+    return render_template('companies/profile.html', form=form, data=current_user)

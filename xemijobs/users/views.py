@@ -52,7 +52,7 @@ def register():
     for field_name, field_object in form._fields.items():
             print(f"Field Name: {field_name}, Field Label: {field_object.label.text}")
     
-    return render_template('register.html', form=form)
+    return render_template('users/register.html', form=form)
 
 
 @users.route('/login', methods=['GET', 'POST'])
@@ -74,7 +74,10 @@ def login():
         password = form.password.data
         
         user_data = User.get(username)
-        print('==============>>>>', user_data.username)
+        try:
+            print('==============>>>>', user_data.username)
+        except Exception as e:
+            print ('==============>>>>', e)
         
         # Check if user exists and password is correct
         ## check_password_hash() ches if the hashed passwords marches given password
@@ -91,7 +94,7 @@ def login():
             flash('Invalid username or password!', 'danger')
 
     # Render the login template with the form
-    return render_template('login.html', form=form)
+    return render_template('users/login.html', form=form)
 
 
 @users.route('/logout')
@@ -120,7 +123,7 @@ def logout():
 @role_checker('user')
 def dashboard():
     print (current_user.username)
-    return render_template('dashboard.html')
+    return render_template('users/dashboard.html')
 
 
 @users.route('/profile', methods=['GET', 'POST'])
@@ -183,7 +186,7 @@ def profile():
 
         return redirect(url_for('users.dashboard'))
 
-    return render_template('profile.html', form=form, data=current_user)
+    return render_template('users/profile.html', form=form, data=current_user)
 
 
 
@@ -204,4 +207,4 @@ def list_of_users():
     if data is None:
         flash('No users found!', 'info')
         return redirect(url_for('users.index'))
-    return render_template('users-list.html', data=data)
+    return render_template('users/users-list.html', data=data)

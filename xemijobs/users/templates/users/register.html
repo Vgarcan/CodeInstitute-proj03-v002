@@ -1,8 +1,10 @@
 {% extends "xemijobs/base.html" %}
 
+{% block page_title %}USER Registration{% endblock page_title %}
+
 {% block main_content %}
 
-    <h2>Register</h2>
+    <h2>Register as an USER</h2>
     {% set form_action = url_for('users.register') %}
     {% set submit_text = "Register" %}
     {% include 'widgets/form1.html' %}

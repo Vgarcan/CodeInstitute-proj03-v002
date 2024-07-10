@@ -1,0 +1,12 @@
+{% extends "xemijobs/base.html" %}
+
+{% block main_content %}
+
+    {% block page_title %}COMPANY Login{% endblock page_title %}
+
+    <h2>COMPANY login</h2>
+    {% set form_action = url_for('companies.login') %}
+    {% set submit_text = "Log In" %}
+    {% include 'widgets/form1.html' %}
+
+{% endblock main_content %}
