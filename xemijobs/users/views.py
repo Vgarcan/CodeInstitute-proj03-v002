@@ -190,8 +190,8 @@ def profile():
 
 
 
-@users.route('/users-list')
-def list_of_users():
+@users.route('/users-list/<int:page>')
+def list_of_users(page=1):
     """
     This function retrieves a list of all users from the database and renders a template with the user data.
 
@@ -207,4 +207,10 @@ def list_of_users():
     if data is None:
         flash('No users found!', 'info')
         return redirect(url_for('users.index'))
-    return render_template('users/users-list.html', data=data)
+    
+    # Pagination
+    # per_page = 9
+    # offset = (page - 1) * per_page
+    # data = data[offset:offset + per_page]
+    
+    return render_template('users/users-list.html', rawdata=data, page=page)
