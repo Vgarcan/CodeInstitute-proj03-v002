@@ -1,0 +1,31 @@
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <div class="row">
+            <!-- About Section -->
+            <div class="col-md-4">
+                <h5>About Us</h5>
+                <p>Our mission is to simplify the job search process by offering a user-friendly interface and a wide range of job listings. Whether you're looking for your next career move or seeking the perfect candidate, XemiJobs is here to help you every step of the way.</p>
+            </div>
+            <!-- Navigation Links -->
+            <div class="col-md-4">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="{{ url_for('main.index') }}">Home</a></li>
+                    <li><a href="{{ url_for('users.login') }}">User Login</a></li>
+                    <li><a href="{{ url_for('companies.login') }}">Company Login</a></li>
+                    <li><a href="{{ url_for('users.register') }}">User Register</a></li>
+                    <li><a href="{{ url_for('companies.register') }}">Company Register</a></li>
+                </ul>
+            </div>
+            <!-- Contact Info -->
+            <div class="col-md-4">
+                <h5>Contact Us</h5>
+                <ul class="list-unstyled">
+                    <li>Email: contact@example.com</li>
+                    <li>Phone: +1 234 567 890</li>
+                    <li>Address: 123 Main Street, City, Country</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>

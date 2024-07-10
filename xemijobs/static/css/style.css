@@ -105,3 +105,35 @@ a:hover {
     background-color: var(--hover-button-color);
     border-color: var(--hover-button-color);
 }
+
+
+/* FOOTER */
+
+.footer {
+    background-color: var(--primary-color) !important;
+    color: var(--white-color) !important;
+}
+
+.footer a {
+    color: var(--secondary-color) !important;
+}
+
+.footer a:hover {
+    color: var(--hover-accent-color) !important;
+}
+
+.footer h5 {
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.footer p,
+.footer ul,
+.footer li {
+    font-family: 'Poppins', sans-serif;
+    color: var(--light-gray-color);
+}
+
+.footer .list-unstyled li {
+    margin-bottom: 0.5rem;
+}
