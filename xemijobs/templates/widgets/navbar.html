@@ -39,7 +39,10 @@
                     {% endif %}
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('users.login') }}">Login</a>
+                        <a class="nav-link" href="{{ url_for('users.login') }}">USER Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('companies.login') }}">COMPANY Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('users.register') }}">USER Register</a>

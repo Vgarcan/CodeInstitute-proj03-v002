@@ -77,7 +77,8 @@ def login():
         try:
             print('==============>>>>', user_data.username)
         except Exception as e:
-            print ('==============>>>>', e)
+            flash(f'Invalid username or password!\n{e}', 'danger')
+            return redirect(url_for('users.login'))
         
         # Check if user exists and password is correct
         ## check_password_hash() ches if the hashed passwords marches given password
@@ -154,6 +155,7 @@ def profile():
             if new_password:
                 # Hash the new password
                 hashed_password = generate_password_hash(new_password)
+                print("New password is being logged")
             # If the new password is not provided
             else:
                 # Keep the current password if new is not provided
@@ -170,7 +172,7 @@ def profile():
         print(f"USER: {existing_user}")
 
         # Check if the username already exists and it's not the current user's username
-        if existing_user and str(ObjectId(existing_user['_id'])) != current_user.id:
+        if existing_user and str(ObjectId(existing_user.id)) != current_user.id:
             flash('Username already exists!', 'danger')
             return redirect(url_for('users.profile'))
 
