@@ -137,3 +137,43 @@ a:hover {
 .footer .list-unstyled li {
     margin-bottom: 0.5rem;
 }
+
+
+/* CARDS */
+
+.card {
+    border: 1px solid var(--light-gray-color);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card-img-top {
+    border-bottom: 1px solid var(--light-gray-color);
+}
+
+.card-body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.card-title {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.card-text {
+    color: var(--secondary-text-color);
+}
+
+.card-footer {
+    background-color: var(--background-color);
+    border-top: 1px solid var(--light-gray-color);
+}
+
+.btn-primary {
+    background-color: var(--secondary-color);
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--hover-accent-color);
+}

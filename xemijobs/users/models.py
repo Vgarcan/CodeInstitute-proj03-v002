@@ -104,6 +104,20 @@ class User(UserMixin):
             )
         return None
  
+    @staticmethod
+    def get_all_users():
+    
+        users_data = mongo.db.users.find()
+        return [
+            User(
+                username=user_data['username'],
+                password=user_data['password'],
+                _id=str(user_data['_id']),
+                role=user_data['role']
+            )
+            for user_data in users_data
+        ]
+
 
     ## Update
     #! only USERS

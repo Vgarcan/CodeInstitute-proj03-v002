@@ -184,3 +184,24 @@ def profile():
         return redirect(url_for('users.dashboard'))
 
     return render_template('profile.html', form=form, data=current_user)
+
+
+
+@users.route('/users-list')
+def list_of_users():
+    """
+    This function retrieves a list of all users from the database and renders a template with the user data.
+
+    Parameters:
+    None
+
+    Returns:
+    render_template: If users are found, render the 'users-list.html' template with the user data.
+    redirect: If no users are found, display an info flash message and redirect to the index page.
+    """
+
+    data = User.get_all_users()
+    if data is None:
+        flash('No users found!', 'info')
+        return redirect(url_for('users.index'))
+    return render_template('users-list.html', data=data)
