@@ -120,7 +120,7 @@ def logout():
 @role_checker('user')
 def dashboard():
     print (current_user.username)
-    return "<h1>this is user's DASHBOARD</h1>"
+    return render_template('dashboard.html')
 
 
 @users.route('/profile', methods=['GET', 'POST'])

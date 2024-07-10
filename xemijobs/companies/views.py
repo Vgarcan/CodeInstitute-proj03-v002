@@ -138,7 +138,7 @@ def logout():
 @role_checker('company')
 def dashboard():
     print (current_user.username)
-    return "<h1>this is company's DASHBOARD</h1>"
+    return render_template('dashboard.html')
 
 
 @companies.route('/profile', methods=['GET', 'POST'])
