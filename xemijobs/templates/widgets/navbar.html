@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <!-- Logo -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ url_for('main.index') }}">
+                <img src="{{ url_for('static', filename='imgs/logo-owl.png') }}" width="30" height="30" alt="Logo">
+            </a>
+            <span class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+                  </svg>
+              </span>
+        </div>
+
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav">
+                {% if current_user.is_authenticated %}
+                    {% if current_user.role == 'user' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('users.dashboard') }}">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('users.profile') }}">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('users.logout') }}">Logout</a>
+                        </li>
+                    {% elif current_user.role == 'company' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('companies.dashboard') }}">Company Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('companies.profile') }}">Company Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('companies.logout') }}">Logout</a>
+                        </li>
+                    {% endif %}
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('users.login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('users.register') }}">USER Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('companies.register') }}">COMPANY Register</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="d-flex justify-content-end">
+            <form class="form-inline d-flex flex-row-reverse" action="" method="GET">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
+            </form>
+        </div>
+    </div>
+</nav>
