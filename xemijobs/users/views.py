@@ -210,9 +210,24 @@ def list_of_users(page=1):
         flash('No users found!', 'info')
         return redirect(url_for('users.index'))
     
-    # Pagination
+    # # Pagination
     # per_page = 9
     # offset = (page - 1) * per_page
     # data = data[offset:offset + per_page]
+
+    # # Modal Structure
+    # modal_data= {
+    #     'title': 'this is the title of the modal',
+    #     'body': 'this is the body of the modal',
+    #     'footer': 'this is the footer of the modal'        
+    # }
+    modal_data= {
+        'title': 'Make Changes?',
+        'body': 'this is the body of the modal',
+        'footer': 'this is the footer of the modal',
+        'btn_text': 'Logout',
+        'btn_class': 'btn-danger',
+        'btn_link': '{{ url_for(users.logout)}}'        
+    }
     
-    return render_template('users/users-list.html', rawdata=data, page=page)
+    return render_template('users/users-list.html', rawdata=data, page=page, modal_data=modal_data) 

@@ -1,5 +1,6 @@
 {% if message %}
-    <div class="alert alert-{{ category }}">
-        {{ message }}
-    </div>
+<div class="alert alert-{{ category }}">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
 {% endif %}
