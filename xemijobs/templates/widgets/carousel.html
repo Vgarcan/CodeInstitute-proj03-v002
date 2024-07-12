@@ -1,0 +1,35 @@
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        {% for index in range(carousel|length) %}
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ index }}" class="{% if index == 0 %}active{% endif %}" aria-current="{% if index == 0 %}true{% endif %}" aria-label="Slide {{ index + 1 }}"></button>
+        {% endfor %}
+    </div>
+    <div class="carousel-inner">
+        {% for count, slide in enumerate(carousel) %}
+            <div class="carousel-item {% if count == 0 %}active{% endif %}">
+                {% set full_path = url_for('static', filename=slide.img_src) %}
+                <img src="{{ full_path }}" class="d-block w-100" alt="{{ slide.img_alt }}">
+                {% if slide.header or slide.text %}
+                    <div class="carousel-caption d-none d-md-block">
+                        {% if slide.header %}
+                            <h5>{{ slide.header }}</h5>
+                        {% endif %}
+                        {% if slide.text %}
+                            <p>{{ slide.text }}</p>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Buttons -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>

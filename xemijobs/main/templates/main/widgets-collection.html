@@ -1,0 +1,35 @@
+{% extends "xemijobs/base.html" %}
+<!-- PAGE TITLE -->
+{% block page_title %}Widegts{% endblock page_title %}
+
+
+<!-- MAIN CONTENT -->
+{% block main_content %}
+    <h2>Alert</h2>
+    {% include 'widgets/alert.html' %}
+    <br>
+    <hr>
+    <h2>Cards</h2>
+    {% include 'widgets/cards.html' %}
+    <br>
+    <hr>
+    <h2>Modal</h2>
+    {% include 'widgets/modal.html' %}
+    <br>
+    <hr>
+    <h2>Carousel</h2>
+    <div class="container text-align-center">
+        {% include 'widgets/carousel.html' %}
+    </div>
+    <br>
+    <hr>
+    <h2>Form</h2>
+    <div class="container">
+        {% include 'widgets/form1.html' %}
+    </div>
+        
+    <br>
+    <hr>
+
+{% endblock main_content %}
+

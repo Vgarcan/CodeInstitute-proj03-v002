@@ -6,6 +6,7 @@
     --main-text-color: #1F2937;
     --secondary-text-color: #666666;
     --white-color: #FFFFFF;
+    --acctent-color-transparency: #0f9f7968;
     --light-gray-color: #E5E7EB;
     --hover-accent-color: #0F9F79;
     --hover-button-color: #cf8168;
@@ -91,6 +92,7 @@ a:hover {
 
 .form-control:focus {
     border-color: var(--accent-color);
+    box-shadow: 0 0 0 0.2rem rgba(16, 185, 129, 0.25);
 }
 
 
@@ -104,6 +106,7 @@ a:hover {
 .btn-outline-success:hover {
     background-color: var(--hover-button-color);
     border-color: var(--hover-button-color);
+    color: var(--white-color);
 }
 
 
@@ -145,6 +148,7 @@ a:hover {
     border: 1px solid var(--light-gray-color);
     border-radius: 10px;
     overflow: hidden;
+    box-shadow: 6px -1.5px var(--acctent-color-transparency);
 }
 
 .card-img-top {
@@ -170,7 +174,7 @@ a:hover {
 }
 
 .btn-primary {
-    background-color: var(--secondary-color);
+    background-color: var(--accent-color);
     border: none;
 }
 
@@ -187,4 +191,127 @@ a:hover {
     right: 0;
     z-index: 2;
     padding: 1.25rem 1rem;
+}
+
+.alert {
+    background-color: var(--accent-color);
+    color: var(--white-color);
+    border: none;
+}
+
+
+/* MODAL */
+
+.modal-content {
+    background-color: var(--background-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: var(--main-text-color);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--light-gray-color);
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.modal-content .modal-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--accent-color)
+}
+
+.modal-content .btn-close {
+    color: var(--white-color);
+    opacity: 0.8;
+    box-sizing: content-box;
+    position: relative;
+    top: 0;
+    right: 0;
+    background-color: var(--hover-button-color);
+}
+
+.modal-content .btn-close:hover {
+    color: var(--white-color);
+    opacity: 1;
+}
+
+.modal-body {
+    color: var(--main-text-color);
+    background-color: var(--light-gray-color);
+    font-family: 'Poppins', sans-serif;
+}
+
+.modal-footer {
+    border-top: 1px solid var(--light-gray-color);
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.modal-footer .btn-secondary {
+    background-color: var(--light-gray-color);
+    border-color: var(--light-gray-color);
+    color: var(--primary-color);
+}
+
+.modal-footer .btn-secondary:hover {
+    background-color: var(--hover-button-color);
+    border-color: var(--hover-button-color);
+    color: var(--white-color);
+}
+
+.modal-footer .btn-primary {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--white-color);
+}
+
+.modal-footer .btn-primary:hover {
+    background-color: var(--hover-accent-color);
+    border-color: var(--hover-accent-color);
+}
+
+
+/* Carrusel */
+
+.carousel-item img {
+    max-height: 500px;
+    object-fit: cover;
+}
+
+.carousel-caption {
+    background-color: var(--acctent-color-transparency);
+    /* Usando --primary-color con transparencia */
+    /* padding: 1rem; */
+    border-radius: 0.5rem;
+}
+
+.carousel-caption>p {
+    color: var(--white-color);
+    text-shadow: 1px 1px 2px var(--secondary-text-color);
+}
+
+.carousel-caption>h5 {
+    text-shadow: var(--white-color);
+    text-shadow: 1px 1px 2px var(--white-color);
+}
+
+.carousel-indicators [data-bs-target] {
+    background-color: var(--secondary-color);
+}
+
+.carousel-indicators .active {
+    background-color: var(--accent-color);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(100%);
+    /* Cambiar a blanco */
+}
+
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon {
+    filter: invert(50%);
+    /* Cambiar a gris claro al pasar el mouse */
 }
