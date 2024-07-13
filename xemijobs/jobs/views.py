@@ -18,11 +18,11 @@ def app_another():
     return "<h1>this is jobs's PAGE1</h1>"
 
 
-@jobs.route('/job-list')
-def job_list():
+@jobs.route('/job-list/<int:page>')
+def job_list(page=1):
     listed_jobs = Job.get_all_jobs()
     # 3. make sure to add pagination or limit the number of jobs shown per page
-    return "<h1>this is jobs's LISTINGS</h1>"
+    return render_template("jobs/jobs-list.html", data=listed_jobs,page=page)
 
 
 @jobs.route('/job-detail/<job_id>')
@@ -33,31 +33,34 @@ def job_detail(job_id):
     return "<h1>this is jobs's DETAIL</h1>"
 
 
-@jobs.route('/create-job')
+@jobs.route('/create-job', methods=['GET', 'POST'])
 @login_required
 @role_checker('company')
 def create_job():
     form = JobForm()
 
     if form.validate_on_submit():
-        details = {
-            'post_title': form.title.data,
+        job_data = {
+            'post_title': form.post_title.data,
             'location': form.location.data,
             'salary': form.salary.data,
             'job_type': form.job_type.data,
             'description': form.description.data,
             'ends_on': form.ends_on.data,
-            'published_on': datetime.now(),
+            'published_on': datetime.datetime.now().isoformat(),
             'company_name': current_user.username,
             'comp_id': current_user.id
         }
         
         try:
-            Job.create_new_job(job_data=details)
+            Job.create_new_job(job_data = job_data)
+            flash('Job created successfully', 'success')
+            return redirect(url_for('jobs.job_list'))
         except Exception as e:
             print ('There was an error creating ======> ' + str(e))
+            flash('Job was not Created: ' + str(e), "error")
         
-    return "<h1>this is jobs's CREATE JOB</h1>"
+    return render_template('jobs/create-job.html', form=form)
 
 @jobs.route('/edit-job/<job_id>')
 @login_required

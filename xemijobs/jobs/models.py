@@ -24,7 +24,7 @@ class Job:
     ## Create
     #! only COMPANIES
     @staticmethod
-    def create_new_job(**job_data):
+    def create_new_job(job_data):
         """
         Create a new job post in the database.
 
@@ -56,7 +56,7 @@ class Job:
         }
         >>> Job.create_new_job(**job_data)
         """
-        mongo.db.jobs.insert_one(**job_data)
+        mongo.db.jobs.insert_one(job_data)
 
 
     ## Read

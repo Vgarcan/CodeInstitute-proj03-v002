@@ -6,12 +6,12 @@ from wtforms.validators import DataRequired, Length
 
 
 class JobForm(FlaskForm):
-    post_title = StringField('post_title', validators=[DataRequired(), Length(min=4, max=25)])
-    location = StringField('location', validators=[DataRequired(), Length(min=4, max=25)])
-    salary = IntegerField('salary', validators=[DataRequired()])
-    job_type = SelectField('job_type', validators=[DataRequired()],choices=["Full-time", "Part-time", "Remote"])
-    description = StringField('description', validators=[DataRequired(), Length(min=4, max=500)])
-    ends_on = DateField('ends_on', validators=[DataRequired()], format='%Y-%m-%d')
+    post_title = StringField('Post Title', validators=[DataRequired(), Length(min=4, max=25)])
+    location = StringField('Location', validators=[DataRequired(), Length(min=4, max=25)])
+    salary = IntegerField('Salary', validators=[DataRequired()])
+    job_type = SelectField('Job Type', validators=[DataRequired()],choices=["Full-time", "Part-time", "Remote"])
+    description = StringField('Description', validators=[DataRequired(), Length(min=4, max=500)])
+    ends_on = DateField('Ends on:', validators=[DataRequired()], format='%Y-%m-%d')
 
     # # data added in views 
     # published_on
