@@ -5,7 +5,7 @@ from .models import Job
 from ..extensions import mongo, ObjectId
 from ..decoratros import role_checker
 
-import datetime
+from datetime import datetime, date, time
 
 jobs = Blueprint('jobs', __name__, template_folder='templates', static_folder='static')
 
@@ -18,11 +18,11 @@ def app_another():
     return "<h1>this is jobs's PAGE1</h1>"
 
 
-@jobs.route('/job-list/<int:page>')
+@jobs.route('/job-list')
 def job_list(page=1):
     listed_jobs = Job.get_all_jobs()
     # 3. make sure to add pagination or limit the number of jobs shown per page
-    return render_template("jobs/jobs-list.html", data=listed_jobs,page=page)
+    return render_template("jobs/jobs-list.html", rawdata=listed_jobs,page=page)
 
 
 @jobs.route('/job-detail/<job_id>')
@@ -40,17 +40,24 @@ def create_job():
     form = JobForm()
 
     if form.validate_on_submit():
+
+        print (datetime.now())
+        print (datetime.strptime(str(form.ends_on.data), '%Y-%m-%d').replace(hour=0, minute=00, second=00, microsecond=000000))
+
         job_data = {
             'post_title': form.post_title.data,
             'location': form.location.data,
             'salary': form.salary.data,
             'job_type': form.job_type.data,
             'description': form.description.data,
-            'ends_on': form.ends_on.data,
-            'published_on': datetime.datetime.now().isoformat(),
+            'published_on': datetime.now(),
+            'ends_on': datetime.strptime(str(form.ends_on.data), '%Y-%m-%d').replace(hour=0, minute=00, second=00, microsecond=000000),
             'company_name': current_user.username,
             'comp_id': current_user.id
         }
+
+        print (datetime.now())
+        print (form.ends_on.data)
         
         try:
             Job.create_new_job(job_data = job_data)
