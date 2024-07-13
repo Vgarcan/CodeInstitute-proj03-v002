@@ -68,7 +68,10 @@ def widget_showcase(page=1):
     redirect: If no users are found, display an info flash message and redirect to the index page.
     """
 
+    flash('Flash SUCCESS', 'success')
     flash('Flash INFO', 'info')
+    flash('Flash WARNING', 'warning')
+    flash('Flash ERROR', 'error')
     flash('Flash DANGER', 'danger')
     
     form = ProfileForm()

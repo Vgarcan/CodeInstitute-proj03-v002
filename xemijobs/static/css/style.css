@@ -1,16 +1,58 @@
+/* MAIN COLOR PALLETTE */
+
 :root {
     --primary-color: #1F2937;
     --secondary-color: #3B82F6;
     --accent-color: #10B981;
-    --background-color: #F3F4F6;
+    --background-color: #e2e3e4;
     --main-text-color: #1F2937;
     --secondary-text-color: #666666;
     --white-color: #FFFFFF;
-    --acctent-color-transparency: #0f9f7968;
+    --secondary-color-transparency: #3b83f6a8;
+    --accent-color-transparency: #0f9f7968;
     --light-gray-color: #E5E7EB;
     --hover-accent-color: #0F9F79;
     --hover-button-color: #cf8168;
+    --white-text-shadow: 1px 1px 2px var(--secondary-text-color);
 }
+
+
+/* TRPICAL PALLETE */
+
+
+/* :root {
+    --primary-color: #1D3557;
+    --secondary-color: #457B9D;
+    --accent-color: #A8DADC;
+    --background-color: #F1FAEE;
+    --main-text-color: #1D3557;
+    --secondary-text-color: #457B9D;
+    --white-color: #FFFFFF;
+    --accent-color-transparency: #a8dadc68;
+    --light-gray-color: #E5E5E5;
+    --hover-accent-color: #457B9D;
+    --hover-button-color: #1D3557;
+    --white-text-shadow: 1px 1px 2px var(--secondary-text-color);
+} */
+
+
+/* NEON PALLETTE */
+
+
+/* :root {
+    --primary-color: #1A2130;
+    --secondary-color: #83B4FF;
+    --accent-color: #5A72A0;
+    --background-color: #FDFFE2;
+    --main-text-color: #1A2130;
+    --secondary-text-color: #5A72A0;
+    --white-color: #FFFFFF;
+    --accent-color-transparency: #5a72a068;
+    --light-gray-color: #E5E7EB;
+    --hover-accent-color: #3A5F8C;
+    --hover-button-color: #A0C4FF;
+    --white-text-shadow: 1px 1px 2px var(--secondary-text-color);
+} */
 
 body {
     background-color: var(--background-color);
@@ -34,9 +76,11 @@ header {
 
 p {
     color: var(--secondary-text-color);
+    font-weight: 500;
 }
 
 a {
+    font-weight: 700;
     color: var(--secondary-color);
 }
 
@@ -62,6 +106,8 @@ a:hover {
 
 .navbar-nav .nav-link {
     color: var(--white-color);
+    font-size: 1.25rem;
+    font-weight: 400;
 }
 
 .navbar-nav .nav-link:hover {
@@ -92,7 +138,7 @@ a:hover {
 
 .form-control:focus {
     border-color: var(--accent-color);
-    box-shadow: 0 0 0 0.2rem rgba(16, 185, 129, 0.25);
+    box-shadow: 0 0 0 0.2rem var(--accent-color-transparency);
 }
 
 
@@ -148,7 +194,7 @@ a:hover {
     border: 1px solid var(--light-gray-color);
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 6px -1.5px var(--acctent-color-transparency);
+    box-shadow: 6px -1.5px var(--accent-color-transparency);
 }
 
 .card-img-top {
@@ -196,7 +242,18 @@ a:hover {
 .alert {
     background-color: var(--accent-color);
     color: var(--white-color);
+    text-shadow: var(--white-text-shadow);
     border: none;
+}
+
+.alert-danger,
+.alert-error,
+.alert-warning {
+    background-color: var(--hover-button-color);
+}
+
+.alert-info {
+    background-color: var(--secondary-color);
 }
 
 
@@ -205,7 +262,7 @@ a:hover {
 .modal-content {
     background-color: var(--background-color);
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--accent-color-transparency);
     color: var(--main-text-color);
 }
 
@@ -280,7 +337,7 @@ a:hover {
 }
 
 .carousel-caption {
-    background-color: var(--acctent-color-transparency);
+    background-color: var(--accent-color-transparency);
     /* Usando --primary-color con transparencia */
     /* padding: 1rem; */
     border-radius: 0.5rem;
@@ -288,7 +345,7 @@ a:hover {
 
 .carousel-caption>p {
     color: var(--white-color);
-    text-shadow: 1px 1px 2px var(--secondary-text-color);
+    text-shadow: var(--white-text-shadow)
 }
 
 .carousel-caption>h5 {
@@ -319,12 +376,12 @@ a:hover {
 /* INDEX.HTML */
 
 .contact-section {
-    background-color: var(--acctent-color-transparency);
+    background-color: var(--accent-color-transparency);
 }
 
 .contact-section p {
     color: var(--white-color);
-    text-shadow: 1px 1px 2px var(--secondary-text-color);
+    text-shadow: var(--white-text-shadow)
 }
 
 .contact-section h2,
@@ -333,12 +390,53 @@ a:hover {
 }
 
 .section-shadow {
-    background-color: var(--acctent-color-transparency);
+    background-color: var(--accent-color-transparency);
     box-shadow: 0 4px 8px var(--primary-color);
 }
 
-.features-section h3 {
-    box-shadow: 20px -16px var(--secondary-color);
-    background-color: var(--acctent-color-transparency);
+.xemi-feat {
+    position: relative;
+    margin-bottom: 2.5rem;
+    margin-top: 2.5rem;
+    text-decoration: none;
+    filter: drop-shadow(10px 7px 20px var(--secondary-color-transparency));
+}
+
+.xemi-feat>svg {
+    width: 10rem;
+    height: auto;
+    rotate: z 45deg;
+    padding: 3px;
+    color: var(--secondary-color);
+    position: absolute;
+    z-index: 0;
+    top: -3rem;
+    right: 2.6rem;
+    background-color: var(--accent-color-transparency);
+    border: var(--secondary-color) dashed 0.34rem;
+    border-radius: 50%;
+}
+
+.xemi-feat .feat-text {
+    z-index: 4;
+    position: relative;
+    background-color: var(--accent-color-transparency);
+    border-radius: 80px;
+}
+
+.xemi-feat h3 {
     text-shadow: 1px 1px 2px var(--white-color);
+    padding: 3px;
+}
+
+.xemi-feat p {
+    font-size: 1.4rem;
+    color: var(--white-color);
+    text-shadow: 1px 1px 2px var(--primary-color);
+}
+
+.about-section p {
+    font-size: 1.15rem;
+    font-weight: 400;
+    filter: drop-shadow(10px 7px 20px var(--accent-color-transparency));
 }
