@@ -1,6 +1,7 @@
 /* MAIN COLOR PALLETTE */
 
-:root {
+
+/* :root {
     --primary-color: #1F2937;
     --secondary-color: #3B82F6;
     --accent-color: #10B981;
@@ -14,7 +15,7 @@
     --hover-accent-color: #0F9F79;
     --hover-button-color: #cf8168;
     --white-text-shadow: 1px 1px 2px var(--secondary-text-color);
-}
+} */
 
 
 /* NEON BLUE LIGHT */
@@ -27,7 +28,7 @@
     --main-text-color: #0C0C0C;
     --secondary-text-color: #011f14;
     --white-color: #FFFFFF;
-    --secondary-color-transparency: #00FFA3a8;
+    --secondary-color-transparency: #37d199d5;
     --accent-color-transparency: #00A3FF68;
     --light-gray-color: #E5E7EB;
     --hover-accent-color: #00FFFF;
@@ -136,6 +137,12 @@ a:hover {
 
 /* BTN */
 
+.btn-primary {
+    background-color: var(--secondary-color-transparency);
+    border: none;
+    text-shadow: var(--white-text-shadow);
+}
+
 .btn-outline-success {
     color: var(--accent-color);
     border-color: var(--accent-color);
@@ -211,10 +218,11 @@ a:hover {
     border-top: 1px solid var(--light-gray-color);
 }
 
-.btn-primary {
+
+/* .btn-primary {
     background-color: var(--accent-color);
     border: none;
-}
+} */
 
 .btn-primary:hover {
     background-color: var(--hover-accent-color);
@@ -371,16 +379,15 @@ a:hover {
     width: 100%;
     margin-bottom: 1rem;
     color: var(--main-text-color);
-    background-color: var(--secondary-color-transparency);
     border-collapse: collapse;
     border-radius: 10%;
+    border-color: var(--background-color);
 }
 
 .table th,
 .table td {
     padding: 0.75rem;
     vertical-align: top;
-    /* border-bottom: 1.80px solid var(--accent-color); */
     border-radius: 10px;
 }
 
@@ -394,16 +401,11 @@ a:hover {
 
 .table-hover tbody tr:hover {
     color: var(--accent-color);
-    /* background-color: var(--accent-color-transparency); */
 }
 
 .table th {
     font-weight: bold;
     text-align: left;
-}
-
-.table-green {
-    background-color: var(--accent-color-transparency);
 }
 
 .table-green thead th {
