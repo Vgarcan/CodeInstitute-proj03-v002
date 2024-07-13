@@ -17,42 +17,23 @@
 }
 
 
-/* TRPICAL PALLETE */
+/* NEON BLUE LIGHT */
 
-
-/* :root {
-    --primary-color: #1D3557;
-    --secondary-color: #457B9D;
-    --accent-color: #A8DADC;
-    --background-color: #F1FAEE;
-    --main-text-color: #1D3557;
-    --secondary-text-color: #457B9D;
+:root {
+    --primary-color: #1F2937;
+    --secondary-color: #00FFA3;
+    --accent-color: #00A3FF;
+    --background-color: #c1cfe2;
+    --main-text-color: #0C0C0C;
+    --secondary-text-color: #011f14;
     --white-color: #FFFFFF;
-    --accent-color-transparency: #a8dadc68;
-    --light-gray-color: #E5E5E5;
-    --hover-accent-color: #457B9D;
-    --hover-button-color: #1D3557;
-    --white-text-shadow: 1px 1px 2px var(--secondary-text-color);
-} */
-
-
-/* NEON PALLETTE */
-
-
-/* :root {
-    --primary-color: #1A2130;
-    --secondary-color: #83B4FF;
-    --accent-color: #5A72A0;
-    --background-color: #FDFFE2;
-    --main-text-color: #1A2130;
-    --secondary-text-color: #5A72A0;
-    --white-color: #FFFFFF;
-    --accent-color-transparency: #5a72a068;
+    --secondary-color-transparency: #00FFA3a8;
+    --accent-color-transparency: #00A3FF68;
     --light-gray-color: #E5E7EB;
-    --hover-accent-color: #3A5F8C;
-    --hover-button-color: #A0C4FF;
+    --hover-accent-color: #00FFFF;
+    --hover-button-color: #cf8168;
     --white-text-shadow: 1px 1px 2px var(--secondary-text-color);
-} */
+}
 
 body {
     background-color: var(--background-color);
@@ -133,7 +114,7 @@ a:hover {
 
 .form-control {
     background-color: var(--light-gray-color);
-    border: 1px solid var(--secondary-color);
+    border: 1px solid var(--accent-color);
 }
 
 .form-control:focus {
@@ -390,9 +371,9 @@ a:hover {
     width: 100%;
     margin-bottom: 1rem;
     color: var(--main-text-color);
-    /* background-color: var(--accent-color); */
+    background-color: var(--secondary-color-transparency);
     border-collapse: collapse;
-    border-radius: 15%;
+    border-radius: 10%;
 }
 
 .table th,
@@ -403,34 +384,26 @@ a:hover {
     border-radius: 10px;
 }
 
-.table thead {
-    /* border: 1.80px dashed var(--accent-color); */
-}
-
-.table tbody {
-    /* border: 1.80px dashed var(--accent-color); */
-}
-
 .table thead th {
     vertical-align: bottom;
     color: var(--white-color);
     text-shadow: var(--white-text-shadow);
-    border-bottom: 2px solid var(--light-gray-color);
+    border-bottom: 2px solid var(--background-color);
     background-color: var(--secondary-color-transparency);
-}
-
-.table tbody+tbody {
-    border-top: 2px solid var(--light-gray-color);
 }
 
 .table-hover tbody tr:hover {
     color: var(--accent-color);
-    background-color: var(--accent-color-transparency);
+    /* background-color: var(--accent-color-transparency); */
 }
 
 .table th {
     font-weight: bold;
     text-align: left;
+}
+
+.table-green {
+    background-color: var(--accent-color-transparency);
 }
 
 .table-green thead th {
