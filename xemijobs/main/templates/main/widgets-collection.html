@@ -25,7 +25,24 @@
     <hr>
     <h2>Form</h2>
     <div class="container">
+        {% set submit_text = "Register" %}
         {% include 'widgets/form1.html' %}
+    </div>
+        
+    <br>
+    <hr>
+    <h2>Tables</h2>
+    <div class="container">
+
+        {% set table_headers = ["Name", "Age", "Position", "Salary"] %}
+        {% set table_data = [
+        {"Name": "John Doe", "Age": 28, "Position": "Developer", "Salary": "$1000"},
+        {"Name": "Jane Smith", "Age": 34, "Position": "Designer", "Salary": "$1200"},
+        {"Name": "Sam Johnson", "Age": 25, "Position": "Tester", "Salary": "$900"}
+    ]%}
+        
+        {% include 'widgets/table-blue.html' %}
+        {% include 'widgets/table-green.html' %}
     </div>
         
     <br>

@@ -1,4 +1,4 @@
-<form method="POST" action="{{ form_action }}">
+<form method="POST" action="{{ form_action }}" class="container">
     {{ form.hidden_tag() }}
     {% for field in form %}
         {% if field.label.text != "CSRF Token" and field.type != "SubmitField" %}
@@ -13,3 +13,5 @@
     {% endfor %}
     <button type="submit" class="btn btn-primary">{{ submit_text }}</button>
 </form>
+<br>
+<br>

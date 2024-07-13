@@ -141,6 +141,17 @@ a:hover {
     box-shadow: 0 0 0 0.2rem var(--accent-color-transparency);
 }
 
+.form-group {
+    margin-bottom: 1.5rem;
+    color: var(--main-text-color);
+    display: block;
+}
+
+.form-group label {
+    color: var(--secondary-text-color);
+    font-weight: 700;
+}
+
 
 /* BTN */
 
@@ -370,6 +381,62 @@ a:hover {
 .carousel-control-next:hover .carousel-control-next-icon {
     filter: invert(50%);
     /* Cambiar a gris claro al pasar el mouse */
+}
+
+
+/* TABLE */
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: var(--main-text-color);
+    /* background-color: var(--accent-color); */
+    border-collapse: collapse;
+    border-radius: 15%;
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    /* border-bottom: 1.80px solid var(--accent-color); */
+    border-radius: 10px;
+}
+
+.table thead {
+    /* border: 1.80px dashed var(--accent-color); */
+}
+
+.table tbody {
+    /* border: 1.80px dashed var(--accent-color); */
+}
+
+.table thead th {
+    vertical-align: bottom;
+    color: var(--white-color);
+    text-shadow: var(--white-text-shadow);
+    border-bottom: 2px solid var(--light-gray-color);
+    background-color: var(--secondary-color-transparency);
+}
+
+.table tbody+tbody {
+    border-top: 2px solid var(--light-gray-color);
+}
+
+.table-hover tbody tr:hover {
+    color: var(--accent-color);
+    background-color: var(--accent-color-transparency);
+}
+
+.table th {
+    font-weight: bold;
+    text-align: left;
+}
+
+.table-green thead th {
+    background-color: var(--accent-color-transparency);
+    color: var(--main-text-color);
+    text-shadow: var(--secondary-color-transparency);
 }
 
 
