@@ -9,7 +9,32 @@ main = Blueprint('main', __name__, template_folder='templates', static_folder='s
 
 @main.route('/')
 def index():
-    return render_template('main/index.html')
+
+    carousel = [
+        {
+            'img_src': "imgs/banner.jpg",
+            'img_alt': '',
+            'header': 'Display the TITLE',
+            'text': 'And display a CAPTATION too.'
+        },
+        {
+            'img_src': "imgs/banner2.jpg",
+            'img_alt': '',
+            'header': ' You can only show the TITLE',
+
+        },
+        {
+            'img_src': "imgs/banner3.jpg",
+            'img_alt': '',
+            'text': ' Or just show the CAPTATION in this section.\nYou can display nothing, like the next'
+        },
+        {
+            'img_src': "imgs/banner2.jpg",
+            'img_alt': '',
+        },
+    ]
+    
+    return render_template('main/index.html', carousel=carousel, enumerate=enumerate, )
 
 @main.route('/page1')
 def app_another():
@@ -51,7 +76,6 @@ def widget_showcase(page=1):
     data = User.get_all_users()
     if data is None:
         flash('No users found!', 'info')
-        return redirect(url_for('users.index'))
     
     # # Pagination
     # per_page = 9
@@ -102,5 +126,5 @@ def widget_showcase(page=1):
                            page=page, 
                            modal_data=modal_data, 
                            carousel=carousel, 
-                           form=form,
-                           enumerate=enumerate) 
+                           enumerate=enumerate, 
+                           form=form)

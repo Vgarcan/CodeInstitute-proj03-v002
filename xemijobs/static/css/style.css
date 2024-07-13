@@ -292,7 +292,6 @@ a:hover {
 }
 
 .carousel-caption>h5 {
-    text-shadow: var(--white-color);
     text-shadow: 1px 1px 2px var(--white-color);
 }
 
@@ -314,4 +313,32 @@ a:hover {
 .carousel-control-next:hover .carousel-control-next-icon {
     filter: invert(50%);
     /* Cambiar a gris claro al pasar el mouse */
+}
+
+
+/* INDEX.HTML */
+
+.contact-section {
+    background-color: var(--acctent-color-transparency);
+}
+
+.contact-section p {
+    color: var(--white-color);
+    text-shadow: 1px 1px 2px var(--secondary-text-color);
+}
+
+.contact-section h2,
+.contact-section h4 {
+    text-shadow: 1px 1px 2px var(--white-color);
+}
+
+.section-shadow {
+    background-color: var(--acctent-color-transparency);
+    box-shadow: 0 4px 8px var(--primary-color);
+}
+
+.features-section h3 {
+    box-shadow: 20px -16px var(--secondary-color);
+    background-color: var(--acctent-color-transparency);
+    text-shadow: 1px 1px 2px var(--white-color);
 }
