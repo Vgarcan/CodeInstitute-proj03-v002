@@ -1,0 +1,19 @@
+
+<div class="card-body container my-4">
+    {% for key, value in data.__dict__.items() %}
+        {% if key == 'image' %}
+            <img src="{{ value }}" class="card-img-top mb-3" alt="Image">
+        {% elif key == 'link' %}
+            <a href="{{ value }}" class="btn btn-primary mt-3">Learn More</a>
+        {% else %}
+            {% if key != "password" %}
+                <p class="card-text"><strong>{{ key | replace('_', ' ') | capitalize }}:</strong> {{ value }}</p>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    {% if data.ends_on %}
+        <a href="{{ url_for('applications.apply', adv_id= data.id) }}" class="btn btn-primary">Apply for this job</a>
+    {% endif %}
+</div>
+

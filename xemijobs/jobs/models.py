@@ -95,7 +95,7 @@ class Job:
                 description=job_data['description'],
                 ends_on=job_data['ends_on'],
                 published_on=job_data['published_on'],
-                comp_name=job_data['comp_name'],
+                comp_name=job_data['company_name'],
                 comp_id=str(job_data['comp_id']),
                 _id=str(job_data['_id'])
             )

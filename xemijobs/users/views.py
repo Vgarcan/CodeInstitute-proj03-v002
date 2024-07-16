@@ -12,7 +12,7 @@ users = Blueprint('users', __name__, template_folder='templates', static_folder=
 
 @users.route('/')
 def index():
-    return "<h1>this is user's INDEX</h1>"
+    return render_template('users/index.html')
 
 
 @users.route('/register', methods=['GET', 'POST'])
@@ -215,3 +215,19 @@ def list_of_users(page=1):
     # offset = (page - 1) * per_page
     # data = data[offset:offset + per_page]
     return render_template('users/users-list.html', rawdata=data, page=page) 
+
+
+# display user's information
+
+@users.route('/user-info/<string:user_id>')
+def user_info(user_id):
+  
+    user_data = User.get_by_id(user_id)
+    print(user_data)
+    if user_data == None:
+        flash('User not found!', 'danger')
+        return redirect(url_for('users.list_of_users'))
+    
+    
+    
+    return render_template('users/show-user.html', data=user_data)

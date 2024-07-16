@@ -15,7 +15,7 @@ def index():
         print(current_user.username, 'role ====> ', current_user.role)
     except Exception as e:
         print(f"Error: {e}")
-    return "<h1>this is company's INDEX</h1>"
+    return render_template('companies/index.html')
 
 @companies.route('/register', methods=['GET', 'POST'])
 def register():

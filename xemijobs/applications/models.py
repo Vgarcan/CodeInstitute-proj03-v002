@@ -6,6 +6,7 @@ class Application:
         self.adv_id = adv_id
         self.comp_id = comp_id
         self.user_id = user_id
+        self.status = None
         self.id = id
 
     def get_id(self):
@@ -16,7 +17,7 @@ class Application:
     ## Create
     #! only USERS
     @staticmethod
-    def create_new_application(adv_id, comp_id, user_id):
+    def create_new_application(adv_id, comp_id, user_id, status='pending'):
         """
         Creates a new application in the database for a specific company and user.
 
@@ -27,7 +28,7 @@ class Application:
         Returns:
         None. This function does not return any value. It inserts a new document into the 'applications' collection in the database.
         """
-        mongo.db.applications.insert_one({'adv_id': ObjectId(adv_id),'comp_id': ObjectId(comp_id), 'user_id': ObjectId(user_id)})
+        mongo.db.applications.insert_one({'adv_id': ObjectId(adv_id),'comp_id': ObjectId(comp_id), 'user_id': ObjectId(user_id), 'status': status})
 
     ## Read
     @staticmethod
@@ -50,6 +51,31 @@ class Application:
             adv_id=str(app['adv_id']),
             comp_id=str(app['comp_id']),
             user_id=str(app['user_id']),
+            status=str(app['status']),
+            id=str(app['_id'])
+        )for app in applications]
+    
+    @staticmethod
+    def get_all_sent_applications(user_id):
+        """
+        Retrieves all applications from the database associated with a specific company.
+
+        Parameters:
+        passing_id (str): The unique identifier of the company for which the applications are being retrieved.
+
+        Returns:
+        list: A list of Application objects representing the retrieved applications.
+        Each Application object contains the following attributes:
+        - comp_id (str): The unique identifier of the company associated with the application.
+        - user_id (str): The unique identifier of the user associated with the application.
+        - id (str): The unique identifier of the application (ObjectId).
+        """
+        applications = mongo.db.applications.find({'user_id': ObjectId(user_id)})
+        return [Application(
+            adv_id=str(app['adv_id']),
+            comp_id=str(app['comp_id']),
+            user_id=str(app['user_id']),
+            status=str(app['status']),
             id=str(app['_id'])
         )for app in applications]
 

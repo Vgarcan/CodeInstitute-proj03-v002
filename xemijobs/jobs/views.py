@@ -22,7 +22,7 @@ def app_another():
 def job_list(page=1):
     listed_jobs = Job.get_all_jobs()
     # 3. make sure to add pagination or limit the number of jobs shown per page
-    return render_template("jobs/jobs-list.html", rawdata=listed_jobs,page=page)
+    return render_template("jobs/jobs-list.html",rawdata=listed_jobs, page=page)
 
 
 @jobs.route('/job-detail/<job_id>')
@@ -30,7 +30,7 @@ def job_detail(job_id):
     job_details= Job.get_by_id(job_id) 
     # 2. pass the job to the template for display
     # 3. add any additional details or information needed for the job detail page
-    return "<h1>this is jobs's DETAIL</h1>"
+    return render_template("jobs/view-job.html", data= job_details)
 
 
 @jobs.route('/create-job', methods=['GET', 'POST'])
@@ -41,8 +41,8 @@ def create_job():
 
     if form.validate_on_submit():
 
-        print (datetime.now())
-        print (datetime.strptime(str(form.ends_on.data), '%Y-%m-%d').replace(hour=0, minute=00, second=00, microsecond=000000))
+        # print (datetime.now())
+        # print (datetime.strptime(str(form.ends_on.data), '%Y-%m-%d').replace(hour=0, minute=00, second=00, microsecond=000000))
 
         job_data = {
             'post_title': form.post_title.data,
@@ -56,8 +56,8 @@ def create_job():
             'comp_id': current_user.id
         }
 
-        print (datetime.now())
-        print (form.ends_on.data)
+        # print (datetime.now())
+        # print (form.ends_on.data)
         
         try:
             Job.create_new_job(job_data = job_data)
