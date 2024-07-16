@@ -1,3 +1,4 @@
+from flask import flash
 from flask_login import UserMixin, current_user
 from ..extensions import mongo
 from bson import ObjectId, BSON
@@ -122,7 +123,7 @@ class User(UserMixin):
     ## Update
     #! only USERS
     @staticmethod
-    def update_profile(**profile_data):
+    def update_profile(profile_data):
         """
         Updates the profile of the currently logged-in user in the database.
 
@@ -141,10 +142,13 @@ class User(UserMixin):
         It retrieves the unique ID of the current user and uses it to update the corresponding user document in the database.
         """
         current_user_id = str(current_user.get_id())
-        mongo.db.users.update_one(
-            {'_id': ObjectId(current_user_id)},
-            {"$set": profile_data}
-        )
+        try:
+            mongo.db.users.update_one(
+                {'_id': ObjectId(current_user_id)},
+                {"$set": profile_data}
+            )
+        except Exception as e:
+            flash(f'Error in user.models.UPDATE_PROFILE: {e}', 'error')
         
 
     ## Delete

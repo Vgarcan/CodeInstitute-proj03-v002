@@ -152,7 +152,7 @@ class Company(UserMixin):
     ## Update
     #! only COMPANIES
     @staticmethod
-    def update_profile(**profile_data):
+    def update_profile(profile_data):
         """
         Update the current user's profile in the database.
 

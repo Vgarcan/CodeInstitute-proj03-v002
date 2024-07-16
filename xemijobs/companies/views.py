@@ -195,8 +195,7 @@ def profile():
         print(f"UPDATING USER: {username}")
         profile_data = {
             'username': form.username.data,
-            'password': hashed_password,
-            '_id': current_user.id,
+            'password': hashed_password
         }
 
         existing_user = Company.get(profile_data['username'])

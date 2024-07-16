@@ -161,32 +161,35 @@ def profile():
                 # Keep the current password if new is not provided
                 hashed_password = current_user.password
 
-        print(f"UPDATING TO USER: {username}")
-        profile_data = {
-            'username': form.username.data,
-            'password': hashed_password,
-            '_id': current_user.id,
-        }
+            print(f"UPDATING TO USER: {username}")
+            profile_data = {
+                'username': form.username.data,
+                'password': hashed_password
+            }
 
-        existing_user = User.get(profile_data['username'])
-        print(f"USER: {existing_user}")
+            existing_user = User.get(profile_data['username'])
+            print(f"USER: {existing_user}")
 
-        # Check if the username already exists and it's not the current user's username
-        if existing_user and str(ObjectId(existing_user.id)) != current_user.id:
-            flash('Username already exists!', 'danger')
+            # Check if the username already exists and it's not the current user's username
+            if existing_user and str(ObjectId(existing_user.id)) != current_user.id:
+                flash('Username already exists!', 'danger')
+                return redirect(url_for('users.profile'))
+
+            # Update user information in the database
+            try: 
+                User.update_profile(profile_data=profile_data)
+                flash('Profile updated successfully!', 'success')
+            except Exception as e:
+                print(f"Error updating user: {e}")
+                flash('Error updating user!', 'danger')
+                return redirect(url_for('users.profile'))
+
+            
+
+            return redirect(url_for('users.dashboard'))
+        else:
+            flash('Invalid password!', 'danger')
             return redirect(url_for('users.profile'))
-
-        # Update user information in the database
-        try: 
-            User.update_profile(profile_data=profile_data)
-        except Exception as e:
-            print(f"Error updating user: {e}")
-            flash('Error updating user!', 'danger')
-            return redirect(url_for('users.profile'))
-
-        flash('Profile updated successfully!', 'success')
-
-        return redirect(url_for('users.dashboard'))
 
     return render_template('users/profile.html', form=form, data=current_user)
 
