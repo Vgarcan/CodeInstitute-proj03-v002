@@ -2,7 +2,8 @@ from ..extensions import mongo
 from bson import ObjectId
 
 class Application:
-    def __init__(self, comp_id, user_id, id):
+    def __init__(self,adv_id, comp_id, user_id, id):
+        self.adv_id = adv_id
         self.comp_id = comp_id
         self.user_id = user_id
         self.id = id
@@ -15,7 +16,7 @@ class Application:
     ## Create
     #! only USERS
     @staticmethod
-    def create_new_application(comp_id, user_id):
+    def create_new_application(adv_id, comp_id, user_id):
         """
         Creates a new application in the database for a specific company and user.
 
@@ -26,7 +27,7 @@ class Application:
         Returns:
         None. This function does not return any value. It inserts a new document into the 'applications' collection in the database.
         """
-        mongo.db.applications.insert_one({'comp_id': ObjectId(comp_id), 'user_id': ObjectId(user_id)})
+        mongo.db.applications.insert_one({'adv_id': ObjectId(adv_id),'comp_id': ObjectId(comp_id), 'user_id': ObjectId(user_id)})
 
     ## Read
     @staticmethod
@@ -46,6 +47,7 @@ class Application:
         """
         applications = mongo.db.applications.find({'comp_id': ObjectId(passing_id)})
         return [Application(
+            adv_id=str(app['adv_id']),
             comp_id=str(app['comp_id']),
             user_id=str(app['user_id']),
             id=str(app['_id'])

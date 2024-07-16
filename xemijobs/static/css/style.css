@@ -1,7 +1,6 @@
 /* MAIN COLOR PALLETTE */
 
-
-/* :root {
+:root {
     --primary-color: #1F2937;
     --secondary-color: #3B82F6;
     --accent-color: #10B981;
@@ -15,12 +14,14 @@
     --hover-accent-color: #0F9F79;
     --hover-button-color: #cf8168;
     --white-text-shadow: 1px 1px 2px var(--secondary-text-color);
-} */
+    --transparent: #000000;
+}
 
 
 /* NEON BLUE LIGHT */
 
-:root {
+
+/* :root {
     --primary-color: #1F2937;
     --secondary-color: #00FFA3;
     --accent-color: #00A3FF;
@@ -34,7 +35,8 @@
     --hover-accent-color: #00FFFF;
     --hover-button-color: #cf8168;
     --white-text-shadow: 1px 1px 2px var(--secondary-text-color);
-}
+    --transparent: #000000;
+} */
 
 body {
     background-color: var(--background-color);
@@ -141,6 +143,7 @@ a:hover {
     background-color: var(--secondary-color-transparency);
     border: none;
     text-shadow: var(--white-text-shadow);
+    box-shadow: var(--white-text-shadow);
 }
 
 .btn-outline-success {
@@ -218,12 +221,6 @@ a:hover {
     border-top: 1px solid var(--light-gray-color);
 }
 
-
-/* .btn-primary {
-    background-color: var(--accent-color);
-    border: none;
-} */
-
 .btn-primary:hover {
     background-color: var(--hover-accent-color);
 }
@@ -244,6 +241,7 @@ a:hover {
     color: var(--white-color);
     text-shadow: var(--white-text-shadow);
     border: none;
+    box-shadow: var(--white-text-shadow);
 }
 
 .alert-danger,
@@ -301,8 +299,9 @@ a:hover {
 
 .modal-footer {
     border-top: 1px solid var(--light-gray-color);
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color-transparency);
     color: var(--white-color);
+    text-shadow: var(--white-text-shadow);
 }
 
 .modal-footer .btn-secondary {
@@ -331,15 +330,22 @@ a:hover {
 
 /* Carrusel */
 
+.carousel {
+    border: 3px solid var(--secondary-color);
+    border-radius: 18px;
+    box-shadow: var(--white-text-shadow);
+}
+
+.carousel-item {}
+
 .carousel-item img {
     max-height: 500px;
     object-fit: cover;
+    border-radius: 15px;
 }
 
 .carousel-caption {
     background-color: var(--accent-color-transparency);
-    /* Usando --primary-color con transparencia */
-    /* padding: 1rem; */
     border-radius: 0.5rem;
 }
 
@@ -363,13 +369,13 @@ a:hover {
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
     filter: invert(100%);
-    /* Cambiar a blanco */
+    /* Change to white */
 }
 
 .carousel-control-prev:hover .carousel-control-prev-icon,
 .carousel-control-next:hover .carousel-control-next-icon {
     filter: invert(50%);
-    /* Cambiar a gris claro al pasar el mouse */
+    /* ligth grey when hoover*/
 }
 
 
@@ -378,17 +384,19 @@ a:hover {
 .table {
     width: 100%;
     margin-bottom: 1rem;
+    margin-left: 0.2px;
     color: var(--main-text-color);
     border-collapse: collapse;
-    border-radius: 10%;
+    border-radius: 10px;
     border-color: var(--background-color);
+    box-shadow: var(--white-text-shadow);
 }
 
 .table th,
 .table td {
     padding: 0.75rem;
     vertical-align: top;
-    border-radius: 10px;
+    /* border-radius: 15px; */
 }
 
 .table thead th {
@@ -397,6 +405,8 @@ a:hover {
     text-shadow: var(--white-text-shadow);
     border-bottom: 2px solid var(--background-color);
     background-color: var(--secondary-color-transparency);
+    /* border-radius: 10px 10px 0 0; */
+    /* box-shadow: var(--white-text-shadow); */
 }
 
 .table-hover tbody tr:hover {
