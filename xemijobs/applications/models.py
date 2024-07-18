@@ -2,11 +2,11 @@ from ..extensions import mongo
 from bson import ObjectId
 
 class Application:
-    def __init__(self,adv_id, comp_id, user_id, id):
+    def __init__(self,adv_id, comp_id, user_id, status, id):
         self.adv_id = adv_id
         self.comp_id = comp_id
         self.user_id = user_id
-        self.status = None
+        self.status = status
         self.id = id
 
     def get_id(self):
@@ -17,7 +17,7 @@ class Application:
     ## Create
     #! only USERS
     @staticmethod
-    def create_new_application(adv_id, comp_id, user_id, status='pending'):
+    def create_new_application(application):
         """
         Creates a new application in the database for a specific company and user.
 
@@ -28,7 +28,8 @@ class Application:
         Returns:
         None. This function does not return any value. It inserts a new document into the 'applications' collection in the database.
         """
-        mongo.db.applications.insert_one({'adv_id': ObjectId(adv_id),'comp_id': ObjectId(comp_id), 'user_id': ObjectId(user_id), 'status': status})
+        
+        mongo.db.applications.insert_one(application)
 
     ## Read
     @staticmethod
@@ -70,13 +71,13 @@ class Application:
         - user_id (str): The unique identifier of the user associated with the application.
         - id (str): The unique identifier of the application (ObjectId).
         """
-        applications = mongo.db.applications.find({'user_id': ObjectId(user_id)})
+        applications = mongo.db.applications.find({'user_id': user_id})
         return [Application(
-            adv_id=str(app['adv_id']),
+            adv_id=str(app["adv_id"]),
             comp_id=str(app['comp_id']),
             user_id=str(app['user_id']),
             status=str(app['status']),
-            id=str(app['_id'])
+            id=str(ObjectId(app["_id"]))
         )for app in applications]
 
     @staticmethod

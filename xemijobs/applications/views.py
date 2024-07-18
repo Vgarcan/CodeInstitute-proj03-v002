@@ -28,25 +28,36 @@ def succeed():
 def apply(adv_id):
 
     job = Job.get_by_id(adv_id)
+    print ('=====================>>>>>', job)
     if job == False:
         flash('Job does not exist','error')
         return redirect(url_for('users.dashboard'))
     
     application = {
         'user_id': str(current_user.id),
-        'job_id': str(job.id),
+        'adv_id': str(adv_id),
         'comp_id': str(job.comp_id),
+        'status' : 'pending'
     }
+    print('=============>>>>',application)
+    print('=============>>>>',current_user.id,"\n")
+    for application_ in Application.get_all_sent_applications(current_user.id):
+        for key, value in application_.__dict__.items():
+            print('=============>>>>',key, ':', value)
 
+        print('=============>>>>',application_.__dict__)
+        if application_.adv_id == job.id:
+            flash("User has already sent an application for this job.", "warning")
+            return redirect(url_for('users.dashboard'))
+        
     try:
-        mongo.db.applications.insert_one(application)
+        Application.create_new_application(application)
         flash('Application sent successfully!', 'success')
         return redirect(url_for('users.dashboard'))
     except Exception as e:
         flash(f'There was an error with your application: {e}', 'error')
-        redirect('users.dashboard')
+        return redirect(url_for('users.dashboard'))
 
 
-        
 
 
