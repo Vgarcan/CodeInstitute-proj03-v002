@@ -15,7 +15,11 @@
                     {% if key == 'id' %}
                         {% set context = context.update({'appl_id': row.get(key) }) %}
                     {% elif key != 'user_id' %}
-                        <td>{{ row.get(key) }}</td>
+                        {% if key == 'created_on' %}
+                            <td>{{ row.get(key)[0:10] }}</td>
+                        {% else %}
+                            <td>{{ row.get(key) }}</td>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
                 <td><a href="{{ url_for('applications.delete_user_appl', appli_id= context.appl_id) }}" class="btn">DELETE</a></td>
