@@ -16,9 +16,13 @@ def job_list(page):
     per_page = 9
     offset = (page - 1) * per_page
     # data = rawdata[offset:offset + per_page]
-    per_page = 9
+    
     listed_jobs = Job.get_all_jobs(offset, per_page)
-    return render_template("jobs/jobs-list.html",rawdata=listed_jobs, page=page)
+    print(" offset value = ", offset)
+    print(" per_page value = ", per_page)
+    for j in listed_jobs:
+        print (j.id)
+    return render_template("jobs/jobs-list.html",data=listed_jobs, page=page)
 
 
 @jobs.route('/job-detail/<job_id>')
@@ -53,7 +57,7 @@ def create_job():
         try:
             Job.create_new_job(job_data = job_data)
             flash('Job created successfully', 'success')
-            return redirect(url_for('jobs.job_list'))
+            return redirect(url_for('companies.dashboard'))
         except Exception as e:
             print ('There was an error creating ======> ' + str(e))
             flash('Job was not Created: ' + str(e), "error")
