@@ -19,7 +19,16 @@
                             {% if key == 'created_on' %}
                                 <td>{{ row.get(key)[0:10] }}</td>
                             {% else %}
+                                {% if key=='username' %}
+                                    <td>{{ get_info_for( 'users' , row.get(key)) }}</td>
+                                {% elif key=='comp_id' %}
+                                    <td>{{ get_info_for( 'companies' , row.get(key)) }}</td>
+                                {% elif key=='adv_id' %}
+                                    <td>{{ get_info_for( 'jobs' , row.get(key)) }}</td>
+                                {% else %}
                                 <td>{{ row.get(key) }}</td>
+                                {% endif %}
+                                
                             {% endif %}
                         {% endif %}
                     {% endfor %}

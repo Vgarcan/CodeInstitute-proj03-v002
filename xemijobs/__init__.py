@@ -1,5 +1,6 @@
 from flask import Flask
 from .extensions import mongo, login_manager
+from .jinja2_customs import get_info_for
 
 
 def create_app():
@@ -11,6 +12,9 @@ def create_app():
     # mongo.init_app(app, uri= str(os.getenv('MONGO_URI')))
     mongo.init_app(app)
     login_manager.init_app(app)
+
+    # Add custom functions to Jinja2
+    app.jinja_env.globals.update(get_info_for=get_info_for)
     
     # BLUEPRINTS
     from .main.views import main as main_bp
