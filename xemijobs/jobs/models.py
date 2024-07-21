@@ -201,5 +201,30 @@ class Job:
         """
         mongo.db.jobs.delete_one({'_id': ObjectId(job_id)})
 
+    #! only COMPANIES
+    @staticmethod
+    def delete_all_jobs(comp_id):
+        """
+        Delete all job posts associated with a specific company from the database.
+
+        Parameters:
+        comp_id (str): The unique identifier of the company whose job posts will be deleted.
+
+        Returns:
+        None
+
+        Raises:
+        None
+
+        Note:
+        This function should be called by a logged-in company user.
+        It deletes all job posts associated with the given company identifier from the 'jobs' collection in the database.
+        The deletion operation uses the MongoDB delete_many method.
+
+        Example:
+        >>> Job.delete_all_job('5f17c1234567890123456789')
+        """
+        mongo.db.jobs.delete_many({'comp_id': comp_id})
+
 
     

@@ -68,5 +68,6 @@ def delete_all_appl():
     Application.delete_all_applications(current_user.id, current_user.role)
     if current_user.role == 'user':
         return redirect(url_for('users.dashboard'))
-    else:
+    elif current_user.role == 'company':
         return redirect(url_for('companies.dashboard'))
+

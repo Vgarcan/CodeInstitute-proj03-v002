@@ -10,8 +10,8 @@ from datetime import datetime, date, time
 jobs = Blueprint('jobs', __name__, template_folder='templates', static_folder='static')
 
 
-@jobs.route('/job-list')
-def job_list(page=1):
+@jobs.route('/job-list/<int:page>')
+def job_list(page):
     # PAGINATION = 9
     per_page = 9
     offset = (page - 1) * per_page
@@ -64,6 +64,7 @@ def create_job():
 @login_required
 @role_checker('company')
 def edit_job(job_id):
+
     job_details=Job.get_by_id(job_id)
 
     form = JobForm()
@@ -87,3 +88,32 @@ def edit_job(job_id):
             print ('There was an error creating ======> ' + str(e))
 
     return "<h1>this is jobs's EDIT JOB</h1>"
+
+
+
+@jobs.route('/delete-advert/<adv_id>', methods=['GET','POST'])
+@login_required
+@role_checker('company')
+def delete_comp_adv(adv_id):
+    try:
+        Job.delete_job(adv_id)
+        flash("Advert successfully deleted!!")
+    except Exception as e:
+        flash("There was an error deleting the job: " + str(e))
+    
+    return redirect(url_for('companies.dashboard'))
+    
+
+# delete all JOBS form COMPANY
+
+@jobs.route('/delete-all-adverts', methods=['POST'])
+@login_required
+@role_checker('company')
+def delete_all_adv():
+    try:
+        Job.delete_all_jobs(current_user.id, current_user.role)
+        flash("All adverts successfully deleted!!")
+    except Exception as e:
+        flash("There was an error deleting the adverts: " + str(e))
+    
+    return redirect(url_for('companies.dashboard'))
