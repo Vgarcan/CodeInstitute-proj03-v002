@@ -1,29 +1,31 @@
 {% set context = {'appl_id': 'hola'} %}
-<table class="table table-hover table-green">
-    <thead>
-        <tr>
-            {% for header in table_headers %}
-                <th scope="col">{{ header }}</th>
-            {% endfor %}
-                <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for row in table_data %}
+<div class="table-responsive">
+    <table class="table table-hover table-green">
+        <thead>
             <tr>
-                {% for key in row %}
-                    {% if key == 'id' %}
-                        {% set context = context.update({'appl_id': row.get(key) }) %}
-                    {% elif key != 'user_id' %}
-                        {% if key == 'created_on' %}
-                            <td>{{ row.get(key)[0:10] }}</td>
-                        {% else %}
-                            <td>{{ row.get(key) }}</td>
-                        {% endif %}
-                    {% endif %}
+                {% for header in table_headers %}
+                    <th scope="col">{{ header }}</th>
                 {% endfor %}
-                <td><a href="{{ url_for('applications.delete_user_appl', appli_id= context.appl_id) }}" class="btn">DELETE</a></td>
+                <th>Action</th>
             </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            {% for row in table_data %}
+                <tr>
+                    {% for key in row %}
+                        {% if key == 'id' %}
+                            {% set context = context.update({'appl_id': row.get(key) }) %}
+                        {% elif key != 'user_id' %}
+                            {% if key == 'created_on' %}
+                                <td>{{ row.get(key)[0:10] }}</td>
+                            {% else %}
+                                <td>{{ row.get(key) }}</td>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    <td><a href="{{ url_for('applications.delete_user_appl', appli_id= context.appl_id) }}" class="btn btn-danger btn-sm">DELETE</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
