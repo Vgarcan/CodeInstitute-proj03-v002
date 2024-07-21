@@ -106,9 +106,9 @@ class User(UserMixin):
         return None
  
     @staticmethod
-    def get_all_users():
+    def get_all_users(offset, per_page):
     
-        users_data = mongo.db.users.find()
+        users_data = mongo.db.users.find().skip(offset).limit(per_page)
         return [
             User(
                 username=user_data['username'],

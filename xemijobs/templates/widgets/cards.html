@@ -1,3 +1,4 @@
+{% set context = {'d_type': 'none'} %}
 <div class="container my-4">
     <div class="row">
         {% for item in data %}
@@ -8,21 +9,28 @@
                         {% if key == 'image' %}
                             <img src="{{ value }}" class="card-img-top mb-3" alt="Image"> 
                         {% elif key == 'link' %}
-                                <a href="{{ value }}" class="btn btn-primary mt-3">Learn More</a> 
+                            <a href="{{ value }}" class="btn btn-primary mt-3">Learn More</a> 
                         {% else %} 
                             {% if key != "password" %}
-                            <p class="card-text"><strong>{{ key | replace('_', ' ') | capitalize }}:</strong> {{ value }}</p>
+                            
+
+                                <p class="card-text"><strong>{{ key | replace('_', ' ') | capitalize }}:</strong> {{ value }}</p>
+
+
                             {% endif %} 
                         {% endif %} 
                     {% endfor %}
                 </div>
                 <div class="card-footer">
-                    {% if item['ends_on'] %}
-                        <a href="{{ url_for('jobs.job_detail', job_id=item['id']) }}" class="btn btn-primary">Job details</a> 
-                    {% elif item['role']== 'user' %}
-                        <a href="{{ url_for('users.user_info', user_id=item['id']) }}" class="btn btn-primary">User details</a> 
-                    {% elif item['role']== 'company' %}
-                        <a href="{{ url_for('users.user_info', user_id=item['id']) }}" class="btn btn-primary">Company details</a> 
+                    {% if item.ends_on %}
+                        <a href="{{ url_for('jobs.job_detail', job_id=item.id) }}" class="btn btn-primary">Job details</a>
+                        {% set context = context.update({'d_type': 'jobs'}) %}
+                    {% elif item.role == 'user' %}
+                        <a href="{{ url_for('users.user_info', user_id=item.id) }}" class="btn btn-primary">User details</a> 
+                        {% set context = context.update({'d_type': 'users'}) %}
+                    {% elif item.role == 'company' %}
+                        <a href="{{ url_for('users.user_info', user_id=item.id) }}" class="btn btn-primary">Company details</a>
+                        {% set context = context.update({'d_type': 'companies'}) %} 
                     {% endif %}
                 </div>
             </div>
@@ -36,13 +44,21 @@
 </div>
 
 <!-- PAGINATION -->
-<div class="container ">
+<div class="container">
     <div class="row d-flex">
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
             {% if page >= 2 %}
-                <a href="{{ url_for('jobs.job_list', page=(page - 1) | string) }}" class="btn btn-outline-primary btn-lg px-4 gap-3">Back</a>
+                {% if context.d_type == 'jobs' %}
+                    <a href="{{ url_for('jobs.job_list', page=(page - 1) | string) }}" class="btn btn-outline-primary btn-lg px-4 gap-3">Back</a>
+                {% elif context.d_type == 'users' %}
+                    <a href="{{ url_for('users.list_of_users', page=(page - 1) | string) }}" class="btn btn-outline-primary btn-lg px-4 gap-3">Back</a>
+                {% endif %}
             {% endif %}
-            <a href="{{ url_for('jobs.job_list', page=(page + 1) | string) }}" class="btn btn-primary btn-lg px-4">Next</a>
+            {% if context.d_type == 'jobs' %}
+                <a href="{{ url_for('jobs.job_list', page=(page + 1) | string) }}" class="btn btn-primary btn-lg px-4 gap-3">Next</a>
+            {% elif context.d_type == 'users' %}
+                <a href="{{ url_for('users.list_of_users', page=(page + 1) | string) }}" class="btn btn-primary btn-lg px-4 gap-3">Next</a>
+            {% endif %}
         </div>
     </div>
 </div>

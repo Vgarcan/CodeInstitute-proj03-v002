@@ -76,7 +76,12 @@ def widget_showcase(page=1):
     
     form = ProfileForm()
 
-    data = User.get_all_users()
+    # PAGINATION = 9
+    per_page = 9
+    offset = (page - 1) * per_page
+    # data = rawdata[offset:offset + per_page]
+
+    data = User.get_all_users(offset, per_page)
     if data is None:
         flash('No users found!', 'info')
     
@@ -125,7 +130,7 @@ def widget_showcase(page=1):
     ]
     
     return render_template('main/widgets-collection.html', 
-                           rawdata=data, 
+                           data=data, 
                            page=page, 
                            modal_data=modal_data, 
                            carousel=carousel, 

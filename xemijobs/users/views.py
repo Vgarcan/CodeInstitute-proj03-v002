@@ -208,16 +208,16 @@ def list_of_users(page=1):
     redirect: If no users are found, display an info flash message and redirect to the index page.
     """
 
-    data = User.get_all_users()
+    # PAGINATION = 9
+    per_page = 9
+    offset = (page - 1) * per_page
+    # data = rawdata[offset:offset + per_page]
+
+    data = User.get_all_users(offset, per_page)
     if data is None:
         flash('No users found!', 'info')
-        return redirect(url_for('users.index'))
-    
-    # # Pagination
-    # per_page = 9
-    # offset = (page - 1) * per_page
-    # data = data[offset:offset + per_page]
-    return render_template('users/users-list.html', rawdata=data, page=page) 
+
+    return render_template('users/users-list.html', data=data, page=page) 
 
 
 # display user's information
