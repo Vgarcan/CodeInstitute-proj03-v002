@@ -49,7 +49,7 @@ def apply(adv_id):
         return redirect(url_for('users.dashboard'))
 
 
-@applications.route('/delete-application/<appli_id>', methods=['POST'])
+@applications.route('/delete-application/<appli_id>', methods=['GET','POST'])
 @login_required
 def delete_user_appl(appli_id):
 

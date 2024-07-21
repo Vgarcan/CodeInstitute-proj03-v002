@@ -1,17 +1,24 @@
+{% set context = {'appl_id': 'hola'} %}
 <table class="table table-hover table-green">
     <thead>
         <tr>
             {% for header in table_headers %}
                 <th scope="col">{{ header }}</th>
             {% endfor %}
+                <th>Action</th>
         </tr>
     </thead>
     <tbody>
         {% for row in table_data %}
             <tr>
-                {% for value in row.values() %}
-                    <td>{{ value }}</td>
+                {% for key in row %}
+                    {% if key == 'id' %}
+                        {% set context = context.update({'appl_id': row.get(key) }) %}
+                    {% elif key != 'user_id' %}
+                        <td>{{ row.get(key) }}</td>
+                    {% endif %}
                 {% endfor %}
+                <td><a href="{{ url_for('applications.delete_user_appl', appli_id= context.appl_id) }}" class="btn">DELETE</a></td>
             </tr>
         {% endfor %}
     </tbody>
