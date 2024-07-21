@@ -2,12 +2,13 @@ from ..extensions import mongo
 from bson import ObjectId
 
 class Application:
-    def __init__(self,adv_id, comp_id, user_id, status, id):
+    def __init__(self, adv_id, comp_id, user_id,created_on, status, id):
         self.adv_id = adv_id
         self.comp_id = comp_id
         self.user_id = user_id
+        self.created_on = created_on
         self.status = status
-        self.id = id
+        self.id = str(id)
 
     def get_id(self):
         return self.id
@@ -33,98 +34,88 @@ class Application:
 
     ## Read
     @staticmethod
-    def get_all_applications(passing_id):
+    def get_all_applications(passing_id, role):
         """
-        Retrieves all applications from the database associated with a specific company.
+        Retrieves all applications from the database based on the given user or company identifier and role.
 
         Parameters:
-        passing_id (str): The unique identifier of the company for which the applications are being retrieved.
+        passing_id (str): The unique identifier of the user or company for which the applications are being retrieved.
+        role (str): The role of the user or company. It can be either 'company' or 'user'.
 
         Returns:
         list: A list of Application objects representing the retrieved applications.
         Each Application object contains the following attributes:
+        - adv_id (str): The unique identifier of the advertisement associated with the application.
         - comp_id (str): The unique identifier of the company associated with the application.
         - user_id (str): The unique identifier of the user associated with the application.
+        - status (str): The status of the application.
         - id (str): The unique identifier of the application (ObjectId).
         """
-        applications = mongo.db.applications.find({'comp_id': ObjectId(passing_id)})
+        if role == 'company':
+            applications = mongo.db.applications.find({'adv_id': passing_id})
+        elif role == 'user':
+            applications = mongo.db.applications.find({'user_id': passing_id})
+
         return [Application(
             adv_id=str(app['adv_id']),
             comp_id=str(app['comp_id']),
             user_id=str(app['user_id']),
+            created_on=str(app['created_on']),
             status=str(app['status']),
             id=str(app['_id'])
-        )for app in applications]
+        ) for app in applications]
     
     @staticmethod
     def get_all_sent_applications(user_id):
         """
-        Retrieves all applications from the database associated with a specific company.
+        Retrieves a single application from the database based on the user's unique identifier.
 
         Parameters:
-        passing_id (str): The unique identifier of the company for which the applications are being retrieved.
+        user_id (str): The unique identifier of the user for which the application is being retrieved.
 
         Returns:
-        list: A list of Application objects representing the retrieved applications.
-        Each Application object contains the following attributes:
+        dict: A dictionary representing the retrieved application.
+        The dictionary contains the following keys:
+        - adv_id (str): The unique identifier of the advertisement associated with the application.
         - comp_id (str): The unique identifier of the company associated with the application.
         - user_id (str): The unique identifier of the user associated with the application.
+        - status (str): The status of the application.
         - id (str): The unique identifier of the application (ObjectId).
         """
-        applications = mongo.db.applications.find({'user_id': user_id})
-        return [Application(
-            adv_id=str(app["adv_id"]),
-            comp_id=str(app['comp_id']),
-            user_id=str(app['user_id']),
-            status=str(app['status']),
-            id=str(ObjectId(app["_id"]))
-        )for app in applications]
-
-    @staticmethod
-    def get_by_id(id):
-        """
-        Retrieves an application from the database by its unique identifier.
-
-        Parameters:
-        self (Application): The instance of the Application class. This parameter is not used in the function's logic, but it is required for compatibility with class methods.
-        id (str): The unique identifier of the application to be retrieved. This identifier is expected to be a string representation of an ObjectId.
-
-        Returns:
-        dict: A dictionary representing the retrieved application. If no application is found with the given identifier, this function returns None.
-        The dictionary contains the following fields:
-        - '_id': The unique identifier of the application (ObjectId).
-        - 'comp_id': The unique identifier of the company associated with the application.
-        - 'user_id': The unique identifier of the user associated with the application.
-        """
-        aplication = mongo.db.applications.find_one({'_id': ObjectId(id)})
-        return aplication
+        application = mongo.db.applications.find_one({'user_id': ObjectId(user_id)})
+        return application
     
     ## Delete
     #! only USERS
     @staticmethod
-    def delete_application(id):
-        mongo.db.applications.delete_one({'_id': ObjectId(id)})
-
-    @staticmethod
-    #! login required 
-    def delete_all_company_applications(id, user_role):
+    def delete_application(adv_id):
         """
-        Deletes all applications from the database associated with a specific company or user, based on the user's role.
+        Deletes a specific application from the database based on its unique identifier.
 
         Parameters:
-        id (str): The unique identifier of the company or user for which the applications are being deleted.
-            If the user_role is 'company', this parameter represents the company's unique identifier.
-            If the user_role is 'user', this parameter represents the user's unique identifier.
-        user_role (str): The role of the user performing the deletion.
-            It can be either 'company' or 'user'.
+        adv_id (str): The unique identifier of the application to be deleted. This identifier is expected to be a string representation of an ObjectId.
+
+        Returns:
+        None. This function does not return any value. It deletes a document from the 'applications' collection in the database.
+        """
+        mongo.db.applications.delete_one({'_id': ObjectId(adv_id)})
+
+    @staticmethod
+    def delete_all_applications(id, user_role):
+        """
+        Deletes all applications from the database associated with a specific user or company.
+
+        Parameters:
+        id (str): The unique identifier of the user or company for which the applications are being deleted.
+        user_role (str): The role of the user or company. It can be either 'company' or 'user'.
 
         Returns:
         None. This function does not return any value. It deletes documents from the 'applications' collection in the database.
         """
         if user_role == 'company':
-            mongo.db.applications.delete_many({'comp_id': ObjectId(id)})
+            mongo.db.applications.delete_many({'comp_id': id})
         elif user_role == 'user':
-            mongo.db.applications.delete_many({'user_id': ObjectId(id)})
+            mongo.db.applications.delete_many({'user_id': id})
 
 
 

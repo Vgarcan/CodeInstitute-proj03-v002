@@ -2,34 +2,28 @@ from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import  login_required, current_user
 from .forms import JobForm
 from .models import Job
-from ..extensions import mongo, ObjectId
+from ..extensions import mongo
 from ..decoratros import role_checker
 
 from datetime import datetime, date, time
 
 jobs = Blueprint('jobs', __name__, template_folder='templates', static_folder='static')
 
-@jobs.route('/')
-def index():
-    return "<h1>this is jobs's INDEX</h1>"
-
-@jobs.route('/page1')
-def app_another():
-    return "<h1>this is jobs's PAGE1</h1>"
-
 
 @jobs.route('/job-list')
 def job_list(page=1):
-    listed_jobs = Job.get_all_jobs()
-    # 3. make sure to add pagination or limit the number of jobs shown per page
+    # PAGINATION = 9
+    per_page = 9
+    offset = (page - 1) * per_page
+    # data = rawdata[offset:offset + per_page]
+    per_page = 9
+    listed_jobs = Job.get_all_jobs(offset, per_page)
     return render_template("jobs/jobs-list.html",rawdata=listed_jobs, page=page)
 
 
 @jobs.route('/job-detail/<job_id>')
 def job_detail(job_id):
     job_details= Job.get_by_id(job_id) 
-    # 2. pass the job to the template for display
-    # 3. add any additional details or information needed for the job detail page
     return render_template("jobs/view-job.html", data= job_details)
 
 
@@ -40,9 +34,6 @@ def create_job():
     form = JobForm()
 
     if form.validate_on_submit():
-
-        # print (datetime.now())
-        # print (datetime.strptime(str(form.ends_on.data), '%Y-%m-%d').replace(hour=0, minute=00, second=00, microsecond=000000))
 
         job_data = {
             'post_title': form.post_title.data,

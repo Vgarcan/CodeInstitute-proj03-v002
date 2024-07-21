@@ -102,7 +102,7 @@ class Job:
     
 
     @staticmethod
-    def get_all_jobs():
+    def get_all_jobs(offset, per_page):
         """
         Retrieve all Job objects from the database.
 
@@ -122,7 +122,8 @@ class Job:
             >>> print(jobs[0].post_title)
             "Software Developer"
         """
-        jobs_data = mongo.db.jobs.find()
+        jobs_data = mongo.db.jobs.find().sort('published_on',-1).skip(offset).limit(per_page)
+
         return [Job(
             post_title=job_data['post_title'],
             location=job_data['location'],
