@@ -154,7 +154,7 @@ def dashboard():
 
         print (current_user.username)
         return render_template('companies/dashboard.html', table_data=table_data, table_headers=table_headers)
-    else:
+    elif table == []:
         return render_template('companies/dashboard.html', table_data=None, table_headers=None)
 
 

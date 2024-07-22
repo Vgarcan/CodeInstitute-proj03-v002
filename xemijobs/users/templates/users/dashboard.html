@@ -1,11 +1,13 @@
 {% extends "xemijobs/base.html" %}
 
+{% block page_title %}USER Dashboard{% endblock page_title %}
+
 {% block main_content %}
 
     <h1>this is user's DASHBOARD</h1>
     <div class="container">
         <div class="row">
-            {% if table_data != None %}
+            {% if table_data != None and table_headers != None %}
                 {% include "widgets/table-green.html" %}
             {% endif %}
         </div>

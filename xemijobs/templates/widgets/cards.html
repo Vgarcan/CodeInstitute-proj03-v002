@@ -23,7 +23,7 @@
                 </div>
                 <div class="card-footer">
                     {% if item.ends_on %}
-                        <a href="{{ url_for('jobs.job_detail', job_id=item.id) }}" class="btn btn-primary">Job details</a>
+                        <a href="{{ url_for('jobs.job_detail', adv_id=item.id) }}" class="btn btn-primary">Job details</a>
                         {% set context = context.update({'d_type': 'jobs'}) %}
                     {% elif item.role == 'user' %}
                         <a href="{{ url_for('users.user_info', user_id=item.id) }}" class="btn btn-primary">User details</a> 
