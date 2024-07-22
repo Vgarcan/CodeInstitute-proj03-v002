@@ -145,7 +145,7 @@ def dashboard():
     table = get_table_info(current_user.id, current_user.role) # change current_user.id for adv_id
     print(table)
     if table != []:
-        table_headers = [record for record in table[0].__dict__ if record != 'user_id' and record != 'id' and record != 'description' and record != 'description' and record != 'comp_id']
+        table_headers = [record for record in table[0].__dict__ if record != 'user_id' and record != 'id' and record != 'description' and record != 'description' and record != 'comp_name']
 
         table_data = [record.__dict__ for record in table]
 

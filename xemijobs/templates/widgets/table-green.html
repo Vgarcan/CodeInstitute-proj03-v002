@@ -15,7 +15,7 @@
                     {% for key in row %}
                         {% if key == 'id' %}
                             {% set context = context.update({'id': row.get(key) }) %}
-                        {% elif key != 'user_id' and key != 'id' and key != 'description' and key != 'description' and key != 'comp_id'  %}
+                        {% elif key != 'user_id' and key != 'id' and key != 'description' and key != 'comp_name'%}
                             {% if key == 'created_on' %}
                                 <td>{{ row.get(key)[0:10] }}</td>
                             {% else %}
@@ -35,7 +35,8 @@
                     {% if current_user.role == 'user' %}
                         <td><a href="{{ url_for('applications.delete_user_appl', appli_id= context.id) }}" class="btn btn-danger btn-sm">DELETE</a></td>
                     {% elif current_user.role == 'company' %}
-                        <td><a href="{{ url_for('applications.delete_all_appls_from_adv', adv_id= context.id) }}" class="btn btn-danger btn-sm">DELETE</a></td>
+                        <td class="d-flex-row"><a href="{{ url_for('jobs.job_detail', adv_id= context.id) }}" class="btn btn-primary btn-sm">V</a>
+                            <a href="{{ url_for('applications.delete_all_appls_from_adv', adv_id= context.id) }}" class="btn btn-danger btn-sm">D</a></td>
                     {% endif %}
                 </tr>
             {% endfor %}

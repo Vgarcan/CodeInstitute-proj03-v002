@@ -25,9 +25,9 @@ def job_list(page):
     return render_template("jobs/jobs-list.html",data=listed_jobs, page=page)
 
 
-@jobs.route('/job-detail/<job_id>')
-def job_detail(job_id):
-    job_details= Job.get_by_id(job_id) 
+@jobs.route('/job-detail/<adv_id>')
+def job_detail(adv_id):
+    job_details= Job.get_by_id(adv_id) 
     return render_template("jobs/view-job.html", data= job_details)
 
 
