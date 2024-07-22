@@ -142,6 +142,14 @@ def logout():
 @role_checker('company')
 def dashboard():
 
+    # modal_data= {            
+    #     'body': "You are about to delete an ADVERT and all it's associated APPLICATIONS.\n Do yo want to proceed?",
+        
+    #     'btn_text': 'DELETE',
+    #     'btn_class': 'btn-danger',
+    #     'btn_link': "url_for('applications.delete_all_appls_from_adv', adv_id= context.id) "      
+    # } 
+
     table = get_table_info(current_user.id, current_user.role) # change current_user.id for adv_id
     print(table)
     if table != []:
