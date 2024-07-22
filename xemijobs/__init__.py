@@ -1,6 +1,6 @@
 from flask import Flask
-from .extensions import mongo, login_manager
-from .jinja2_customs import get_info_for
+from .extensions import mongo, login_manager, get_info_for
+
 
 
 def create_app():

@@ -125,17 +125,20 @@ def logout():
 @role_checker('user')
 def dashboard():
 
-    table = Application.get_all_applications(current_user.id, current_user.role)
+    table = Application.get_all_applications(current_user.id, current_user.role) 
     print(table)
-    table_headers = [record for record in table[0].__dict__ if record != 'user_id' and record != 'id']
+    if table != []:
+        table_headers = [record for record in table[0].__dict__ if record != 'user_id' and record != 'id']
 
-    table_data = [record.__dict__ for record in table]
+        table_data = [record.__dict__ for record in table]
 
-    print(table_headers)
-    print(table_data)
+        print(table_headers)
+        print(table_data)
 
-    print (current_user.username)
-    return render_template('users/dashboard.html', table_data=table_data, table_headers=table_headers)
+        print (current_user.username)
+        return render_template('users/dashboard.html', table_data=table_data, table_headers=table_headers)
+    else:
+        return render_template('users/dashboard.html', table_data=None, table_headers=None)
 
 
 @users.route('/profile', methods=['GET', 'POST'])

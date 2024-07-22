@@ -5,4 +5,11 @@
 {% block main_content %}
 
     <h1>this is company's DASHBOARD</h1>
+    <div class="container">
+        <div class="row">
+            {% if table_data != None %}
+                {% include "widgets/table-green.html" %}
+            {% endif %}        </div>
+    </div>
 {% endblock main_content %}
+

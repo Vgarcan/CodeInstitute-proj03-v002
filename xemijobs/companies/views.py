@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, login_required, current_user
 from .forms import RegistrationForm, LoginForm, ProfileForm
 from .models import Company
+from ..applications.models import Application
 from werkzeug.security import generate_password_hash, check_password_hash
 from ..extensions import mongo, ObjectId
 from ..decoratros import role_checker
@@ -140,8 +141,24 @@ def logout():
 @login_required
 @role_checker('company')
 def dashboard():
-    print (current_user.username)
-    return render_template('companies/dashboard.html')
+
+    table = Application.get_all_applications(current_user.id, current_user.role) # change current_user.id for adv_id
+    print(table)
+    if table != []:
+        table_headers = [record for record in table[0].__dict__ if record != 'user_id' and record != 'id']
+
+        table_data = [record.__dict__ for record in table]
+
+        print(table_headers)
+        print(table_data)
+
+        print (current_user.username)
+        return render_template('companies/dashboard.html', table_data=table_data, table_headers=table_headers)
+    else:
+        return render_template('companies/dashboard.html', table_data=None, table_headers=None)
+
+
+
 
 
 @companies.route('/profile', methods=['GET', 'POST'])
