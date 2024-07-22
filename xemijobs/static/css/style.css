@@ -8,7 +8,7 @@
     --main-text-color: #1F2937;
     --secondary-text-color: #666666;
     --white-color: #FFFFFF;
-    --secondary-color-transparency: #3b83f6a8;
+    --secondary-color-transparency: #2d69c9a8;
     --accent-color-transparency: #0f9f7968;
     --light-gray-color: #E5E7EB;
     --hover-accent-color: #0F9F79;
@@ -29,10 +29,10 @@
     --main-text-color: #0C0C0C;
     --secondary-text-color: #011f14;
     --white-color: #FFFFFF;
-    --secondary-color-transparency: #37d199d5;
+    --secondary-color-transparency: #09c457c2;
     --accent-color-transparency: #00A3FF68;
     --light-gray-color: #E5E7EB;
-    --hover-accent-color: #00FFFF;
+    --hover-accent-color: #09dadaab;
     --hover-button-color: #cf8168;
     --white-text-shadow: 1px 1px 2px var(--secondary-text-color);
     --transparent: #000000;
@@ -139,11 +139,14 @@ a:hover {
 
 /* BTN */
 
+.btn {
+    text-shadow: var(--white-text-shadow);
+    box-shadow: var(--white-text-shadow);
+}
+
 .btn-primary {
     background-color: var(--secondary-color-transparency);
     border: none;
-    text-shadow: var(--white-text-shadow);
-    box-shadow: var(--white-text-shadow);
 }
 
 .btn-outline-success {
@@ -155,6 +158,11 @@ a:hover {
     background-color: var(--hover-button-color);
     border-color: var(--hover-button-color);
     color: var(--white-color);
+}
+
+.btn-danger {
+    background-color: var(--hover-button-color);
+    border: none;
 }
 
 
