@@ -71,3 +71,17 @@ def delete_all_appl():
     elif current_user.role == 'company':
         return redirect(url_for('companies.dashboard'))
 
+@applications.route('/delete-applis-from-adv/<adv_id>', methods=['GET','POST'])
+@login_required
+@role_checker('company')
+def delete_all_appls_from_adv(adv_id):
+    try:
+        Application.delete_all_applications_from_advert(adv_id, current_user.role)
+        flash('All applications from this advert successfully deleted!!', 'success')
+
+        return redirect(url_for('jobs.delete_comp_adv', adv_id=adv_id))
+    except Exception as e:
+        flash('There was an error deleting the applications: '+str(e), 'error')
+        return redirect(url_for('companies.dashboard'))
+
+

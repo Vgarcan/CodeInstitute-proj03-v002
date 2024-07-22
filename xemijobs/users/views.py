@@ -2,9 +2,9 @@ from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, login_required, current_user
 from .forms import RegistrationForm, LoginForm, ProfileForm
 from .models import User
-from ..applications.models import Application #! find bettet option
+# from ..applications.models import Application #! find bettet option
 from werkzeug.security import generate_password_hash, check_password_hash
-from ..extensions import mongo, ObjectId
+from ..extensions import mongo, ObjectId,get_table_info
 from ..decoratros import role_checker
 
 
@@ -125,7 +125,7 @@ def logout():
 @role_checker('user')
 def dashboard():
 
-    table = Application.get_all_applications(current_user.id, current_user.role) 
+    table = get_table_info(current_user.id, current_user.role) 
     print(table)
     if table != []:
         table_headers = [record for record in table[0].__dict__ if record != 'user_id' and record != 'id']

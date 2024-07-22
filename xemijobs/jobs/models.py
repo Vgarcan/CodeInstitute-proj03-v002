@@ -137,7 +137,24 @@ class Job:
             _id=str(job_data['_id'])
         ) for job_data in jobs_data]
     
-    
+    @staticmethod
+    def get_comp_jobs(comp_id):
+        
+        jobs_data = mongo.db.jobs.find({'comp_id': comp_id}).sort('published_on',-1)
+        return [Job(
+            post_title=job_data['post_title'],
+            location=job_data['location'],
+            salary=job_data['salary'],
+            job_type=job_data['job_type'],
+            description=job_data['description'],
+            ends_on=job_data['ends_on'],
+            published_on=job_data['published_on'],
+            comp_name=job_data['company_name'],
+            comp_id=str(job_data['comp_id']),
+            _id=str(job_data['_id'])
+        ) for job_data in jobs_data]   
+
+
     ## Update
     #! only COMPANIES
     @staticmethod

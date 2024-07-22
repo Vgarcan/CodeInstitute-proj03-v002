@@ -62,3 +62,13 @@ def get_info_for(collection, id):
         return Company.get_by_id(id).username
     elif collection == 'jobs':
         return Job.get_by_id(id).post_title
+
+def get_table_info(id,role):
+    if role == 'user':
+        from .applications.models import Application
+        table = Application.get_all_applications(id, role)
+        return table
+    elif role == 'company':
+        from .jobs.models import Job
+        table = Job.get_comp_jobs(id)
+        return table

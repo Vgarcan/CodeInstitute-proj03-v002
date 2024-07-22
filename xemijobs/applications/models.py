@@ -117,6 +117,27 @@ class Application:
         elif user_role == 'user':
             mongo.db.applications.delete_many({'user_id': id})
 
+    @staticmethod
+    def delete_all_applications_from_advert(adv_id, user_role):
+        """
+        Deletes all applications from the database associated with a specific advertisement and company.
+
+        Parameters:
+        adv_id (str): The unique identifier of the advertisement for which the applications are being deleted.
+        user_role (str): The role of the user or company. It can be either 'company' or 'user'.
+        Only 'company' role is allowed to delete applications associated with a specific advertisement.
+
+        Returns:
+        None. This function does not return any value. It deletes documents from the 'applications' collection in the database.
+
+        Raises:
+        Exception: If an error occurs while deleting the applications. The error message will contain the advertisement ID and the original exception.
+        """
+        if user_role == 'company':
+            try:
+                mongo.db.applications.delete_many({'adv_id': adv_id})
+            except Exception as e:
+                raise Exception('Deleting ' + adv_id + ' failed with error: ' + str(e))
 
 
 
