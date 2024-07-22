@@ -4,26 +4,19 @@
     <div class="modal-dialog">
         <div class="modal-content">
             {% if modal_data.title  %}
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">{{ modal_data.title }}</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">{{ modal_data.title }}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
             {% endif %}
-            {% if modal_data.body %}
-                <div class="modal-body">
-                    {{ modal_data.body }}
-                    {% if modal_data.title == False %}
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    {% endif %}
-                </div>
-            {% endif %}
-            {% if modal_data.footer %}
-                <div class="modal-footer">
-                    {% if modal_data.footer %} {{ modal_data.footer }} {% endif %}
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <a type="button" href="{{ modal_data.btn_link }}" class="btn btn-primary {{ modal_data.btn_class }}">{{ modal_data.btn_text }}</a>
-                </div>
-            {% endif %}
+            <div class="modal-body">
+                {{ modal_data.body }}
+            </div>
+            <div class="modal-footer">
+                {% if modal_data.footer %} {{ modal_data.footer }} {% endif %}
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a type="button" href="{{ modal_data.btn_link }}" class="btn btn-primary {{ modal_data.btn_class }}">{{ modal_data.btn_text }}</a>
+            </div>
         </div>
     </div>
 </div>
