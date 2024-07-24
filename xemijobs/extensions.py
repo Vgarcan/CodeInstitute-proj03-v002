@@ -57,11 +57,11 @@ def get_info_for(collection, id):
 
 
     if collection == 'users':
-        return User.get_by_id(id).username
+        return User.get_by_id(id).username.replace('_', ' ').capitalize()
     elif collection == 'companies':
-        return Company.get_by_id(id).username
+        return Company.get_by_id(id).username.replace('_', ' ').capitalize()
     elif collection == 'jobs':
-        return Job.get_by_id(id).post_title
+        return Job.get_by_id(id).post_title.replace('_', ' ').capitalize()
 
 def get_table_info(id,role, adv_id = None):
     if role == 'user':

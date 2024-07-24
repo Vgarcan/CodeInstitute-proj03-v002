@@ -6,11 +6,21 @@
         <thead>
             <tr>
                 {% for header in table_headers %}
-                    <th scope="col">{{ header }}</th>
+                    {% if header == 'adv_id' %}
+                        <th scope="col">Advert</th>
+                    {% elif header == 'comp_id' %}
+                        <th scope="col">Company</th>
+                    {% elif header == 'user_id' %}
+                        <th scope="col">Applicant</th>
+                        
+                    {% else %}
+                        {# Replace underscores with spaces and capitalize the first letter #}
+                        <th scope="col">{{ header.replace('_', ' ').capitalize() }}</th>
+                    {% endif %}
                 {% endfor %}
                 <th>Action</th>
                 {# Add an Action column #}
-                {% if current_user.role == 'company' and table_headers|length == 5 %}
+                {% if current_user.role == 'company' and  'post_title' not in table_headers %}
                     <th>Status</th>
                     {# Add an Action column #}
                 {% endif %}
@@ -40,21 +50,26 @@
                                 {# Display only the date part of the created_on field #}
                             {% else %}
                                 {% if key == 'username' %}
-                                    <td>{{ get_info_for('users', row.get(key)) }}</td>
+                                    <td>{{ get_info_for('users', row.get(key).replace('_', ' ').capitalize()) }}</td>
                                     {# Fetch and display user info #}
                                 {% elif key == 'user_id' %}
-                                    <td>{{ get_info_for('users', row.get(key)) }}</td>
+                                    <td>{{ get_info_for('users', row.get(key).replace('_', ' ').capitalize()) }}</td>
                                     {# Fetch and display user info by user_id #}
                                 {% elif key == 'comp_id' %}
-                                    <td>{{ get_info_for('companies', row.get(key)) }}</td>
+                                    <td>{{ get_info_for('companies', row.get(key).replace('_', ' ').capitalize()) }}</td>
                                     {# Fetch and display company info by comp_id #}
                                 {% elif key == 'adv_id' %}
-                                    <td>{{ get_info_for('jobs', row.get(key)) }}</td>
+                                    <td>{{ get_info_for('jobs', row.get(key).replace('_', ' ').capitalize()) }}</td>
                                     {# Fetch and display job info by adv_id #}
                                 
                                 {% else %}
-                                    <td>{{ row.get(key) }}</td>
-                                    {# Display the value of the current field #}
+                                    {% if key == 'status' %}
+                                        <td>{{ row.get(key).replace('_', ' ').capitalize() }}</td>
+                                        {# Display the value of the current field #}
+                                    {% else %}
+                                        <td>{{ row.get(key) }}</td>
+                                        {# Display the value of the current field #}
+                                    {% endif %}
                                 {% endif %}
                             {% endif %}
                         {% elif current_user.role == 'user' and key != 'user_id' and key != 'id' and key != 'description' and key != 'comp_name' %}
@@ -64,13 +79,13 @@
                                 {# Display only the date part of the created_on field #}
                             {% else %}
                                 {% if key == 'username' %}
-                                    <td>{{ get_info_for('users', row.get(key)) }}</td>
+                                    <td>{{ get_info_for('users', row.get(key).replace('_', ' ').capitalize()) }}</td>
                                     {# Fetch and display user info by username #}
                                 {% elif key == 'comp_id' %}
-                                    <td>{{ get_info_for('companies', row.get(key)) }}</td>
+                                    <td>{{ get_info_for('companies', row.get(key).replace('_', ' ').capitalize()) }}</td>
                                     {# Fetch and display company info by comp_id #}
                                 {% elif key == 'adv_id' %}
-                                    <td>{{ get_info_for('jobs', row.get(key)) }}</td>
+                                    <td>{{ get_info_for('jobs', row.get(key).replace('_', ' ').capitalize()) }}</td>
                                     {# Fetch and display job info by adv_id #}
                                 {% else %}
                                     <td>{{ row.get(key) }}</td>
