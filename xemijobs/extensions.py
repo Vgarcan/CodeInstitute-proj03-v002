@@ -63,12 +63,18 @@ def get_info_for(collection, id):
     elif collection == 'jobs':
         return Job.get_by_id(id).post_title
 
-def get_table_info(id,role):
+def get_table_info(id,role, adv_id = None):
     if role == 'user':
         from .applications.models import Application
         table = Application.get_all_applications(id, role)
         return table
     elif role == 'company':
-        from .jobs.models import Job
-        table = Job.get_comp_jobs(id)
-        return table
+        if adv_id == None:
+            from .jobs.models import Job
+            table = Job.get_comp_jobs(id)
+            return table
+        elif adv_id != None:
+            from .applications.models import Application
+            print("=======================> " + adv_id)
+            table = Application.get_all_applications(adv_id, role)
+            return table

@@ -168,6 +168,38 @@ def dashboard():
 
 
 
+@companies.route('/adv-dashboard/<adv_id>')
+@login_required
+@role_checker('company')
+def adv_dash(adv_id):
+
+    # modal_data= {            
+    #     'body': "You are about to delete an ADVERT and all it's associated APPLICATIONS.\n Do yo want to proceed?",
+        
+    #     'btn_text': 'DELETE',
+    #     'btn_class': 'btn-danger',
+    #     'btn_link': "url_for('applications.delete_all_appls_from_adv', adv_id= context.id) "      
+    # } 
+
+    table = get_table_info(adv_id, current_user.role, adv_id=adv_id)
+    print(table)
+    print('============================>>>',table)
+    if table != []:
+        table_headers = [record for record in table[0].__dict__ if record != 'id' and record != 'description' and record != 'comp_name']
+
+        table_data = [record.__dict__ for record in table]
+
+        print(table_headers)
+        print(table_data)
+
+        print (current_user.username)
+        return render_template('companies/dashboard.html', table_data=table_data, table_headers=table_headers)
+    elif table == []:
+        return render_template('companies/dashboard.html', table_data=None, table_headers=None)
+
+
+
+
 
 @companies.route('/profile', methods=['GET', 'POST'])
 @login_required

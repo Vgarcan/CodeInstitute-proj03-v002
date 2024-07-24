@@ -48,6 +48,7 @@ class Application:
         - adv_id (str): The unique identifier of the advertisement associated with the application.
         - comp_id (str): The unique identifier of the company associated with the application.
         - user_id (str): The unique identifier of the user associated with the application.
+        - created_on (str): The date and time when the application was created.
         - status (str): The status of the application.
         - id (str): The unique identifier of the application (ObjectId).
         """
@@ -84,6 +85,32 @@ class Application:
         """
         application = mongo.db.applications.find_one({'user_id': ObjectId(user_id)})
         return application
+    
+    ## Update
+    #! only COMAPNIES
+    @staticmethod
+    def update_application_status(appli_id, new_status):
+        """
+        Updates the status of a specific application in the database.
+
+        Parameters:
+        appli_id (str): The unique identifier of the application to be updated. This identifier is expected to be a string representation of an ObjectId.
+        new_status (str): The new status to be assigned to the application.
+
+        Returns:
+        None. This function does not return any value. It updates a document in the 'applications' collection in the database.
+
+        Raises:
+        Exception: If an error occurs while updating the application status. The error message will contain the advertisement ID and the original exception.
+        """
+        try:
+            mongo.db.applications.update_one(
+                {'_id': ObjectId(appli_id)},
+                {"$set": {'status': new_status}}
+            )
+        except Exception as e:
+            raise Exception('Updating application status failed with error: '+ str(e))
+
     
     ## Delete
     #! only USERS

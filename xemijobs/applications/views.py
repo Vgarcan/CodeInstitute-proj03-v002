@@ -8,7 +8,7 @@ from datetime import datetime
 
 applications = Blueprint('applications', __name__, template_folder='templates', static_folder='static')
 
-
+# CREATE
 @applications.route('/apply-for/<adv_id>', methods=['GET','POST'])
 @login_required
 @role_checker('user')
@@ -48,9 +48,24 @@ def apply(adv_id):
         flash(f'There was an error with your application: {e}', 'error')
         return redirect(url_for('users.dashboard'))
 
+# UPDATE
 
+@applications.route('/update-application/<appli_id>/<adv_id>/<status>', methods=['GET','POST'])
+@login_required
+@role_checker('company')
+def update_appl(appli_id, status, adv_id):
+    try:
+        Application.update_application_status(appli_id, status)
+        flash('Application status updated successfully!', 'success')
+    except Exception as e:
+        flash(f'Error updating application status: {e}', 'error')
+
+    return redirect(url_for('companies.adv_dash', adv_id= adv_id))
+
+# DELETE
 @applications.route('/delete-application/<appli_id>', methods=['GET','POST'])
 @login_required
+@role_checker('user')
 def delete_user_appl(appli_id):
 
     Application.delete_application(appli_id)
@@ -58,9 +73,7 @@ def delete_user_appl(appli_id):
         return redirect(url_for('users.dashboard'))
     else:
         return redirect(url_for('companies.dashboard'))
-    
 
-# delete all applications
 
 @applications.route('/delete-all-applications', methods=['POST'])
 @login_required
