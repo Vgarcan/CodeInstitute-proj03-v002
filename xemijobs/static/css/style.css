@@ -6,7 +6,7 @@
     --accent-color: #10B981;
     --background-color: #e2e3e4;
     --main-text-color: #1F2937;
-    --secondary-text-color: #666666;
+    --secondary-text-color: #020556f2;
     --white-color: #FFFFFF;
     --secondary-color-transparency: #2d69c9a8;
     --accent-color-transparency: #0f9f7968;
@@ -16,6 +16,24 @@
     --white-text-shadow: 1px 1px 2px var(--secondary-text-color);
     --transparent: #000000;
 }
+
+
+/* :root {
+    --primary-color: #2D3748;
+    --secondary-color: #4F46E5;
+    --accent-color: #22C55E;
+    --background-color: #ececec;
+    --main-text-color: #2D3748;
+    --secondary-text-color: #737373;
+    --white-color: #FFFFFF;
+    --secondary-color-transparency: #4f46e5a8;
+    --accent-color-transparency: #22c55e68;
+    --light-gray-color: #f2f2f2;
+    --hover-accent-color: #1DA957;
+    --hover-button-color: #df9368;
+    --white-text-shadow: 1px 1px 2px var(--secondary-text-color);
+    --transparent: #000000;
+} */
 
 
 /* NEON BLUE LIGHT */
@@ -37,6 +55,47 @@
     --white-text-shadow: 1px 1px 2px var(--secondary-text-color);
     --transparent: #000000;
 } */
+
+
+/* PINK DETAILS */
+
+
+/* :root {
+    --primary-color: #0C0C1A;
+    --secondary-color: #FF4081;
+    --accent-color: #00E5FF;
+    --background-color: #F8F8FF;
+    --main-text-color: #0C0C1A;
+    --secondary-text-color: #2C2C2C;
+    --white-color: #FFFFFF;
+    --secondary-color-transparency: #ff306ba8;
+    --accent-color-transparency: #00bfe168;
+    --light-gray-color: #F3F3F9;
+    --hover-accent-color: #00BFE1;
+    --hover-button-color: #FF5722;
+    --white-text-shadow: 1px 1px 2px var(--secondary-text-color);
+    --transparent: #000000;
+} */
+
+
+/* ORANGE-BLUE */
+
+:root {
+    --primary-color: #071427;
+    --secondary-color: #ff5252c1;
+    --accent-color: #40C4FF;
+    --background-color: #c3c3c561;
+    --main-text-color: #121212;
+    --secondary-text-color: #09165a;
+    --white-color: #FFFFFF;
+    --secondary-color-transparency: #1856b4a8;
+    --accent-color-transparency: #1a85ff4f;
+    --light-gray-color: #EFEFF5;
+    --hover-accent-color: #1AB1FF;
+    --hover-button-color: #FF7043;
+    --white-text-shadow: 1px 1px 2px var(--secondary-text-color);
+    --transparent: #000000;
+}
 
 body {
     background-color: var(--background-color);
@@ -140,7 +199,7 @@ a:hover {
 /* BTN */
 
 .btn {
-    text-shadow: var(--white-text-shadow);
+    /* text-shadow: var(--white-text-shadow); */
     box-shadow: var(--white-text-shadow);
 }
 
@@ -430,6 +489,10 @@ a:hover {
     background-color: var(--accent-color-transparency);
     color: var(--main-text-color);
     text-shadow: var(--secondary-color-transparency);
+}
+
+.table svg {
+    color: var(--main-text-color);
 }
 
 
