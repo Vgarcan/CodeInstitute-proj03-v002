@@ -22,10 +22,14 @@
             </div>
             {% endif %}
     {% endfor %}
-    {% if job_info %}
-    <button type="submit" class="btn btn-primary">Update Job</button>
+    {% if passed_info %}
+            {% if passed_info== current_user.__dict__ %}
+                <button type="submit" class="btn btn-primary">Update Profile</button>
+            {% else %}
+                <button type="submit" class="btn btn-primary">Update Job</button>
+            {% endif %} 
     {% else %}
-    <button type="submit" class="btn btn-primary">{{ submit_text }}</button>
+        <button type="submit" class="btn btn-primary">{{ submit_text }}</button>
     {% endif %}
 </form>
 <br>

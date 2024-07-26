@@ -2,11 +2,13 @@
 
 :root {
     --primary-color: #1F2937;
-    --secondary-color: #3B82F6;
+    --warning-color: #f0cc54;
+    --secondary-color: #1e97f3;
     --accent-color: #10B981;
     --background-color: #e2e3e4;
     --main-text-color: #1F2937;
     --secondary-text-color: #020556f2;
+    --alter-text-color: #ffffffda;
     --white-color: #FFFFFF;
     --secondary-color-transparency: #2d69c9a8;
     --accent-color-transparency: #0f9f7968;
@@ -20,6 +22,7 @@
 
 /* :root {
     --primary-color: #2D3748;
+    --warning-color: #f6ca3b;
     --secondary-color: #4F46E5;
     --accent-color: #22C55E;
     --background-color: #ececec;
@@ -40,6 +43,7 @@
 
 .neon-blue-theme {
     --primary-color: #1F2937;
+    --warning-color: #ffc34cdf;
     --secondary-color: #00FFA3;
     --accent-color: #00A3FF;
     --background-color: #c1cfe2;
@@ -60,6 +64,7 @@
 
 .pink-theme {
     --primary-color: #0C0C1A;
+    --warning-color: #f6ca3b;
     --secondary-color: #FF4081;
     --accent-color: #00E5FF;
     --background-color: #F8F8FF;
@@ -80,6 +85,7 @@
 
 .orange-blue-theme {
     --primary-color: #071427;
+    --warning-color: #f6ca3b;
     --secondary-color: #ff5252c1;
     --accent-color: #40C4FF;
     --background-color: #c3c3c561;
@@ -199,6 +205,8 @@ a:hover {
 .btn {
     /* text-shadow: var(--white-text-shadow); */
     box-shadow: var(--white-text-shadow);
+    color: var(--white-color);
+    text-shadow: var(--white-text-shadow);
 }
 
 .btn-primary {
@@ -220,6 +228,15 @@ a:hover {
 .btn-danger {
     background-color: var(--hover-button-color);
     border: none;
+}
+
+.btn-warning {
+    background-color: var(--warning-color);
+}
+
+.btn-warning:hover {
+    background-color: var(--light-gray-color);
+    border-color: var(--light-gray-color);
 }
 
 
@@ -303,16 +320,19 @@ a:hover {
 
 .alert {
     background-color: var(--accent-color);
-    color: var(--white-color);
+    color: var(--alter-text-color);
     text-shadow: var(--white-text-shadow);
     border: none;
     box-shadow: var(--white-text-shadow);
 }
 
 .alert-danger,
-.alert-error,
-.alert-warning {
+.alert-error {
     background-color: var(--hover-button-color);
+}
+
+.alert-warning {
+    background-color: var(--warning-color);
 }
 
 .alert-info {
@@ -461,7 +481,6 @@ a:hover {
 .table td {
     padding: 0.75rem;
     vertical-align: top;
-    /* border-radius: 15px; */
 }
 
 .table thead th {
@@ -491,6 +510,11 @@ a:hover {
 
 .table svg {
     color: var(--main-text-color);
+}
+
+td>a,
+td>.btn {
+    margin: 0.2rem;
 }
 
 
