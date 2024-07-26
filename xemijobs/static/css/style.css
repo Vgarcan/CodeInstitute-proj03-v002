@@ -38,8 +38,7 @@
 
 /* NEON BLUE LIGHT */
 
-
-/* :root {
+.neon-blue-theme {
     --primary-color: #1F2937;
     --secondary-color: #00FFA3;
     --accent-color: #00A3FF;
@@ -54,13 +53,12 @@
     --hover-button-color: #cf8168;
     --white-text-shadow: 1px 1px 2px var(--secondary-text-color);
     --transparent: #000000;
-} */
+}
 
 
 /* PINK DETAILS */
 
-
-/* :root {
+.pink-theme {
     --primary-color: #0C0C1A;
     --secondary-color: #FF4081;
     --accent-color: #00E5FF;
@@ -75,12 +73,12 @@
     --hover-button-color: #FF5722;
     --white-text-shadow: 1px 1px 2px var(--secondary-text-color);
     --transparent: #000000;
-} */
+}
 
 
 /* ORANGE-BLUE */
 
-:root {
+.orange-blue-theme {
     --primary-color: #071427;
     --secondary-color: #ff5252c1;
     --accent-color: #40C4FF;

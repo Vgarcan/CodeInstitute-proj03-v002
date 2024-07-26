@@ -13,7 +13,7 @@ jobs = Blueprint('jobs', __name__, template_folder='templates', static_folder='s
 @jobs.route('/job-list/<int:page>')
 def job_list(page):
     # PAGINATION = 9
-    per_page = 9
+    per_page = 9 + 1 # add ONE to check if pagination forward is needed
     offset = (page - 1) * per_page
     # data = rawdata[offset:offset + per_page]
     
@@ -64,14 +64,17 @@ def create_job():
         
     return render_template('jobs/create-job.html', form=form)
 
-@jobs.route('/edit-job/<job_id>')
+
+@jobs.route('/edit-job/<adv_id>')
 @login_required
 @role_checker('company')
-def edit_job(job_id):
+def edit_job(adv_id):
 
-    job_details=Job.get_by_id(job_id)
+    job_details=Job.get_by_id(adv_id)
 
     form = JobForm()
+
+    form.job_details = 'prueba'
 
     if form.validate_on_submit():
         details = {
@@ -87,12 +90,12 @@ def edit_job(job_id):
         }
 
         try:
-            Job.create_new_job(job_data=details)
+            Job.update_job(adv_id, job_data=details)
+            flash('Job updated successfully', 'info')
         except Exception as e:
             print ('There was an error creating ======> ' + str(e))
 
-    return "<h1>this is jobs's EDIT JOB</h1>"
-
+    return render_template('jobs/create-job.html', job_data=job_details, form=form, job_info=job_details)
 
 
 @jobs.route('/delete-advert/<adv_id>', methods=['GET','POST'])
@@ -109,7 +112,6 @@ def delete_comp_adv(adv_id):
     
 
 # delete all JOBS form COMPANY
-
 @jobs.route('/delete-all-adverts', methods=['POST'])
 @login_required
 @role_checker('company')

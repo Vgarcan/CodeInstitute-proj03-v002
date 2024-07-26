@@ -4,7 +4,7 @@
         {% if field.label.text != "CSRF Token" and field.type != "SubmitField" %}
             <div class="form-group">
                 {{ field.label(class="form-label") }}
-                {{ field(class="form-control", placeholder=field.label.text) }}
+                {{ field(class="form-control", placeholder=job_info[field.name], value=job_info[field.name] ) }}
                 {% for error in field.errors %}
                     <small class="form-text text-danger">{{ error }}</small>
                 {% endfor %}

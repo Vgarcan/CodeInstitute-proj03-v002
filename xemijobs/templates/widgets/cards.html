@@ -1,7 +1,7 @@
 {% set context = {'d_type': 'none'} %}
 <div class="container my-4">
     <div class="row">
-        {% for item in data %}
+        {% for item in data [0:9] %}
         <div class="col-md-4 mb-4">
             <div class="card h-100">
                 <div class="card-body">
@@ -54,9 +54,9 @@
                     <a href="{{ url_for('users.list_of_users', page=(page - 1) | string) }}" class="btn btn-outline-primary btn-lg px-4 gap-3">Back</a>
                 {% endif %}
             {% endif %}
-            {% if context.d_type == 'jobs' %}
+            {% if context.d_type == 'jobs' and data|length == 10 %}
                 <a href="{{ url_for('jobs.job_list', page=(page + 1) | string) }}" class="btn btn-primary btn-lg px-4 gap-3">Next</a>
-            {% elif context.d_type == 'users' %}
+            {% elif context.d_type == 'users' and data|length == 10 %}
                 <a href="{{ url_for('users.list_of_users', page=(page + 1) | string) }}" class="btn btn-primary btn-lg px-4 gap-3">Next</a>
             {% endif %}
         </div>
