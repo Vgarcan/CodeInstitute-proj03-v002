@@ -96,7 +96,7 @@ def edit_job(adv_id):
             flash('Job was not updated: '+str(e), 'error')
             return redirect(url_for('jobs.edit_job', adv_id=adv_id))
 
-    return render_template('jobs/create-job.html', form=form, job_info=job_details, datetime=datetime)
+    return render_template('jobs/create-job.html', form=form, passed_info=job_details, datetime=datetime)
 
 
 @jobs.route('/delete-advert/<adv_id>', methods=['GET','POST'])

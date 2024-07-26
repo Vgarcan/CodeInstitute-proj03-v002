@@ -273,4 +273,4 @@ def profile():
         flash('Profile updated successfully!', 'success')
         return redirect(url_for('companies.dashboard'))
 
-    return render_template('companies/profile.html', form=form, data=current_user)
+    return render_template('companies/profile.html', form=form, passed_info=current_user.__dict__)

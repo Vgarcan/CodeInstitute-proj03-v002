@@ -3,13 +3,18 @@
     {% for field in form %}
         {% if field.label.text != "CSRF Token" and field.type != "SubmitField" %}
             <div class="form-group">
-                {% if field.name == 'ends_on' %}
-                    {{ field.label(class="form-label") }}
-                    {{ field(class="form-control", placeholder=field.label.text, value=job_info[field.name].strftime('%Y-%m-%d')) }}
+                {% if passed_info  %}
+                    {% if field.name == 'ends_on' %}
+                        {{ field.label(class="form-label") }}
+                        {{ field(class="form-control", placeholder=field.label.text, value=passed_info[field.name].strftime('%Y-%m-%d')) }}
+                    {% else %}
+                        {{ field.label(class="form-label") }}
+                        {{ field(class="form-control", placeholder=field.label.text, value=passed_info[field.name]) }}
+                    {% endif %}
                 {% else %}
                     {{ field.label(class="form-label") }}
-                    {{ field(class="form-control", placeholder=field.label.text, value=job_info[field.name]) }}
-                    
+                    {{ field(class="form-control", placeholder=field.label.text) }}
+                
                 {% endif %}
                 {% for error in field.errors %}
                     <small class="form-text text-danger">{{ error }}</small>

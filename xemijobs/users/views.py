@@ -205,7 +205,7 @@ def profile():
             flash('Invalid password!', 'danger')
             return redirect(url_for('users.profile'))
 
-    return render_template('users/profile.html', form=form, data=current_user)
+    return render_template('users/profile.html', form=form, data=current_user, passed_info=current_user.__dict__)
 
 
 
