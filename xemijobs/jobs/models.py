@@ -158,7 +158,7 @@ class Job:
     ## Update
     #! only COMPANIES
     @staticmethod
-    def update_job(job_id, **job_data):
+    def update_job(job_id, job_data):
         """
         Update a job post in the database.
 
@@ -186,10 +186,12 @@ class Job:
         }
         >>> Job.update_job('5f17c1234567890123456789', **job_data)
         """
-        mongo.db.jobs.update_one(
-            {'_id': ObjectId(job_id)},
-            {"$set": job_data}
-        )
+        try:
+            mongo.db.jobs.update_one(
+                {'_id': ObjectId(job_id)},
+                {"$set": job_data})
+        except Exception as e:
+            raise Exception('Error updating job ', e)
 
 
     ## Delete

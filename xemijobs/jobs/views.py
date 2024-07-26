@@ -65,7 +65,7 @@ def create_job():
     return render_template('jobs/create-job.html', form=form)
 
 
-@jobs.route('/edit-job/<adv_id>')
+@jobs.route('/edit-job/<adv_id>', methods=['GET','POST'])
 @login_required
 @role_checker('company')
 def edit_job(adv_id):
@@ -74,17 +74,15 @@ def edit_job(adv_id):
 
     form = JobForm()
 
-    form.job_details = 'prueba'
-
     if form.validate_on_submit():
         details = {
-            'post_title': form.title.data,
+            'post_title': form.post_title.data,
             'location': form.location.data,
             'salary': form.salary.data,
             'job_type': form.job_type.data,
             'description': form.description.data,
-            'ends_on': form.ends_on.data,
-            'published_on': datetime.now(),
+            # 'published_on': datetime.now(),
+            'ends_on': datetime.strptime(str(form.ends_on.data), '%Y-%m-%d').replace(hour=0, minute=00, second=00, microsecond=000000),
             'company_name': current_user.username,
             'comp_id': current_user.id
         }
@@ -92,10 +90,13 @@ def edit_job(adv_id):
         try:
             Job.update_job(adv_id, job_data=details)
             flash('Job updated successfully', 'info')
+            return redirect(url_for('companies.dashboard'))
         except Exception as e:
             print ('There was an error creating ======> ' + str(e))
+            flash('Job was not updated: '+str(e), 'error')
+            return redirect(url_for('jobs.edit_job', adv_id=adv_id))
 
-    return render_template('jobs/create-job.html', job_data=job_details, form=form, job_info=job_details)
+    return render_template('jobs/create-job.html', form=form, job_info=job_details, datetime=datetime)
 
 
 @jobs.route('/delete-advert/<adv_id>', methods=['GET','POST'])
