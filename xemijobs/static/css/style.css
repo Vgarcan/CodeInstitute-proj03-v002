@@ -308,6 +308,28 @@ a:hover {
 }
 
 
+/* --> GL CARDS <-- */
+
+#gl-cards .card {
+    transition-property: all;
+    transition-duration: 2s;
+    /* box-shadow: 6px -1.5px var(--secondary-color-transparency); */
+    /* transition-property: box-shadow; */
+    /* transition-duration: 2s; */
+    /* transition-delay: 1s; */
+}
+
+#gl-cards .card:hover {
+    background-color: var(--accent-color-transparency);
+    transition-property: all;
+    transition-duration: 2s;
+    /* transition-delay: 1s; */
+    box-shadow: 6px -1.5px var(--secondary-color-transparency);
+    /* transition-property: box-shadow; */
+    transition-duration: 2s;
+}
+
+
 /* ALERTS */
 
 .btn-close {

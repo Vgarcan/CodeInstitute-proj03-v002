@@ -54,6 +54,41 @@
         
     <br>
     <hr>
+    <h2>Glow Cards</h2>
+    <div class="container" id="gl-cards">
+        {% set glowcards_data = [
+            {
+                'title': 'Basic',
+                'price': '$9.99',
+                'bullets': ['Access to standard workouts and nutrition plans', 'Email support'],
+                'link': '#basic',
+                'cta_text': 'Get Started',
+                'hue': 165
+            },
+            {
+                'title': 'Pro',
+                'price': '$19.99',
+                'bullets': ['Access to advanced workouts and nutrition plans', 'Priority Email support', 'Exclusive access to live Q&A sessions'],
+                'link': '#pro',
+                'cta_text': 'Upgrade to Pro',
+                'hue': 291.34
+            },
+            {
+                'title': 'Ultimate',
+                'price': '$29.99',
+                'bullets': ['Access to all premium workouts and nutrition plans', '24/7 Priority support', '1-on-1 virtual coaching session every month', 'Exclusive content and early access to new features'],
+                'link': '#ultimate',
+                'cta_text': 'Go Ultimate',
+                'hue': 338.69
+            },
+        ] %}{# Agrega más tarjetas según sea necesario #}
+
+        {% include 'widgets/xemiglowcards.html' %}
+
+    </div>
+        
+    <br>
+    <hr>
 
 {% endblock main_content %}
 
