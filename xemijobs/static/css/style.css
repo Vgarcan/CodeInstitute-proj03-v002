@@ -1,5 +1,6 @@
 /* MAIN COLOR PALLETTE */
 
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 :root {
     --primary-color: #1F2937;
     --warning-color: #f0cc54;
@@ -199,6 +200,12 @@ a:hover {
     font-weight: 700;
 }
 
+.form-container {
+    background-color: var(--white-color);
+    border-radius: 1.3rem;
+    border: thick double var(--accent-color-transparency);
+}
+
 
 /* BTN */
 
@@ -320,12 +327,12 @@ a:hover {
 }
 
 #gl-cards .card:hover {
-    background-color: var(--accent-color-transparency);
-    transition-property: all;
-    transition-duration: 2s;
+    /* background-color:  var(--accent-color-transparency); */
+    background: content-box linear-gradient(to right, var(--background-color), var(--accent-color-transparency));
     /* transition-delay: 1s; */
     box-shadow: 6px -1.5px var(--secondary-color-transparency);
     /* transition-property: box-shadow; */
+    transition-property: all;
     transition-duration: 2s;
 }
 
@@ -537,6 +544,33 @@ a:hover {
 td>a,
 td>.btn {
     margin: 0.2rem;
+}
+
+
+/* GL-CARDS */
+
+#gl-card {
+    position: relative;
+}
+
+#gl-card>i {
+    position: absolute;
+    font-size: 18rem;
+    top: 0%;
+    left: 30%;
+    width: auto;
+    color: var(--white-color);
+    /* rotate: z 45deg; */
+    transform: skew(12deg, 20deg);
+    z-index: 0;
+}
+
+.card-body {
+    z-index: 1;
+}
+
+i {
+    color: var(--white-color);
 }
 
 

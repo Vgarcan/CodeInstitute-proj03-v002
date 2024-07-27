@@ -5,20 +5,29 @@
 
 
 
-<div class="container my-5">
+<div class="container my-5" >
     <h1 class="text-center mb-4">Pricing</h1>
     <div class="row">
         {% for card in glowcards_data %}
         <div class="col-md-4 mb-4">
-            <div class="card text-center border-primary h-100">
-                <div class="card-body">
-                    <h2 class="card-title">{{ card.title }}</h2>
-                    <p class="card-text display-4">{{ card.price }}</p>
-                    <ul class="list-unstyled">
-                        {% for bullet in card.bullets %}
-                        <li class="mb-2"><i class="fas fa-check text-success"></i> {{ bullet }}</li>
-                        {% endfor %}
-                    </ul>
+            <div class="card text-center border-primary h-100" id="gl-card">
+                {% if card.icon %}
+                <i class='{{card.icon}}'></i>
+                {% endif %}
+                <div class="card-body" >
+                    {% if card.title %}
+                        <h2 class="card-title">{{ card.title }}</h2>
+                    {% endif %}
+                    {% if card.price %}
+                        <p class="card-text display-4">{{ card.price }}</p>
+                    {% endif %}
+                    {% if card.bullets %}
+                        <ul class="list-unstyled">
+                            {% for bullet in card.bullets %}
+                                <li class="mb-2"><i class='{% if card.icon %} {{card.icon}} {% endif %}'></i> {{ bullet }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
                     <a href="{{ card.link }}" class="btn btn-primary mt-auto">{{ card.cta_text }}</a>
                 </div>
             </div>
