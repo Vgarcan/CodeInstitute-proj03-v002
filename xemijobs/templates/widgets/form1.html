@@ -1,4 +1,4 @@
-<form method="POST" action="{{ form_action }}" class="container">
+<form method="POST" action="{{ form_action }}" class="container form-container">
     {{ form.hidden_tag() }}
     {% for field in form %}
         {% if field.label.text != "CSRF Token" and field.type != "SubmitField" %}

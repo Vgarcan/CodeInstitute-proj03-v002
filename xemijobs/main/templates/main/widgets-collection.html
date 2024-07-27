@@ -31,11 +31,10 @@
     <br>
     <hr>
     <h2>Form</h2>
-    <div class="container form-container">
-        {% set submit_text = "Register" %}
-        {% include 'widgets/form1.html' %}
-    </div>
-        
+    
+    {% set submit_text = "Register" %}
+    {% include 'widgets/form1.html' %}
+    
     <br>
     <hr>
     <h2>Tables</h2>
@@ -43,10 +42,10 @@
 
         {% set table_headers = ["Name", "Age", "Position", "Salary"] %}
         {% set table_data = [
-        {"Name": "John Doe", "Age": 28, "Position": "Developer", "Salary": "$1000"},
-        {"Name": "Jane Smith", "Age": 34, "Position": "Designer", "Salary": "$1200"},
-        {"Name": "Sam Johnson", "Age": 25, "Position": "Tester", "Salary": "$900"}
-    ]%}
+            {"Name": "John Doe", "Age": 28, "Position": "Developer", "Salary": "$1000"},
+            {"Name": "Jane Smith", "Age": 34, "Position": "Designer", "Salary": "$1200"},
+            {"Name": "Sam Johnson", "Age": 25, "Position": "Tester", "Salary": "$900"}
+        ]%}
         
         {% include 'widgets/table-blue.html' %}
         {% include 'widgets/table-green.html' %}
@@ -64,7 +63,6 @@
                 'icon': 'bi bi-trophy-fill',
                 'link': '#basic',
                 'cta_text': 'Get Started',
-                'hue': 165
             },
             {
                 'title': 'Pro',
@@ -73,7 +71,6 @@
                 'icon': 'bi bi-fast-forward-circle-fill',
                 'link': '#pro',
                 'cta_text': 'Upgrade to Pro',
-                'hue': 291.34
             },
             {
                 'title': 'Ultimate',
@@ -82,7 +79,6 @@
                 'icon': 'bi bi-lightning-fill',
                 'link': '#ultimate',
                 'cta_text': 'Go Ultimate',
-                'hue': 338.69
             },
         ] %}{# Agrega más tarjetas según sea necesario #}
 

@@ -93,7 +93,7 @@
     --main-text-color: #121212;
     --secondary-text-color: #09165a;
     --white-color: #FFFFFF;
-    --secondary-color-transparency: #1856b4a8;
+    --secondary-color-transparency: #fc7349c8;
     --accent-color-transparency: #1a85ff4f;
     --light-gray-color: #EFEFF5;
     --hover-accent-color: #1AB1FF;
@@ -114,7 +114,7 @@ h4,
 h5,
 h6 {
     font-family: 'Poppins', sans-serif;
-    font-weight: 700;
+    font-weight: 800;
     color: var(--main-text-color);
 }
 
@@ -181,7 +181,9 @@ a:hover {
 
 .form-control {
     background-color: var(--light-gray-color);
-    border: 1px solid var(--accent-color);
+    /* border: 1px solid var(--accent-color); */
+    border-radius: 1.3rem;
+    border: 1px solid var(--accent-color-transparency);
 }
 
 .form-control:focus {
@@ -203,7 +205,11 @@ a:hover {
 .form-container {
     background-color: var(--white-color);
     border-radius: 1.3rem;
-    border: thick double var(--accent-color-transparency);
+    border: 0.4rem ridge var(--accent-color-transparency);
+    padding: 1.2rem;
+    box-shadow: 0.25rem 0.13rem 1.4rem var(--primary-color);
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
 }
 
 
@@ -319,7 +325,7 @@ a:hover {
 
 #gl-cards .card {
     transition-property: all;
-    transition-duration: 2s;
+    transition-duration: 1.5s;
     /* box-shadow: 6px -1.5px var(--secondary-color-transparency); */
     /* transition-property: box-shadow; */
     /* transition-duration: 2s; */
@@ -328,12 +334,12 @@ a:hover {
 
 #gl-cards .card:hover {
     /* background-color:  var(--accent-color-transparency); */
-    background: content-box linear-gradient(to right, var(--background-color), var(--accent-color-transparency));
+    background: content-box linear-gradient( var(--background-color), var(--accent-color-transparency));
     /* transition-delay: 1s; */
     box-shadow: 6px -1.5px var(--secondary-color-transparency);
     /* transition-property: box-shadow; */
     transition-property: all;
-    transition-duration: 2s;
+    /* transition-duration: 1.5s; */
 }
 
 
@@ -518,8 +524,6 @@ a:hover {
     text-shadow: var(--white-text-shadow);
     border-bottom: 2px solid var(--background-color);
     background-color: var(--secondary-color-transparency);
-    /* border-radius: 10px 10px 0 0; */
-    /* box-shadow: var(--white-text-shadow); */
 }
 
 .table-hover tbody tr:hover {
@@ -557,7 +561,7 @@ td>.btn {
     position: absolute;
     font-size: 18rem;
     top: 0%;
-    left: 30%;
+    left: 26%;
     width: auto;
     color: var(--white-color);
     /* rotate: z 45deg; */
