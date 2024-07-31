@@ -69,7 +69,7 @@
             </ul>
             <!-- Search Bar -->
             <div class="d-flex justify-content-center .d-none d-sm-block d-md-none">
-                <form class="form-inline d-flex flex-row-reverse" action="" method="GET">
+                <form class="form-inline d-flex flex-row-reverse" action="{{ url_for('jobs.search') }}" method="GET">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
                 </form>
