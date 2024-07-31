@@ -24,6 +24,24 @@ def job_list(page):
         print (j.id)
     return render_template("jobs/jobs-list.html",data=listed_jobs, page=page)
 
+@jobs.route('/search')
+def search(page=1):
+
+    # PAGINATION = 9
+    per_page = 9 + 1 # add ONE to check if pagination forward is needed
+    offset = (page - 1) * per_page
+    # data = rawdata[offset:offset + per_page]
+
+    query = request.args.get('q')
+    print (query)
+    results = []
+    if query:
+        results = Job.get_jobs_by_query(query, offset=offset, per_page=per_page)
+
+    for j in results:
+        print (j.id)
+    return render_template("jobs/jobs-list.html",data=results, page=page)
+
 
 @jobs.route('/job-detail/<adv_id>')
 def job_detail(adv_id):

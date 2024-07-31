@@ -154,6 +154,34 @@ class Job:
             _id=str(job_data['_id'])
         ) for job_data in jobs_data]   
 
+    
+    @staticmethod
+    def get_jobs_by_query(q, offset, per_page):
+        mongo.db.jobs.create_index(
+            [
+                ("post_title", "text"), 
+                ("location", "text"), 
+                ("salary", "text"), 
+                ("job_type", "text"), 
+                ("description", "text"), 
+                ("comp_name", "text")
+            ]
+        )
+
+        jobs_data = mongo.db.jobs.find({"$text": {"$search": q}}).sort('published_on',-1).skip(offset).limit(per_page)
+        return [Job(
+            post_title=job_data['post_title'],
+            location=job_data['location'],
+            salary=job_data['salary'],
+            job_type=job_data['job_type'],
+            description=job_data['description'],
+            ends_on=job_data['ends_on'],
+            published_on=job_data['published_on'],
+            comp_name=job_data['company_name'],
+            comp_id=str(job_data['comp_id']),
+            _id=str(job_data['_id'])
+        ) for job_data in jobs_data]   
+
 
     ## Update
     #! only COMPANIES

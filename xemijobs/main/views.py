@@ -79,60 +79,14 @@ def widget_showcase(page=1):
     # PAGINATION = 9
     per_page = 9
     offset = (page - 1) * per_page
-    # data = rawdata[offset:offset + per_page]
 
     data = User.get_all_users(offset, per_page)
     if data is None:
         flash('No users found!', 'info')
     
-    # # Pagination
-    # per_page = 9
-    # offset = (page - 1) * per_page
-    # data = data[offset:offset + per_page]
-
-    # # Modal Structure
-    # modal_data= {
-    #     'title': 'this is the title of the modal',
-    #     'body': 'this is the body of the modal',
-    #     'footer': 'this is the footer of the modal'        
-    # }
-    modal_data= {
-        'title': 'Make Changes?',
-        'body': 'this is the body of the modal',
-        'footer': 'this is the footer of the modal',
-        'btn_text': 'Logout',
-        'btn_class': 'btn-danger',
-        'btn_link': '{{ url_for(users.logout)}}'        
-    }
-
-    carousel = [
-        {
-            'img_src': "imgs/banner.jpg",
-            'img_alt': '',
-            'header': 'Display the TITLE',
-            'text': 'And display a CAPTATION too.'
-        },
-        {
-            'img_src': "imgs/banner2.jpg",
-            'img_alt': '',
-            'header': ' You can only show the TITLE',
-
-        },
-        {
-            'img_src': "imgs/banner3.jpg",
-            'img_alt': '',
-            'text': ' Or just show the CAPTATION in this section.\nYou can display nothing, like the next'
-        },
-        {
-            'img_src': "imgs/banner2.jpg",
-            'img_alt': '',
-        },
-    ]
-    
     return render_template('main/widgets-collection.html', 
                            data=data, 
-                           page=page, 
-                           modal_data=modal_data, 
-                           carousel=carousel, 
+                           page=page,
                            enumerate=enumerate, 
                            form=form)
+

@@ -5,89 +5,146 @@
 
 <!-- MAIN CONTENT -->
 {% block main_content %}
-    <h2>Alert</h2>
-    {% include 'widgets/alert.html' %}
-    <br>
-    <hr>
-    <h2>Cards</h2>
-    {% include 'widgets/cards.html' %}
-    <br>
-    <hr>
-    <h2>Modal</h2>
-    <!-- Button trigger modal -->
-     <div class="container">
-         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-             Launch demo modal
-         </button>
-     </div>
-
-    {% include 'widgets/modal.html' %}
-    <br>
-    <hr>
-    <h2>Carousel</h2>
-    <div class="container text-align-center">
-        {% include 'widgets/carousel.html' %}
-    </div>
-    <br>
-    <hr>
-    <h2>Form</h2>
-    
-    {% set submit_text = "Register" %}
-    {% include 'widgets/form1.html' %}
-    
-    <br>
-    <hr>
-    <h2>Tables</h2>
     <div class="container">
+        <h2>Alert</h2>
+        <br>
+        <hr>
 
-        {% set table_headers = ["Name", "Age", "Position", "Salary"] %}
-        {% set table_data = [
-            {"Name": "John Doe", "Age": 28, "Position": "Developer", "Salary": "$1000"},
-            {"Name": "Jane Smith", "Age": 34, "Position": "Designer", "Salary": "$1200"},
-            {"Name": "Sam Johnson", "Age": 25, "Position": "Tester", "Salary": "$900"}
-        ]%}
+
+        <h2>Cards</h2>
+        {% include 'widgets/cards.html' %}
+        <br>
+        <hr>
         
-        {% include 'widgets/table-blue.html' %}
-        {% include 'widgets/table-green.html' %}
+
+        <h2>Modal</h2>
+        <div class="container d-flex justify-content-center">
+            
+            {# stablish the target ID for the modal to use #}
+            {% set mod_btn = {
+                'target_id':'exampleModal',
+                'txt':'Try modal'
+            } %}
+            {% include 'widgets/modal-button.html' %}
+
+        </div> 
+
+        {# stablish the the info for the modal #}
+        {% set modal_data= {
+            'modal_id': 'exampleModal',
+            'title': 'Make Changes?',
+            'body': 'this is the body of the modal',
+            'footer': 'this is the footer of the modal',
+            'btn_text': 'Logout',
+            'btn_class': 'btn-danger',
+            'btn_link': '{{ url_for(users.logout)}}'        
+        } %}
+        {% include 'widgets/modal.html' %}
+        <br>
+        <hr>
+
+
+        <h2>Carousel</h2>
+        <div class="container text-align-center">
+            {% set carousel = [
+                {
+                    'img_src': "imgs/banner.jpg",
+                    'img_alt': 'imgage #1',
+                    'header': 'Display the TITLE',
+                    'text': 'And display a CAPTATION too.'
+                },
+                {
+                    'img_src': "imgs/banner2.jpg",
+                    'img_alt': 'imgage #2',
+                    'header': ' You can only show the TITLE',
+
+                },
+                {
+                    'img_src': "imgs/banner3.jpg",
+                    'img_alt': 'imgage #3',
+                    'text': ' Or just show the CAPTATION in this section.\nYou can display nothing, like the next'
+                },
+                {
+                    'img_src': "imgs/banner2.jpg",
+                    'img_alt': 'imgage #4',
+                },
+            ] %}
+
+            {% include 'widgets/carousel.html' %}
+
+        </div>
+        <br>
+        <hr>
+
+
+        <h2>Form</h2>
+        {% set submit_text = "Register" %}
+        {% include 'widgets/form1.html' %}
+        <br>
+        <hr>
+
+
+        <h2>Tables</h2>
+        <div class="container">
+
+            {% set table_headers = ["Name", "Age", "Position", "Salary"] %}
+            {% set table_data = [
+                {"Name": "John Doe", "Age": 28, "Position": "Developer", "Salary": "$1000"},
+                {"Name": "Jane Smith", "Age": 34, "Position": "Designer", "Salary": "$1200"},
+                {"Name": "Sam Johnson", "Age": 25, "Position": "Tester", "Salary": "$900"}
+            ]%}
+            
+            {% include 'widgets/table-blue.html' %}
+
+            {% set table_headers = ["Name", "Age"] %}
+            {% set table_data = [
+                {"Name": "John Doe", "Age": 28},
+                {"Name": "Jane Smith", "Age": 34},
+                {"Name": "Sam Johnson", "Age": 25}
+            ]%}
+            {% include 'widgets/table-green.html' %}
+        </div>
+        <br>
+        <hr>
+
+
+        <h2>Glow Cards</h2>
+        <div class="container" id="gl-cards">
+            {% set glowcards_data = [
+                {
+                    'title': 'Basic',
+                    'price': '$9.99',
+                    'paragraphs': ['This is the price of the product', 'This is the price of the product', 'This is the price of the product'],
+                    'bullets': ['Access to standard workouts and nutrition plans', 'Email support'],
+                    'icon': 'bi bi-trophy-fill',
+                    'link': '#basic',
+                    'cta_text': 'Get Started',
+                },
+                {
+                    'title': 'Pro',
+                    'price': '$19.99',
+                    'paragraphs': ['This is the price of the product', 'This is the price of the product', 'This is the price of the product'],
+                    'bullets': ['Access to advanced workouts and nutrition plans', 'Priority Email support', 'Exclusive access to live QnA sessions'],
+                    'icon': 'bi bi-fast-forward-circle-fill',
+                    'link': '#pro',
+                    'cta_text': 'Upgrade to Pro',
+                },
+                {
+                    'title': 'Ultimate',
+                    'price': '$29.99',
+                    'paragraphs': ['This is the price of the product', 'This is the price of the product', 'This is the price of the product'],
+                    'bullets': ['Access to all premium workouts and nutrition plans', '24/7 Priority support', '1-on-1 virtual coaching session every month', 'Exclusive content and early access to new features'],
+                    'icon': 'bi bi-lightning-fill',
+                    'link': '#ultimate',
+                    'cta_text': 'Go Ultimate',
+                },
+            ] %}{# Agrega más tarjetas según sea necesario #}
+
+            {% include 'widgets/xemiglowcards.html' %}
+
+        </div>
+        <br>
+        <hr>
     </div>
-        
-    <br>
-    <hr>
-    <h2>Glow Cards</h2>
-    <div class="container" id="gl-cards">
-        {% set glowcards_data = [
-            {
-                'title': 'Basic',
-                'price': '$9.99',
-                'bullets': ['Access to standard workouts and nutrition plans', 'Email support'],
-                'icon': 'bi bi-trophy-fill',
-                'link': '#basic',
-                'cta_text': 'Get Started',
-            },
-            {
-                'title': 'Pro',
-                'price': '$19.99',
-                'bullets': ['Access to advanced workouts and nutrition plans', 'Priority Email support', 'Exclusive access to live QnA sessions'],
-                'icon': 'bi bi-fast-forward-circle-fill',
-                'link': '#pro',
-                'cta_text': 'Upgrade to Pro',
-            },
-            {
-                'title': 'Ultimate',
-                'price': '$29.99',
-                'bullets': ['Access to all premium workouts and nutrition plans', '24/7 Priority support', '1-on-1 virtual coaching session every month', 'Exclusive content and early access to new features'],
-                'icon': 'bi bi-lightning-fill',
-                'link': '#ultimate',
-                'cta_text': 'Go Ultimate',
-            },
-        ] %}{# Agrega más tarjetas según sea necesario #}
-
-        {% include 'widgets/xemiglowcards.html' %}
-
-    </div>
-        
-    <br>
-    <hr>
-
 {% endblock main_content %}
 
