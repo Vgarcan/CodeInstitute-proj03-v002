@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, flash, redirect, url_for
-from ..extensions import mongo
+from ..extensions import mongo, get_total_jobs
 from flask_login import login_required, current_user
 
 from ..users.models import User
@@ -33,8 +33,8 @@ def index():
             'img_alt': '',
         },
     ]
-    
-    return render_template('main/index.html', carousel=carousel, enumerate=enumerate, )
+    total_jobs = get_total_jobs()
+    return render_template('main/index.html', carousel=carousel, enumerate=enumerate, total_jobs= total_jobs )
 
 @main.route('/page1')
 def app_another():

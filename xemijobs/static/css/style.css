@@ -580,6 +580,23 @@ i {
 
 /* INDEX.HTML */
 
+.banner-title {
+    background-color: var(--accent-color-transparency);
+    border-radius: 15px;
+    box-shadow: var(--white-text-shadow);
+    /* color: var(--light-gray-color); */
+}
+
+.banner-title>h2 {
+    color: var(--main-text-color);
+    text-shadow: var(--white-text-shadow);
+}
+
+.banner-title span {
+    color: var(--hover-button-color);
+    text-shadow: var(--white-text-shadow);
+}
+
 .contact-section {
     background-color: var(--accent-color-transparency);
 }

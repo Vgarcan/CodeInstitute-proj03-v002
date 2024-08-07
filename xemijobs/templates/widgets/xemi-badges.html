@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row text-center">
             {% for badge in badges_data  %}
-            <a href="#" class="col-md-4 xemi-feat">
+            <a href="{{badge.title}}" class="col-md-4 xemi-feat">
                 {{ badge.svg}}
                 <div class="feat-text">
                     <h3>{{badge.title}}</h3>

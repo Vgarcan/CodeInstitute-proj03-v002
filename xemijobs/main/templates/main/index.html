@@ -1,16 +1,23 @@
 {% extends "xemijobs/base.html" %}
 <!-- PAGE TITLE -->
-{% block page_title %}Home{% endblock %}
+{% block page_title %}Welcome to XemiJobs{% endblock %}
 
 
 <!-- MAIN CONTENT -->
 {% block main_content %}
 <!-- Hero Section -->
 <section class="hero-section text-center text-white d-flex align-items-center">
-    <div class="container">
-        <h1 class="display-4">Welcome to XemiJobs</h1>
-        <p class="lead">Find your dream job or hire top talents today.</p>
-        <a href="{{ url_for('users.register') }}" class="btn btn-lg btn-primary">Get Started</a>
+    <div class="px-4 pt-5 my-3 text-center border-bottom">
+        <div class="banner-title">
+
+            <h2 class="display-4 fw-bold ">Offering <span>{{total_jobs}}</span> Job Vacancies Right Now!</h2>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead ">Explore thousands of job opportunities tailored to your skills and preferences. Join our platform and take the next step in your career with ease and confidence.</p>
+                <div class="justify-content-sm-center mb-2">
+                    <a href="{{ url_for('users.register') }}" class="btn btn-primary mb-3 btn-lg px-4 me-sm-3">Get Started</a>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -46,7 +53,7 @@
                     <p>Edit your CV to get better results</p>
                 </div>
             </a>
-            
+
         </div>
     </div>
 </section>
@@ -61,7 +68,7 @@
                 <p>Whether you are looking for your next career move or seeking to hire the best talent, XemiJobs is here to help you every step of the way.</p>
             </div>
             <div class="col-md-6">
-                {% include 'widgets/carousel.html' %} 
+                {% include 'widgets/carousel.html' %}
             </div>
         </div>
     </div>

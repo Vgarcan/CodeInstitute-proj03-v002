@@ -1,4 +1,4 @@
-<div class="card-body container my-4">
+<div class="card card-body container my-4">
     {% for key, value in data.__dict__.items() %}
         {% if key == 'image' %}
             <img src="{{ value }}" class="card-img-top mb-3" alt="Image">

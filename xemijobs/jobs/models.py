@@ -181,6 +181,13 @@ class Job:
             comp_id=str(job_data['comp_id']),
             _id=str(job_data['_id'])
         ) for job_data in jobs_data]   
+    
+    @staticmethod
+    def number_of_jobs():
+
+        total= mongo.db.jobs.count_documents({})
+        return total
+
 
 
     ## Update

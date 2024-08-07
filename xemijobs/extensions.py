@@ -78,3 +78,7 @@ def get_table_info(id,role, adv_id = None):
             print("=======================> " + adv_id)
             table = Application.get_all_applications(adv_id, role)
             return table
+        
+def get_total_jobs():
+    from .jobs.models import Job
+    return Job.number_of_jobs()
