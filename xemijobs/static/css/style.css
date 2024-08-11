@@ -680,10 +680,20 @@ i {
 /* PARALLAX EFFECT */
 
 .parallax {
-    min-height: 500px;
+    min-height: 350px;
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+
+/* Turn off parallax scrolling for all tablets and phones. Increase/decrease the pixels if needed */
+
+@media only screen and (max-device-width: 425px) {
+    .parallax {
+        background-attachment: scroll;
+        background-position: left;
+    }
 }
