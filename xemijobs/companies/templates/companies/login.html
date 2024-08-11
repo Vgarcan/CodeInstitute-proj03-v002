@@ -1,8 +1,9 @@
 {% extends "xemijobs/base.html" %}
 
-{% block main_content %}
+<!-- PAGE TITLE -->
+{% block page_title %}Company's Login{% endblock page_title %}
 
-    {% block page_title %}COMPANY Login{% endblock page_title %}
+{% block main_content %}
 
     <h2>COMPANY login</h2>
     {% set form_action = url_for('companies.login') %}
