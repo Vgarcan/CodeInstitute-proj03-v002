@@ -120,6 +120,7 @@ h6 {
 
 header {
     background-color: var(--primary-color);
+    margin-bottom: 0;
 }
 
 p {
@@ -181,7 +182,6 @@ a:hover {
 
 .form-control {
     background-color: var(--light-gray-color);
-    /* border: 1px solid var(--accent-color); */
     border-radius: 1.3rem;
     border: 1px solid var(--accent-color-transparency);
 }
@@ -216,7 +216,6 @@ a:hover {
 /* BTN */
 
 .btn {
-    /* text-shadow: var(--white-text-shadow); */
     box-shadow: var(--white-text-shadow);
     color: var(--white-color);
     text-shadow: var(--white-text-shadow);
@@ -326,20 +325,12 @@ a:hover {
 #gl-cards .card {
     transition-property: all;
     transition-duration: 1.5s;
-    /* box-shadow: 6px -1.5px var(--secondary-color-transparency); */
-    /* transition-property: box-shadow; */
-    /* transition-duration: 2s; */
-    /* transition-delay: 1s; */
 }
 
 #gl-cards .card:hover {
-    /* background-color:  var(--accent-color-transparency); */
     background: content-box linear-gradient( var(--background-color), var(--accent-color-transparency));
-    /* transition-delay: 1s; */
     box-shadow: 6px -1.5px var(--secondary-color-transparency);
-    /* transition-property: box-shadow; */
     transition-property: all;
-    /* transition-duration: 1.5s; */
 }
 
 
@@ -456,8 +447,6 @@ a:hover {
     box-shadow: var(--white-text-shadow);
 }
 
-.carousel-item {}
-
 .carousel-item img {
     max-height: 500px;
     object-fit: cover;
@@ -564,7 +553,6 @@ td>.btn {
     left: 26%;
     width: auto;
     color: var(--white-color);
-    /* rotate: z 45deg; */
     transform: skew(12deg, 20deg);
     z-index: 0;
 }
@@ -584,7 +572,6 @@ i {
     background-color: var(--accent-color-transparency);
     border-radius: 15px;
     box-shadow: var(--white-text-shadow);
-    /* color: var(--light-gray-color); */
 }
 
 .banner-title>h2 {
@@ -592,23 +579,42 @@ i {
     text-shadow: var(--white-text-shadow);
 }
 
+.banner-title p {
+    color: var(--background-color);
+    text-shadow: var(--white-text-shadow);
+    font-weight: 400;
+}
+
 .banner-title span {
     color: var(--hover-button-color);
     text-shadow: var(--white-text-shadow);
 }
 
-.contact-section {
+
+/* TESTIMONIAL */
+
+.testimonials-section {
     background-color: var(--accent-color-transparency);
 }
 
-.contact-section p {
-    color: var(--white-color);
-    text-shadow: var(--white-text-shadow)
+.testimonials-section img {
+    border-radius: 50%;
+    height: 9rem;
+    width: auto;
+    padding-bottom: 1.5rem;
 }
 
-.contact-section h2,
-.contact-section h4 {
-    text-shadow: 1px 1px 2px var(--white-color);
+.testimonial-card>div {
+    border-radius: 10px;
+    box-shadow: var(--white-text-shadow);
+    /* padding: 1rem; */
+    margin-bottom: 1rem;
+    /* margin-right: 0.1rem; */
+    background-color: var(--background-color);
+}
+
+.testimonials-section p {
+    color: var(--main-text-color);
 }
 
 .section-shadow {
@@ -661,4 +667,23 @@ i {
     font-size: 1.15rem;
     font-weight: 400;
     filter: drop-shadow(10px 7px 20px var(--accent-color-transparency));
+}
+
+#top-comp img {
+    border-radius: 50%;
+    height: 9rem;
+    width: auto;
+    padding-bottom: 1.5rem;
+}
+
+
+/* PARALLAX EFFECT */
+
+.parallax {
+    min-height: 500px;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

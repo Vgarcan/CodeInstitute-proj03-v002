@@ -6,24 +6,56 @@
 <!-- MAIN CONTENT -->
 {% block main_content %}
 <!-- Hero Section -->
-<section class="hero-section text-center text-white d-flex align-items-center">
-    <div class="px-4 pt-5 my-3 text-center border-bottom">
-        <div class="banner-title">
 
-            <h2 class="display-4 fw-bold ">Offering <span>{{total_jobs}}</span> Job Vacancies Right Now!</h2>
-            <div class="col-lg-6 mx-auto">
-                <p class="lead ">Explore thousands of job opportunities tailored to your skills and preferences. Join our platform and take the next step in your career with ease and confidence.</p>
-                <div class="justify-content-sm-center mb-2">
-                    <a href="{{ url_for('users.register') }}" class="btn btn-primary mb-3 btn-lg px-4 me-sm-3">Get Started</a>
+<section class="parallax mb-3" style="background-image: url('{{ url_for("static", filename="imgs/parallax-1.webp") }}')">
+
+    <div class="hero-section text-center text-white d-flex align-items-center">
+        <div class="px-4 pt-5 my-3 text-center">
+            <div class="banner-title">
+
+                <h2 class="display-4 fw-bold ">Offering <span>{{total_jobs}}</span> Job Vacancies Right Now!</h2>
+                <div class="col-lg-6 mx-auto">
+                    <p class="lead ">Explore thousands of job opportunities tailored to your skills and preferences. Join our platform and take the next step in your career with ease and confidence.</p>
+                    <div class="justify-content-sm-center mb-2">
+                        <a href="{{ url_for('users.register') }}" class="btn btn-primary mb-3 btn-lg px-4 me-sm-3">Register</a>
+                        <a href="{{ url_for('jobs.job_list', page=1) }}" class="btn btn-primary mb-3 btn-lg px-4 me-sm-3">View Jobs</a>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!--Companies pictures -->
+<section id="top-comp" class="text-center d-flex align-items-center">
+    <div class="container">
+        <h2 class="pb-3">TOP COMPANIES</h2>
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="{{ url_for('static', filename='imgs/comp-pics/comp-1.webp') }}" alt="Company 1 images" class="img-fluid">
+            </div>
+            <div class="col-sm-4">
+                <img src="{{ url_for('static', filename='imgs/comp-pics/comp-2.webp') }}" alt="Company 2 images" class="img-fluid">
+            </div>
+            <div class="col-sm-4">
+                <img src="{{ url_for('static', filename='imgs/comp-pics/comp-3.webp') }}" alt="Company 3 images" class="img-fluid">
+            </div>
+            <div class="col-sm-6">
+                <img src="{{ url_for('static', filename='imgs/comp-pics/comp-4.webp') }}" alt="Company 4 images" class="img-fluid">
+            </div>
+            <div class="col-sm-6">
+                <img src="{{ url_for('static', filename='imgs/comp-pics/comp-5.webp') }}" alt="Company 5 images" class="img-fluid">
             </div>
         </div>
     </div>
 </section>
 
+
 <!-- Features Section -->
-<section class="features-section py-5">
+<section class="features-section py-5 text-center d-flex align-items-center">
     <div class="container">
+        <h2 class="pb-3">WHY XEMIJOBS</h2>
         <div class="row text-center">
             <a href="#" class="col-md-4 xemi-feat">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-binoculars" viewBox="0 0 16 16">
@@ -74,38 +106,49 @@
     </div>
 </section>
 
-<!-- Contact Section -->
-<section class="contact-section py-5">
+
+<!-- Testimonials Section -->
+<section class="testimonials-section py-5">
     <div class="container">
-        <div class="row text-center">
-            <div class="col-12">
-                <h2>Contact Us</h2>
-                <p>Have any questions or need assistance? Feel free to reach out to us.</p>
-            </div>
-            <div class="col-md-4">
-                <div class="contact-info">
-                    <i class="fas fa-phone fa-2x"></i>
-                    <h4>Phone</h4>
-                    <p>+1 234 567 890</p>
+        <h2 class="text-center mb-5">What Our Users Say</h2>
+        <div class="row">
+            <div class="col-md-6 col-lg-3 testimonial-card">
+                <div class="p-4 text-center rounded">
+                    <img src="{{ url_for('static', filename='imgs/testimonials/user1.webp') }}" alt="User 1" class="rounded-circle mb-3">
+                    <h5>Jane Doe</h5>
+                    <p class="small text-muted">Marketing Specialist</p>
+                    <p class="testimonial-text">"XemiJobs made my job search so easy. I found the perfect position within days, and the process was seamless!"</p>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="contact-info">
-                    <i class="fas fa-envelope fa-2x"></i>
-                    <h4>Email</h4>
-                    <p>support@xemijobs.com</p>
+            <div class="col-md-6 col-lg-3 testimonial-card">
+                <div class="p-4 text-center rounded">
+                    <img src="{{ url_for('static', filename='imgs/testimonials/user2.webp') }}" alt="User 2" class="rounded-circle mb-3">
+                    <h5>John Smith</h5>
+                    <p class="small text-muted">Software Engineer</p>
+                    <p class="testimonial-text">"Thanks to XemiJobs, I was able to land a job at a top tech company. The online interviews were a great feature!"</p>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="contact-info">
-                    <i class="fas fa-map-marker-alt fa-2x"></i>
-                    <h4>Address</h4>
-                    <p>1234 Job Street, Work City, WC 56789</p>
+            <div class="col-md-6 col-lg-3 testimonial-card">
+                <div class="p-4 text-center rounded">
+                    <img src="{{ url_for('static', filename='imgs/testimonials/user3.webp') }}" alt="User 3" class="rounded-circle mb-3">
+                    <h5>Sarah Johnson</h5>
+                    <p class="small text-muted">Graphic Designer</p>
+                    <p class="testimonial-text">"The user interface is super friendly and easy to navigate. I highly recommend XemiJobs to anyone looking for a job!"</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 testimonial-card">
+                <div class="p-4 text-center rounded">
+                    <img src="{{ url_for('static', filename='imgs/testimonials/user4.webp') }}" alt="User 4" class="rounded-circle mb-3">
+                    <h5>Michael Lee</h5>
+                    <p class="small text-muted">Data Analyst</p>
+                    <p class="testimonial-text">"I was able to upload my CV and apply to multiple jobs effortlessly. XemiJobs truly streamlines the job search process."</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+
 
 
 {% endblock %}
