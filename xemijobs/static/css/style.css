@@ -17,6 +17,7 @@
     --hover-accent-color: #0F9F79;
     --hover-button-color: #cf8168;
     --white-text-shadow: 1px 1px 1px var(--secondary-text-color);
+    --dark-text-shadow: 1px 1px 4px var(--white-color);
     --transparent: #000000;
 }
 
@@ -576,7 +577,7 @@ i {
 
 .banner-title>h2 {
     color: var(--main-text-color);
-    text-shadow: var(--white-text-shadow);
+    text-shadow: var(--dark-text-shadow);
 }
 
 .banner-title p {
@@ -610,7 +611,7 @@ i {
     /* padding: 1rem; */
     margin-bottom: 1rem;
     /* margin-right: 0.1rem; */
-    background-color: var(--background-color);
+    background-color: var(--white-color);
 }
 
 .testimonials-section p {

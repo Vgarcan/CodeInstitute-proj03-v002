@@ -7,18 +7,18 @@
 {% block main_content %}
 <!-- Hero Section -->
 
-<section class="parallax mb-3 d-flex align-items-center" style="background-image: url('{{ url_for("static", filename="imgs/parallax-1.webp") }}')">
+<section class="parallax mb-3 align-items-center" style="background-image: url('/static/imgs/parallax-1.webp')">
 
-    <div class="hero-section text-center text-white d-flex align-items-center">
+    <div class="hero-section text-center text-white d-flex justify-content-center">
         <div class="px-4 pt-5 my-3 text-center">
-            <div class="banner-title">
+            <div class="banner-title p-2">
 
-                <h2 class="display-4 fw-bold ">Offering <span>{{total_jobs}}</span> Job Vacancies Right Now!</h2>
+                <h2 class="display-4 fw-bold ">Offering <span>6</span> Job Vacancies Right Now!</h2>
                 <div class="col-lg-6 mx-auto">
                     <p class="lead ">Explore thousands of job opportunities tailored to your skills and preferences. Join our platform and take the next step in your career with ease and confidence.</p>
                     <div class="justify-content-sm-center mb-2">
-                        <a href="{{ url_for('users.register') }}" class="btn btn-primary mb-3 btn-lg px-4 me-sm-3">Register</a>
-                        <a href="{{ url_for('jobs.job_list', page=1) }}" class="btn btn-primary mb-3 btn-lg px-4 me-sm-3">View Jobs</a>
+                        <a href="/user/register" class="btn btn-primary mb-3 btn-lg px-4 me-sm-3">Register</a>
+                        <a href="/job/job-list/1" class="btn btn-primary mb-3 btn-lg px-4 me-sm-3">View Jobs</a>
                     </div>
                 </div>
             </div>
@@ -53,9 +53,9 @@
 
 
 <!-- Features Section -->
-<section class="features-section py-5 text-center d-flex align-items-center">
+<section class="features-section py-3 text-center d-flex align-items-center">
     <div class="container">
-        <h2 class="pb-3">WHY XEMIJOBS</h2>
+        <h2 class="pb-3">WHY XEMIJOBS?</h2>
         <div class="row text-center">
             <a href="#" class="col-md-4 xemi-feat">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-binoculars" viewBox="0 0 16 16">
@@ -148,6 +148,54 @@
     </div>
 </section>
 
+<!-- call to action -->
+<section class="call-to-action-section py-1">
+    <div class="container" id="gl-cards" >
+        {% set glowcards_data = [
+            {
+                'title': 'User Registration',
+                'price': 'Free',
+                'paragraphs': [
+                    'Join XemiJobs and explore thousands of job opportunities tailored to your skills and preferences.',
+                    'Create a personalized profile to apply for jobs quickly and easily.',
+                    'Receive job alerts directly to your inbox and never miss an opportunity.'
+                ],
+                'bullets': [
+                    'Access to a wide range of job postings',
+                    'Personalized job alerts',
+                    'Easy job application process',
+                    'Save and manage your favorite jobs'
+                ],
+                'icon': 'bi bi-person-fill',
+                'link': url_for('users.register') ,
+                'cta_text': 'Register as a User',
+            },
+            {
+                'title': 'Company Registration',
+                'price': '£49.99',
+                'paragraphs': [
+                    'Register your company on XemiJobs and find the best talent to join your team.',
+                    'Post job listings and receive applications from qualified candidates.',
+                    'Manage your job postings and communicate directly with applicants.'
+                ],
+                'bullets': [
+                    'Post unlimited job openings',
+                    'Access to our candidate database',
+                    'Advanced applicant tracking tools',
+                    'Priority support and account management'
+                ],
+                'icon': 'bi bi-building',
+                'link': url_for('companies.register'),
+                'cta_text': 'Register as a Company',
+            }
+        ] %}
+
+        {% include 'widgets/xemiglowcards.html' %}
+
+    </div>
+</section>
+
+    
 
 
 
