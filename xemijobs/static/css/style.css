@@ -689,6 +689,33 @@ i {
     background-size: cover;
 }
 
+#gl-cards {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+
+/* #gl-cards h2 {
+    z-index: 1;
+} */
+
+#gl-cards>.leftimg {
+    position: absolute;
+    height: 100%;
+    left: 0%;
+    filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.5));
+    z-index: 0;
+}
+
+#gl-cards>.rightimg {
+    position: absolute;
+    height: 100%;
+    right: 0%;
+    filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.5));
+    z-index: 0;
+}
+
 
 /* Turn off parallax scrolling for all tablets and phones. Increase/decrease the pixels if needed */
 
@@ -696,5 +723,23 @@ i {
     .parallax {
         background-attachment: scroll;
         background-position: left;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    #gl-cards>.leftimg {
+        left: -10%;
+    }
+    #gl-cards>.rightimg {
+        right: -10%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    #gl-cards>.leftimg {
+        display: none;
+    }
+    #gl-cards>.rightimg {
+        display: none;
     }
 }

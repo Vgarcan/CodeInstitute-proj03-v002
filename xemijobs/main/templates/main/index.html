@@ -149,8 +149,10 @@
 </section>
 
 <!-- call to action -->
-<section class="call-to-action-section py-1">
-    <div class="container" id="gl-cards" >
+<section class="call-to-action-section">
+    <div class="container-fluid" id="gl-cards" >
+        <img src="{{ url_for('static', filename='imgs/business-man.webp') }}" alt="left avatar" class="leftimg">
+        <img src="{{ url_for('static', filename='imgs/const-woman.webp') }}" alt="right avatar" class="rightimg">
         {% set glowcards_data = [
             {
                 'title': 'User Registration',
