@@ -154,14 +154,28 @@ a:hover {
     width: auto;
 }
 
-.navbar-nav .nav-link {
+.navbar-nav .nav-link,
+.nav-link>.bi {
     color: var(--white-color);
     font-size: 1.25rem;
     font-weight: 400;
 }
 
-.navbar-nav .nav-link:hover {
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active:hover,
+.navbar-nav .nav-link.show:hover,
+.nav-link>.bi:hover {
     color: var(--hover-accent-color);
+}
+
+.navbar-nav .dropdown-menu {
+    background-color: var(--primary-color);
+    border: none;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.show {
+    color: var(--secondary-color);
 }
 
 .navbar-toggler {
@@ -351,6 +365,7 @@ a:hover {
     text-shadow: var(--white-text-shadow);
     border: none;
     box-shadow: var(--white-text-shadow);
+    margin-top: 1.5rem;
 }
 
 .alert-danger,
@@ -702,7 +717,7 @@ i {
 /* PARALLAX EFFECT */
 
 .parallax {
-    min-height: 350px;
+    min-height: 450px;
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: top;

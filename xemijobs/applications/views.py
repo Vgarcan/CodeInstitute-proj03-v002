@@ -65,7 +65,7 @@ def update_appl(appli_id, status, adv_id):
 # DELETE
 @applications.route('/delete-application/<appli_id>', methods=['GET','POST'])
 @login_required
-@role_checker('user')
+# @role_checker('user')
 def delete_user_appl(appli_id):
 
     Application.delete_application(appli_id)

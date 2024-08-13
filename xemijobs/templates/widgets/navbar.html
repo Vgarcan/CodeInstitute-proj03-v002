@@ -23,6 +23,9 @@
         <!-- Navbar Links -->
         <div class="collapse navbar-collapse justify-content-center order-lg-1 order-md-4 " id="navbarNav">
             <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('main.index') }}">Home</a>
+                </li>
                 {% if current_user.is_authenticated %}
                     {% if current_user.role == 'user' %}
                         <li class="nav-item">
@@ -53,18 +56,31 @@
                         
                     {% endif %}
                 {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('users.login') }}">USER Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('companies.login') }}">COMPANY Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('users.register') }}">USER Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('companies.register') }}">COMPANY Register</a>
-                    </li>
+                    <!-- Login/Register Links -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Users</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('users.login') }}"><i class="bi bi-caret-right-fill"> USER Login</i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('users.register') }}"><i class="bi bi-caret-right-fill"> USER Registration</i></a>
+                            </li>
+                        </ul>
+                      </li>
+                    <!-- Login/Register Links -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Company</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('companies.login') }}"><i class="bi bi-caret-right-fill"> COMPANY Login</i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('companies.register') }}"><i class="bi bi-caret-right-fill"> COMPANY Register</i></a>
+                            </li>
+                        </ul>
+                      </li>
+
                 {% endif %}
             </ul>
             <!-- Search Bar -->

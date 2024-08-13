@@ -12,11 +12,7 @@
                             <a href="{{ value }}" class="btn btn-primary mt-3">Learn More</a> 
                         {% else %} 
                             {% if key != "password" %}
-                            
-
                                 <p class="card-text"><strong>{{ key | replace('_', ' ') | capitalize }}:</strong> {{ value }}</p>
-
-
                             {% endif %} 
                         {% endif %} 
                     {% endfor %}

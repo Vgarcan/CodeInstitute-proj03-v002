@@ -112,13 +112,15 @@
                             {% set table_anc = {
                                 'href' : url_for('jobs.job_detail', adv_id= context.adv_id),
                                 'bs_color' : 'primary',
-                                'bs_icon' : 'bi bi-eye-fill'
+                                'bs_icon' : 'bi bi-eye-fill',
+                                'tooltip_text' : 'Job details'
                             } %}
                             {% include 'widgets/table-anchor.html' %}
                             {# stablish the target ID for the modal to use #}
                             {% set mod_btn = {
                                 'target_id':'del-modal-user',
-                                'txt':'Delete'
+                                'txt':'Delete',
+                                'tooltip_text' : 'Delete this application'
                             } %}
                             {% include 'widgets/modal-button.html' %}
                         </td>
@@ -139,7 +141,8 @@
                                     {% set table_anc = {
                                         'href' : url_for('users.user_info', user_id= context.user_id),
                                         'bs_color' : 'primary',
-                                        'bs_icon' : 'bi bi-eye-fill'
+                                        'bs_icon' : 'bi bi-eye-fill',
+                                        'tooltip_text' : 'User details'
                                     } %}
                                     {% include 'widgets/table-anchor.html' %}
                                     
@@ -149,7 +152,8 @@
                                     {% set table_anc = {
                                         'href' : url_for('companies.adv_dash', adv_id= context.id),
                                         'bs_color' : 'primary',
-                                        'bs_icon' : 'bi bi-card-list'
+                                        'bs_icon' : 'bi bi-card-list',
+                                        'tooltip_text' : 'See applications for this add'
                                     } %}
                                     {% include 'widgets/table-anchor.html' %}
                                 
@@ -157,7 +161,8 @@
                                     {% set table_anc = {
                                         'href' : url_for('jobs.edit_job', adv_id= context.id),
                                         'bs_color' : 'warning',
-                                        'bs_icon' : 'bi bi-pencil-fill'
+                                        'bs_icon' : 'bi bi-pencil-fill',
+                                        'tooltip_text' : 'Edit job details'
                                     } %}
                                     {% include 'widgets/table-anchor.html' %}
                                     {# ENDS BUTTON view Edit JOB #}
@@ -167,7 +172,8 @@
                                 {# stablish the target ID for the modal to use #}
                                 {% set mod_btn = {
                                     'target_id':'del-modal-company',
-                                    'txt':'Delete'
+                                    'txt':'Delete',
+                                    'tooltip_text' : 'Job details'
                                 } %}
                                 {% include 'widgets/modal-button.html' %}
                                 {% if table_headers|length != 5 %}
@@ -184,7 +190,7 @@
                                         'body': "You are about to delete this APPLICATIONS.\n Do you want to proceed?",
                                         'btn_text': 'DELETE',
                                         'btn_class': 'btn-danger',
-                                        'btn_link': url_for('applications.delete_all_appls_from_adv', adv_id= context.id)
+                                        'btn_link': url_for('applications.delete_user_appl', appli_id= context.id)
                                     } %}
                                 {% endif %}
                                 {% include "widgets/modal.html" %}
@@ -196,7 +202,8 @@
                                                 {% set table_anc = {
                                                     'href' : url_for('applications.update_appl',appli_id=context.id, adv_id= context.adv_id, status= 'shortlisted'),
                                                     'bs_color' : 'primary',
-                                                    'bs_icon' : 'bi bi-list-check'
+                                                    'bs_icon' : 'bi bi-list-check',
+                                                    'tooltip_text' : 'Move application to shortlisted status'
                                                 } %}
                                                 {% include 'widgets/table-anchor.html' %}
                                                 
@@ -204,14 +211,16 @@
                                                 {% set table_anc = {
                                                     'href' : url_for('applications.update_appl',appli_id=context.id, adv_id= context.adv_id, status= 'interview_scheduled'),
                                                     'bs_color' : 'primary',
-                                                    'bs_icon' : 'bi bi-calendar2-check'
+                                                    'bs_icon' : 'bi bi-calendar2-check',
+                                                    'tooltip_text' : 'Move application to Interview scheduled status'
                                                 } %}
                                                 {% include 'widgets/table-anchor.html' %}
                                                 {# Push status one back #}
                                                 {% set table_anc = {
                                                     'href' : url_for('applications.update_appl',appli_id=context.id, adv_id= context.adv_id, status= 'pending'),
                                                     'bs_color' : 'warning',
-                                                    'bs_icon' : 'bi bi-skip-backward-circle-fill'
+                                                    'bs_icon' : 'bi bi-skip-backward-circle-fill',
+                                                    'tooltip_text' : 'Move application to Pending status'
                                                 } %}
                                                 {% include 'widgets/table-anchor.html' %}
                                                     
@@ -219,14 +228,16 @@
                                                 {% set table_anc = {
                                                     'href' : url_for('applications.update_appl',appli_id=context.id, adv_id= context.adv_id, status= 'offer_made'),
                                                     'bs_color' : 'primary',
-                                                    'bs_icon' : 'bi bi-envelope-check-fill'
+                                                    'bs_icon' : 'bi bi-envelope-check-fill',
+                                                    'tooltip_text' : 'Move application to Offer made status'
                                                 } %}
                                                 {% include 'widgets/table-anchor.html' %}
                                                 {# Push status one back #}
                                                 {% set table_anc = {
-                                                    'href' : url_for('applications.update_appl',appli_id=context.id, adv_id= context.adv_id, status= 'interview_scheduled'),
+                                                    'href' : url_for('applications.update_appl',appli_id=context.id, adv_id= context.adv_id, status= 'shortlisted'),
                                                     'bs_color' : 'warning',
-                                                    'bs_icon' : 'bi bi-skip-backward-circle-fill'
+                                                    'bs_icon' : 'bi bi-skip-backward-circle-fill',
+                                                    'tooltip_text' : 'Move application to Shortlisted status'
                                                 } %}
                                                 {% include 'widgets/table-anchor.html' %}
                                                     
@@ -234,14 +245,16 @@
                                                 {% set table_anc = {
                                                     'href' : url_for('applications.update_appl',appli_id=context.id, adv_id= context.adv_id, status= 'hired'),
                                                     'bs_color' : 'primary',
-                                                    'bs_icon' : 'bi bi-hand-thumbs-up-fill'
+                                                    'bs_icon' : 'bi bi-hand-thumbs-up-fill',
+                                                     'tooltip_text' : 'Move application to Hired status'
                                                 } %}
                                                 {% include 'widgets/table-anchor.html' %}
                                                 {# Push status one back #}
                                                 {% set table_anc = {
                                                     'href' : url_for('applications.update_appl',appli_id=context.id, adv_id= context.adv_id, status= 'interview_scheduled'),
                                                     'bs_color' : 'warning',
-                                                    'bs_icon' : 'bi bi-skip-backward-circle-fill'
+                                                    'bs_icon' : 'bi bi-skip-backward-circle-fill',
+                                                     'tooltip_text' : 'Move application to Interview scheduled status'
                                                 } %}
                                             {% include 'widgets/table-anchor.html' %}
                                                 
@@ -252,7 +265,8 @@
                                                 {% set table_anc = {
                                                     'href' : url_for('applications.update_appl',appli_id=context.id, adv_id= context.adv_id, status= 'rejected'),
                                                     'bs_color' : 'danger',
-                                                    'bs_icon' : 'bi bi-ban'
+                                                    'bs_icon' : 'bi bi-ban',
+                                                     'tooltip_text' : 'Move application to Rejected status'
                                                 } %}
                                                 {% include 'widgets/table-anchor.html' %}
                                             {% endif %}
@@ -288,6 +302,7 @@
                                 {% set table_anc = {
                                     'bs_color' : 'primary',
                                     'bs_icon' : 'bi bi-eye-fill'
+
                                 } %}
                                 {% include 'widgets/table-anchor.html' %}
                                 {% set table_anc = {
