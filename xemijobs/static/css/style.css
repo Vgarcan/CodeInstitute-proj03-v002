@@ -566,6 +566,27 @@ i {
     color: var(--white-color);
 }
 
+.xemi-statisic {
+    margin-left: 20%;
+    margin-right: 20%;
+    align-content: center;
+}
+
+.xemi-statisic>div:first-child {
+    background-color: var(--secondary-color-transparency);
+    color: var(--alter-text-color);
+    text-shadow: var(--white-text-shadow);
+    font-size: 1.18rem;
+    /* margin-bottom: 1rem; */
+}
+
+.xemi-statisic h5 {
+    color: var(--hover-button-color);
+    text-shadow: var(--white-text-shadow);
+    font-size: 2.6rem;
+    /* margin-bottom: 1rem; */
+}
+
 
 /* INDEX.HTML */
 

@@ -5,6 +5,40 @@
 {% block main_content %}
 
     <h1>this is company's DASHBOARD</h1>
+    {% if current_user.role == 'company' %}
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                <div class="card xemi-statisic mb-3">
+                    <div class="card-header text-center">Active Adds</div>
+                    <div class="card-body">
+                    <h5 class="card-title text-center">{{ display_info[0] }}</h5>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4">
+                <div class="card xemi-statisic mb-3">
+                    <div class="card-header text-center">Recived Applications</div>
+                    <div class="card-body">
+                    <h5 class="card-title text-center">{{ display_info[1] }}</h5>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4">
+                <div class="card xemi-statisic mb-3">
+                    <div class="card-header text-center">Schedule Interviews</div>
+                    <div class="card-body">
+                    <h5 class="card-title text-center">{{ display_info[2] }}</h5>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <br>
+    <br>
+
     <div class="container">
         <div class="row">
             {% if table_data != None %}

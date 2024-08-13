@@ -82,3 +82,29 @@ def get_table_info(id,role, adv_id = None):
 def get_total_jobs():
     from .jobs.models import Job
     return Job.number_of_jobs()
+
+def get_adds_for_info(id):
+    from .jobs.models import Job
+
+    # get all ids from all jobs
+    all_adds = Job.get_comp_jobs(id)
+    id_list = [add.get_id() for add in all_adds]
+    total_adds = len(id_list)
+
+    # for each id in list add all applications
+    from .applications.models import Application
+    appl_total=0
+    interviews_total=0
+
+    for add_id in id_list:
+        all_appl_for_add = Application.get_all_applications(add_id, 'company')
+        appl_total += len(all_appl_for_add)
+        
+        # for each application check inteview_scheduled total
+        for app in all_appl_for_add:
+            if app.status == 'interview_scheduled':
+                interviews_total += 1
+    
+    return [total_adds, appl_total, interviews_total]
+
+    

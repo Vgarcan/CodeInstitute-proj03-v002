@@ -4,7 +4,7 @@ from .forms import RegistrationForm, LoginForm, ProfileForm
 from .models import Company
 # from ..applications.models import Application
 from werkzeug.security import generate_password_hash, check_password_hash
-from ..extensions import mongo, ObjectId, get_table_info
+from ..extensions import mongo, ObjectId, get_table_info, get_adds_for_info
 from ..decoratros import role_checker
 
 
@@ -161,9 +161,9 @@ def dashboard():
         print(table_data)
 
         print (current_user.username)
-        return render_template('companies/dashboard.html', table_data=table_data, table_headers=table_headers)
+        return render_template('companies/dashboard.html', table_data=table_data, table_headers=table_headers, display_info=get_adds_for_info(current_user.id))
     elif table == []:
-        return render_template('companies/dashboard.html', table_data=None, table_headers=None)
+        return render_template('companies/dashboard.html', table_data=None, table_headers=None, display_info=get_adds_for_info(current_user.id))
 
 
 
@@ -193,9 +193,9 @@ def adv_dash(adv_id):
         print(table_data)
 
         print (current_user.username)
-        return render_template('companies/dashboard.html', table_data=table_data, table_headers=table_headers)
+        return render_template('companies/dashboard.html', table_data=table_data, table_headers=table_headers, display_info=get_adds_for_info(current_user.id))
     elif table == []:
-        return render_template('companies/dashboard.html', table_data=None, table_headers=None)
+        return render_template('companies/dashboard.html', table_data=None, table_headers=None, display_info=get_adds_for_info(current_user.id))
 
 
 
