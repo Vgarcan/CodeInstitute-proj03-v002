@@ -34,6 +34,7 @@ def index():
         },
     ]
     total_jobs = get_total_jobs()
+    print("total josbs in MAIN>VIEWS.PY = ",total_jobs)
     return render_template('main/index.html', carousel=carousel, enumerate=enumerate, total_jobs= total_jobs )
 
 @main.route('/page1')

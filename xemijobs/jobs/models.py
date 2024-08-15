@@ -186,6 +186,7 @@ class Job:
     def number_of_jobs():
 
         total= mongo.db.jobs.count_documents({})
+        print(print("total josbs in MODELS.PY = ",total))
         return total
 
 

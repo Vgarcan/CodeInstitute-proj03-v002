@@ -81,6 +81,7 @@ def get_table_info(id,role, adv_id = None):
         
 def get_total_jobs():
     from .jobs.models import Job
+    print("total josbs in EXTENSIONS.PY = ",Job.number_of_jobs())
     return Job.number_of_jobs()
 
 def get_adds_for_info(id):
@@ -99,7 +100,7 @@ def get_adds_for_info(id):
     for add_id in id_list:
         all_appl_for_add = Application.get_all_applications(add_id, 'company')
         appl_total += len(all_appl_for_add)
-        
+
         # for each application check inteview_scheduled total
         for app in all_appl_for_add:
             if app.status == 'interview_scheduled':
