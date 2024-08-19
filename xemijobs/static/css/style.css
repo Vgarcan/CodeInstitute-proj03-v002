@@ -282,7 +282,7 @@ a:hover {
     color: var(--hover-accent-color) !important;
 }
 
-.footer h5 {
+.footer h3 {
     font-weight: 700;
     color: var(--accent-color);
 }
@@ -543,7 +543,7 @@ a:hover {
 .table-green thead th {
     background-color: var(--accent-color-transparency);
     color: var(--main-text-color);
-    text-shadow: var(--secondary-color-transparency);
+    text-shadow: var(--dark-text-shadow);
 }
 
 .table svg {
@@ -670,7 +670,7 @@ i {
 .xemi-feat>svg {
     width: 10rem;
     height: auto;
-    rotate: z 45deg;
+    rotate: 45deg;
     padding: 3px;
     color: var(--secondary-color);
     position: absolute;
@@ -756,7 +756,7 @@ i {
 
 /* Turn off parallax scrolling for all tablets and phones. Increase/decrease the pixels if needed */
 
-@media only screen and (max-device-width: 425px) {
+@media only screen and (max-width: 425px) {
     .parallax {
         background-attachment: scroll;
         background-position: left;
