@@ -558,11 +558,11 @@ td>.btn {
 
 /* GL-CARDS */
 
-#gl-card {
+.gl-card {
     position: relative;
 }
 
-#gl-card>i {
+.gl-card>i {
     position: absolute;
     font-size: 18rem;
     top: 0%;

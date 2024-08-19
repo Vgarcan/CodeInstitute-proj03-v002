@@ -37,7 +37,7 @@
             'footer': 'this is the footer of the modal',
             'btn_text': 'Logout',
             'btn_class': 'btn-danger',
-            'btn_link': '{{ url_for(users.logout)}}'        
+            'btn_link': url_for('users.logout')        
         } %}
         {% include 'widgets/modal.html' %}
         <br>
