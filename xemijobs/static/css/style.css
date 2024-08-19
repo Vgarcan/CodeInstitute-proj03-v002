@@ -479,7 +479,7 @@ a:hover {
     text-shadow: var(--white-text-shadow)
 }
 
-.carousel-caption>h5 {
+.carousel-caption>.slide-title {
     text-shadow: 1px 1px 2px var(--white-color);
 }
 
@@ -694,8 +694,9 @@ i {
     padding: 3px;
 }
 
-.xemi-feat p {
+.xemi-feat h4 {
     font-size: 1.4rem;
+    font-weight: 300;
     color: var(--white-color);
     text-shadow: 1px 1px 2px var(--primary-color);
 }
