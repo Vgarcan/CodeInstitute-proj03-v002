@@ -361,7 +361,7 @@ a:hover {
 
 .alert {
     background-color: var(--accent-color);
-    color: var(--alter-text-color);
+    color: var(--white-color);
     text-shadow: var(--white-text-shadow);
     border: none;
     box-shadow: var(--white-text-shadow);
@@ -493,14 +493,16 @@ a:hover {
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    filter: invert(100%);
+    /* filter: invert(100%); */
+    background-color: var(--secondary-color-transparency);
+    border-radius: 50%;
     /* Change to white */
 }
 
 .carousel-control-prev:hover .carousel-control-prev-icon,
 .carousel-control-next:hover .carousel-control-next-icon {
-    filter: invert(50%);
-    /* ligth grey when hoover*/
+    background-color: var(--accent-color-transparency);
+    border-radius: 80%
 }
 
 
@@ -754,7 +756,7 @@ i {
 }
 
 
-/* 404 */
+/* 404 - 403 -401 */
 
 .bg-jp,
 .bg-john {
@@ -783,6 +785,11 @@ i {
     color: var(--accent-color);
     font-size: 1.3rem;
     font-weight: 800;
+    text-shadow: var(--white-text-shadow);
+}
+
+.bg-jp .alt-num {
+    color: var(--hover-button-color);
     text-shadow: var(--white-text-shadow);
 }
 

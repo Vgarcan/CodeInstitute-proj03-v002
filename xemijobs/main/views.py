@@ -40,9 +40,14 @@ def index():
 @main.route('/404')
 def error404():
     return render_template('main/404.html')
+
 @main.route('/403')
 def error403():
     return render_template('main/403.html')
+
+@main.route('/401')
+def error401():
+    return render_template('main/401.html')
 
 
 @main.route('/test_mongo')

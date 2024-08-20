@@ -312,7 +312,20 @@ This user-focused approach ensures that the platform is not only functional but 
 
 #### HTML Validation
 
-[Not ready yet]
+We ensured that the HTML structure of XemiJobs adheres strictly to web standards. We utilized the W3C Validator to validate our HTML code, striving to minimize and eliminate all possible errors. I'm proud to report that the validation results showed **zero errors**.
+
+The most challenging part of this process was ensuring that our reusable widgets did not introduce any validation errors. After thorough adjustments and testing, we successfully resolved all issues, making the HTML structure robust and error-free.
+
+Here’s the validation result:
+
+<details>
+  <summary>Click to view HTML Validation Result</summary>
+  <img src="xemijobs/static/imgs/readme-pics/markup-val.png" style="display: block; margin: auto;" alt="HTML Validation Result showing zero errors">
+</details>
+
+**You can also view the validation result directly on the [W3C Markup Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fxemijobs-616b41a185c0.herokuapp.com).**
+
+---
 
 #### CSS Validation
 
@@ -324,19 +337,83 @@ This user-focused approach ensures that the platform is not only functional but 
     </a>
 </p>
 
-[Not ready yet]
+The CSS of XemiJobs has been carefully crafted and validated to ensure it adheres to the highest standards. We utilized the W3C CSS Validator to check for any errors, and I'm pleased to report that our stylesheets passed with **zero errors**.
 
+This thorough validation process ensures that the user interface is both visually appealing and fully compliant with modern web standards. We took particular care to validate our responsive design elements to ensure consistency across all devices.
+
+Here’s the validation result:
+
+<details>
+  <summary>Click to view CSS Validation Result</summary>
+  <img src="xemijobs/static/imgs/readme-pics/css-val.png" style="display: block; margin: auto;" alt="CSS Validation Result showing zero errors">
+</details>
+
+**You can also view the validation result directly on the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fxemijobs-616b41a185c0.herokuapp.com&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en).**
+
+---
 #### Accessibility
 
-[Not ready yet]
+Ensuring accessibility is a key priority for XemiJobs. We've taken great care to make sure our platform is inclusive and usable by as many people as possible, regardless of their abilities or the devices they are using.
+
+Throughout the development process, we adhered to the Web Content Accessibility Guidelines (WCAG) to guarantee that our site meets accessibility standards. This includes:
+
+- **Proper use of ARIA attributes:** We have utilized ARIA attributes effectively to enhance the accessibility of dynamic content and interactive elements, ensuring screen readers can accurately convey the information to users.
+- **Keyboard Navigation:** All interactive elements, including forms, buttons, and navigation links, are fully accessible via keyboard navigation, making the site usable without a mouse.
+- **Contrast Ratios:** We carefully selected our color scheme to ensure sufficient contrast between text and background colors, making the content readable for users with visual impairments.
+- **Alt Text for Images:** All images include descriptive `alt` attributes, providing context to users who rely on screen readers.
+
+These efforts help ensure that our site is not only compliant with accessibility standards but also provides an inclusive user experience. We continue to monitor and improve the accessibility of XemiJobs as we develop new features and enhancements.
+
+---
+
 
 #### Wave Validation
 
-[Not ready yet]
+We conducted a thorough accessibility audit using the WAVE (Web Accessibility Evaluation Tool). The results were highly satisfactory, especially for the main page, where we encountered zero errors. However, we did find a few contrast issues, primarily related to the navigation elements within the carousel.
+
+To address these contrast issues, we added a transparent background to the carousel buttons. Despite this adjustment, the contrast warnings persist. We believe that these contrast issues do not significantly impact usability, as the primary goal for the carousel is to showcase images clearly. The transparency ensures that the images are visible while still allowing users to intuitively locate the buttons.
+
+<img src="xemijobs/static/imgs/readme-pics/wave-carousel.png" style="display: block; margin: auto;" alt="Carousel showing controller buttons">
+<br>
+
+Additionally, contrast warnings were noted in the Flash messages—interestingly, all colors except yellow were flagged. While we understand that white text on a yellow background might pose a readability challenge, WAVE does not flag it as an issue. Conversely, other colors, which do not seem problematic to us, were marked for contrast errors.
+
+<img src="xemijobs/static/imgs/readme-pics/wave-flash.png" style="display: block; margin: auto;" alt="Wave flash contrast errors">
+<br>
+
+We also identified contrast issues with the modal buttons, which follow a similar color pattern to the Flash Danger alerts. However, the inclusion of shadow effects and other design enhancements significantly aids visibility. We believe these design choices ensure the buttons remain accessible and visually clear, even if they do not fully meet WAVE’s contrast recommendations.
+
+<img src="xemijobs/static/imgs/readme-pics/wave-button-alert.png" style="display: block; margin: auto;" alt="Wave button contrast error">
+<br>
+
+Overall, the WAVE validation confirms that our website adheres to accessibility standards, with only a few minor contrast issues that have been carefully considered in the design process. While we will continue exploring potential solutions to these issues, we have prioritized maintaining a visually cohesive and intuitive theme for the site.
+
+We identified some contrast issues specifically related to the numbers displayed on our error pages (e.g., 404, 403, 401). On the 404 page, no changes were made, as we believe the background image sufficiently offsets any potential visibility issues with the numbers. However, on the 403 and 401 pages, we made deliberate changes to the color of certain numbers to enhance contrast and ensure readability. 
+
+<img src="xemijobs/static/imgs/readme-pics/wave-403.png" style="display: block; margin: auto;" alt="Wave button contrast error">
+<img src="xemijobs/static/imgs/readme-pics/wave-404.png" style="display: block; margin: auto;" alt="Wave button contrast error">
+<br>
+
+Specifically, we altered the colors of the "4" and "3" on the 403 page and the "4" and "1" on the 401 page to address the contrast errors flagged by WAVE. We retained the original color of the "0" to maintain visual consistency and a playful design element, although it technically does not meet the strict contrast criteria set by WAVE. We do not consider this to be a significant issue, as the overall visual experience is still clear and user-friendly.
+
+**Note:** We are fully aware of the contrast issues highlighted by the WAVE Validation Tool. Our team is committed to addressing these in future updates to ensure an even higher level of accessibility across the entire platform. We appreciate the insights provided by the tool and will use this feedback to guide our ongoing improvements.
+
+---
 
 #### Lighthouse Validation
 
-[Not ready yet]
+Our Lighthouse validation results have been very promising, with high scores across most categories. One area where we observed a slightly lower score is in SEO, and we are actively working on improvements in this area to achieve even better results. Lighthouse has been instrumental in guiding the organization of our files and optimizations for performance.
+
+<img src="xemijobs/static/imgs/readme-pics/lighthouse-web.png" style="display: block; margin: auto;" alt="Wave button contrast error">
+<br>
+
+A specific recommendation from Lighthouse was to utilize WebP format for images to enhance load times. In response, we have ensured that all images served through the browser are in WebP format. However, we also recognize that excessive compression could detract from the user experience, particularly on larger screens. Therefore, we made a deliberate choice to balance performance with visual quality. After gathering feedback from a diverse group of users, we've confirmed that the image quality is well-received across different devices. Consequently, we decided to maintain slightly larger image sizes to prioritize a seamless and visually pleasing user experience, even if it means sacrificing a small amount of performance.
+
+Additionally, Lighthouse suggested reducing the CSS payload, which we are considering. One approach we're exploring is to divide the main `styles.css` file into smaller files associated with individual widgets. This would allow us to send only the necessary CSS for each page, potentially reducing the overall size of the CSS file and improving page load times.
+
+While our desktop version scores are very high, the mobile version, though still passing, shows some room for improvement. We are committed to enhancing these aspects to ensure an optimal user experience across all devices.
+
+---
 
 #### JSHint Validation
 

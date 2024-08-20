@@ -37,8 +37,12 @@ def create_app():
         return redirect(url_for('main.error404'))
     
     @app.errorhandler(403)
-    def e403(e):
+    def e401(e):
         return redirect(url_for('main.error403'))
+    
+    @app.errorhandler(401)
+    def e401(e):
+        return redirect(url_for('main.error401'))
 
     
     return app

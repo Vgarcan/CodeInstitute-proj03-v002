@@ -1,7 +1,7 @@
 
 {% extends "xemijobs/base.html" %}
 <!-- PAGE TITLE -->
-{% block page_title %}Error 403 - Forbidden{% endblock page_title %}
+{% block page_title %}Error 401 - Forbidden{% endblock page_title %}
 
 
 <!-- MAIN CONTENT -->
@@ -17,12 +17,17 @@
                 <div class="display-1 fw-bold">0</div>
             </div>
             <div class="col-4 d-flex align-items-center justify-content-center">
-                <div class="display-1 fw-bold alt-num">3</div>
+                <div class="display-1 fw-bold alt-num">1</div>
             </div>
         </div>
         <div class="mt-5 pt-5">
             <h2 class="lead">You have no permision to see this page</h2>
-            <a href="{{url_for('main.index')}}" class="btn btn-primary">Go Back Home</a>
+            <div class="mb-3">
+
+                <a href="{{url_for('users.login')}}" class="btn btn-primary">User Login</a>
+                <a href="{{url_for('companies.login')}}" class="btn btn-primary">Companies Login</a>
+            </div>
+            <a href="{{url_for('main.index')}}" class="btn btn-primary mt-3">Go Back Home</a>
         </div>
     </div>
 </div>
