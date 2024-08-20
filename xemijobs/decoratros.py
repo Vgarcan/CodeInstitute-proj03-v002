@@ -41,9 +41,9 @@ def role_checker(role):
             if current_user.role != role:
                 flash('You do not have permission to view this page!', 'danger')
                 if role == 'user':
-                    return redirect(url_for('users.index'))
+                    return redirect(url_for('main.error403'))
                 elif role == 'company':
-                    return redirect(url_for('companies.index'))
+                    return redirect(url_for('main.error403'))
             
             return f(*args, **kwargs)
         

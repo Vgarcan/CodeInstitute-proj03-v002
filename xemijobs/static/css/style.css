@@ -754,6 +754,39 @@ i {
 }
 
 
+/* 404 */
+
+.bg-jp,
+.bg-john {
+    background-image: url(../imgs/ahahah.gif);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    border-radius: 5rem;
+    padding-top: 5rem;
+    padding-bottom: 14rem;
+    top: 5rem;
+}
+
+.bg-john {
+    background-image: url(../imgs/john404.gif);
+}
+
+.bg-john .fw-bold,
+.bg-jp .fw-bold {
+    color: var(--alter-text-color);
+    text-shadow: var(--white-text-shadow);
+}
+
+.bg-john .lead,
+.bg-jp .lead {
+    color: var(--accent-color);
+    font-size: 1.3rem;
+    font-weight: 800;
+    text-shadow: var(--white-text-shadow);
+}
+
+
 /* Turn off parallax scrolling for all tablets and phones. Increase/decrease the pixels if needed */
 
 @media only screen and (max-width: 425px) {

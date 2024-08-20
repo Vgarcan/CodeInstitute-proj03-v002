@@ -1,0 +1,31 @@
+
+{% extends "xemijobs/base.html" %}
+<!-- PAGE TITLE -->
+{% block page_title %}Error 403 - Forbidden{% endblock page_title %}
+
+
+<!-- MAIN CONTENT -->
+{% block main_content %}
+
+<div class="d-flex align-items-center justify-content-center my-3">
+    <div class="container text-center bg-jp">
+        <div class="row align-items-center h-100">
+            <div class="col-4 d-flex align-items-center justify-content-center">
+                <div class="display-1 fw-bold">4</div>
+            </div>
+            <div class="col-4 d-flex align-items-center justify-content-center">
+                <div class="display-1 fw-bold">0</div>
+            </div>
+            <div class="col-4 d-flex align-items-center justify-content-center">
+                <div class="display-1 fw-bold">3</div>
+            </div>
+        </div>
+        <div class="mt-4">
+            <p class="lead">You have no permision to see this page</p>
+            <a href="{{url_for('main.index')}}" class="btn btn-primary">Go Back Home</a>
+        </div>
+    </div>
+</div>
+
+{% endblock main_content %}
+

@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template, redirect, url_for
 from .extensions import mongo, login_manager, get_info_for
 
 
@@ -31,5 +31,14 @@ def create_app():
     
     from .applications.views import applications as appl_bp
     app.register_blueprint(appl_bp, url_prefix='/apply')
+
+    @app.errorhandler(404)
+    def e404(e):
+        return redirect(url_for('main.error404'))
+    
+    @app.errorhandler(403)
+    def e403(e):
+        return redirect(url_for('main.error403'))
+
     
     return app

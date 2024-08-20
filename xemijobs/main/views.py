@@ -37,9 +37,13 @@ def index():
     print("total josbs in MAIN>VIEWS.PY = ",total_jobs)
     return render_template('main/index.html', carousel=carousel, enumerate=enumerate, total_jobs= total_jobs )
 
-@main.route('/page1')
-def app_another():
-    return "<h1>this is main's PAGE1</h1>"
+@main.route('/404')
+def error404():
+    return render_template('main/404.html')
+@main.route('/403')
+def error403():
+    return render_template('main/403.html')
+
 
 @main.route('/test_mongo')
 def test_mongo():
