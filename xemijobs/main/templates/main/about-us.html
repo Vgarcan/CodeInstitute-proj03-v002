@@ -1,0 +1,102 @@
+{% extends "xemijobs/base.html" %}
+<!-- PAGE TITLE -->
+{% block page_title %}About Us{% endblock page_title %}
+
+
+<!-- MAIN CONTENT -->
+{% block main_content %}
+
+<section class="parallax mb-3 align-items-center" style="background-image: url('/static/imgs/banner2.jpg')">
+
+    <div class="hero-section text-center text-white d-flex justify-content-center">
+        <div class="px-4 pt-5 my-3 text-center">
+            <div class="banner-title p-2">
+
+                <h2 class="display-4 fw-bold">About Us</h2>
+                <div class="col-lg-6 mx-auto">
+                    <p class="lead text-primary">Connecting Talent with Opportunity</p>
+                    <p>At Xemijobs, our mission is to bridge the gap between job seekers and employers by providing a platform that is not only easy to use but also highly effective in matching the right talent with the right opportunities. We believe that
+                        finding a job should be a smooth and stress-free experience, and we are dedicated to making that a reality for everyone involved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<div class="container">
+    <div class="text-center my-5">
+        <h1 class="display-4">About Us</h1>
+        <p class="lead text-primary">Connecting Talent with Opportunity</p>
+        <p>At Xemijobs, our mission is to bridge the gap between job seekers and employers by providing a platform that is not only easy to use but also highly effective in matching the right talent with the right opportunities. We believe that finding a
+            job should be a smooth and stress-free experience, and we are dedicated to making that a reality for everyone involved.</p>
+    </div>
+
+    <div class="container">
+
+        <div class="row d-flex p-3 mb-5 justify-content-center">
+            <div class="col-md-5 card p-4">
+                <h2 class="">Our Vision</h2>
+                <p>We envision a world where every job seeker can find their dream job, and every employer can find the perfect candidate with minimal effort. Through innovation, dedication, and a user-centered approach, Xemijobs aims to become the leading
+                    platform in the job market, recognized for its reliability, efficiency, and superior user experience.</p>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-md-5 card p-4">
+                <h2 class="">Our Story</h2>
+                <p>Xemijobs was born out of a personal necessity. Our founder, after spending countless hours on various job search platforms, recognized the inefficiencies and frustrations that both job seekers and employers face. With a background in technology
+                    and a deep understanding of the job market, the idea to create a more user-friendly and effective job platform was conceived.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid testimonials-section p-5">
+    <div class="text-center mb-5">
+        <h2 class="">Meet Our Team</h2>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-3 testimonial-card">
+            <div class="p-4 text-center rounded">
+                <img src="{{ url_for('static', filename='imgs/testimonials/user1.webp') }}" alt="User 1" class="rounded-circle mb-3">
+                <h4>Jane Doe</h4>
+                <p class="small text-muted">Marketing Specialist</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 testimonial-card">
+            <div class="p-4 text-center rounded">
+                <img src="{{ url_for('static', filename='imgs/testimonials/user1.webp') }}" alt="User 1" class="rounded-circle mb-3">
+                <h4>Jane Doe</h4>
+                <p class="small text-muted">Marketing Specialist</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 testimonial-card">
+            <div class="p-4 text-center rounded">
+                <img src="{{ url_for('static', filename='imgs/testimonials/user1.webp') }}" alt="User 1" class="rounded-circle mb-3">
+                <h4>Jane Doe</h4>
+                <p class="small text-muted">Marketing Specialist</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container-fluid bg-light p-4">
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-5 p-3">
+            <h2 class="">What Sets Us Apart</h2>
+            <p>What makes Xemijobs unique is our commitment to both job seekers and employers. We understand that both sides of the employment process are crucial, and we have designed our platform to cater to the specific needs of each.</p>
+            <p><strong>For Job Seekers:</strong> Xemijobs offers a seamless job search experience with real-time updates, detailed job descriptions, and a user-friendly interface that makes applying for jobs simple and quick.</p>
+            <p><strong>For Employers:</strong> Xemijobs provides an efficient way to post job vacancies, manage applications, and find the right candidates. Our analytics tools give employers insights into their job postings' performance, helping them make
+                informed hiring decisions.</p>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-5 p-3">
+            <h2 class="">Looking Ahead</h2>
+            <p>As we look to the future, Xemijobs is excited to continue innovating and expanding our platform to meet the evolving needs of job seekers and employers alike. We are constantly exploring new technologies and features that will enhance the
+                job search and recruitment process.</p>
+            <p>We invite you to join us on this journey. Whether you’re looking for your next job or the perfect candidate, Xemijobs is here to help you every step of the way.</p>
+        </div>
+    </div>
+</div>
+
+{% endblock main_content %}

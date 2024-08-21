@@ -8,14 +8,29 @@
             </div>
             <!-- Navigation Links -->
             <div class="col-md-4">
-                <h3>Quick Links</h3>
-                <ul class="list-unstyled">
-                    <li><a href="{{ url_for('main.index') }}">Home</a></li>
-                    <li><a href="{{ url_for('users.list_of_users', page=1) }}">Users</a></li>
-                    <li><a href="{{ url_for('main.widget_showcase', page=1) }}">Show Widgets</a></li>
-                    <li><a href="{{ url_for('jobs.job_list', page=1) }}">Display Jobs</a></li>
-                </ul>
+                <div class="col">
+                    <h3>Quick Links</h3>
+                </div>
+                <div class="col d-md-flex">
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li><a href="{{ url_for('main.index') }}">Home</a></li>
+                            <li><a href="{{ url_for('users.list_of_users', page=1) }}">Users</a></li>
+                            <li><a href="{{ url_for('main.widget_showcase', page=1) }}">Show Widgets</a></li>
+                            <li><a href="{{ url_for('jobs.job_list', page=1) }}">Display Jobs</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li><a href="{{ url_for('main.tnc') }}">T&C</a></li>
+                            <li><a href="{{ url_for('main.about_us') }}">About Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+
             </div>
+            
             <!-- Contact Info -->
             <div class="col-md-4">
                 <h3>Contact Us</h3>

@@ -21,7 +21,6 @@ def index():
             'img_src': "imgs/banner2.jpg",
             'img_alt': '',
             'header': ' You can only show the TITLE',
-
         },
         {
             'img_src': "imgs/banner3.jpg",
@@ -48,6 +47,14 @@ def error403():
 @main.route('/401')
 def error401():
     return render_template('main/401.html')
+
+@main.route('/terms-and-conditions')
+def tnc():
+    return render_template('main/tnc.html')
+
+@main.route('/about-us')
+def about_us():
+    return render_template('main/about-us.html')
 
 
 @main.route('/test_mongo')

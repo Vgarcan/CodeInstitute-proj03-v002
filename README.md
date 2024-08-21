@@ -2,12 +2,16 @@
 ![Main LOGO](/xemijobs/static/imgs/banner1.webp)
 
 
+
+
 # Victor Garcia Cantalapidera 
 -Slack:[@Victor Garcia](https://code-institute-room.slack.com/team/U0695HZA7FZ)
 
 -GitHub: [Vgarcan](https://github.com/Vgarcan)
 
 -LinkedIn: [Victor Garcia](https://www.linkedin.com/in/vgc89/)
+
+>[Play me!!](https://vgarcan.github.io/CodeInstitute-proj02/assets/audio/xemai/docume.mp3)
 
 ## Check us out!
 
@@ -39,6 +43,7 @@
   - [Wave Validation](#wave-validation)
   - [Lighthouse Validation](#lighthouse-validation)
   - [JSHint Validation](#jshint-validation)
+  - [PEP8 Validation](#pep8-validation)
   - [Device Testing](#device-testing)
   - [Browser Compatibility](#browser-compatibility)
   - [User Stories Testing](#user-stories-testing)
@@ -58,20 +63,27 @@ XemiJobs is a job search platform designed to connect employers with potential c
 
 The concept for XemiJobs emerged from my own experiences and the desire to build something that could help others in similar situations. I saw this as a great opportunity to deepen my understanding of web development and to create a functional tool that serves a real purpose. The goal of this project is simple: to create a platform that bridges the gap between job seekers and employers, making it easier for them to connect and communicate.
 
+![AMIRESPONSE photo](/xemijobs/static/imgs/readme-pics/amir-pic.png)
+>[Check AMIRESPONSE](https://ui.dev/amiresponsive?url=https://xemijobs-616b41a185c0.herokuapp.com/)
+
 I'm incredibly proud of how this project has developed and hope it can serve as a useful resource for anyone involved in the job search or hiring process.
 
 ## Features
 
 - **User Registration and Authentication:** Secure registration and login for job seekers and employers, with role-based access control to ensure users see only what they need.
+![Responsive Jobs](/xemijobs/static/imgs/readme-pics/form-login.png)
 - **Job Listings Management:** Employers can create, update, and delete job listings. The listings are displayed dynamically on the platform, allowing job seekers to browse through the latest opportunities.
 - **Application Management:** Job seekers can apply for jobs directly through the platform, track the status of their applications, and receive updates as they progress through the hiring process.
 - **Dynamic Dashboard for Employers:** The company dashboard provides a real-time overview of key metrics, such as the number of job postings, applications received, and interviews scheduled, helping employers manage their recruitment process effectively.
+![Responsive Jobs](/xemijobs/static/imgs/readme-pics/dashboard.png)
 - **Real-Time Job Count:** The platform features a hero section that displays the current number of job listings, updated in real-time, offering users an up-to-date view of available opportunities.
+![Responsive Jobs](/xemijobs/static/imgs/readme-pics/jobs-resp.png)
 - **Advanced Search and Filters:** Job seekers can search for positions based on various criteria like job title, location, and company, with results being dynamically updated.
 
 ## Development Tools
 
 - **Custom Jinja Widgets:** A collection of reusable Jinja widgets has been created to streamline the development process. These widgets automatically adapt to the type of data being passed, ensuring a consistent aesthetic across the entire platform. This approach not only speeds up development but also maintains a high level of visual and functional uniformity throughout the site.
+>[Preview all widgets included in this site](https://xemijobs-616b41a185c0.herokuapp.com/widgets/1)
 - **Modular Design:** The platform is built using a modular architecture in Flask, which allows for easy extension and maintenance. Each module is self-contained, facilitating rapid development and testing of individual components without affecting the entire application.
 - **Consistent Aesthetic:** By leveraging these custom widgets, the design remains consistent, providing a unified look and feel across all pages and components, which enhances the overall user experience.
 
@@ -170,6 +182,9 @@ I'm incredibly proud of how this project has developed and hope it can serve as 
             - <img src="xemijobs/static/imgs/readme-pics/py-filetype-icon.ico" width="18px"> `views.py` (Main module views and routes)
             - <img src="xemijobs/static/imgs/readme-pics/folder-icon.ico" width="18px"> **templates/main/** (HTML templates for main-related views)
                 - <img src="xemijobs/static/imgs/readme-pics/html-filetype-icon.ico" width="18px"> `temp-sheet.html`
+                - <img src="xemijobs/static/imgs/readme-pics/html-filetype-icon.ico" width="18px"> `404.html`
+                - <img src="xemijobs/static/imgs/readme-pics/html-filetype-icon.ico" width="18px"> `403.html`
+                - <img src="xemijobs/static/imgs/readme-pics/html-filetype-icon.ico" width="18px"> `401.html`
                 - <img src="xemijobs/static/imgs/readme-pics/html-filetype-icon.ico" width="18px"> `index.html`
                 - <img src="xemijobs/static/imgs/readme-pics/html-filetype-icon.ico" width="18px"> `widgets-collection.html`
 
@@ -193,13 +208,33 @@ I'm incredibly proud of how this project has developed and hope it can serve as 
 
 ### CSS Management for Project Structure
 
-[Not ready yet]
+
 
 
 ## Wireframes
 
 [Not ready yet]
+### Wireframes fo Desktop
+<details>
+  <summary>Wireframe for Homepage</summary>
+  <img src="xemijobs/static/imgs/readme-pics/wf-home.png" style="display: block; margin: auto;" alt="Wireframe for index page - Desktop">
+</details>
 
+<details>
+  <summary>Wireframe for Dashboard</summary>
+  <img src="xemijobs/static/imgs/readme-pics/wf-home-resp.png" style="display: block; margin: auto;" alt="Wireframe for Dashboard pages - Desktop">
+</details>
+
+### Wireframes for Responsive Devices
+<details>
+  <summary>Wireframe for Homepage</summary>
+  <img src="xemijobs/static/imgs/readme-pics/wf-home-resp.png" style="display: block; margin: auto;" alt="Wireframe for index page - Mobile">
+</details>
+
+<details>
+  <summary>Wireframe for Dashboard</summary>
+  <img src="xemijobs/static/imgs/readme-pics/wf-dash-resp.png" style="display: block; margin: auto;" alt="Wireframe for Dashboard pages - Mobile">
+</details>
 
 
 ## Colors
@@ -243,6 +278,8 @@ The user-centric approach was a key consideration throughout the design and deve
 - **Clear and Simple Navigation:** The platform features a straightforward and intuitive navigation system. Menus, buttons, and links are clearly labeled, making it easy for users to find the information or tools they need without confusion. Unnecessary elements have been avoided, maintaining a clean and direct interface.
 
 - **Real-Time Feedback:** To ensure consistency and clarity in system feedback, a widget based on Flash has been implemented to handle error and success messages. This widget ensures that feedback messages are uniform and automatically adapt to the context of the user's interaction, offering a more predictable and coherent experience.
+
+![Alerts widget](/xemijobs/static/imgs/readme-pics/flash-msgs.png)
 
 - **Optimized Performance:** The application has been optimized for fast loading times and smooth performance, which is crucial for retaining users and providing a positive experience. This includes efficient data handling and minimizing the use of large resources that could slow down the site.
 
