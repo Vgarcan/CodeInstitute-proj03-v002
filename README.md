@@ -1,4 +1,6 @@
-![Main LOGO](xemijobs/assets/imgs/banner1.webp)
+# Xemijobs - Job Search Website
+![Main LOGO](/xemijobs/static/imgs/banner1.webp)
+
 
 # Victor Garcia Cantalapidera 
 -Slack:[@Victor Garcia](https://code-institute-room.slack.com/team/U0695HZA7FZ)
@@ -12,9 +14,8 @@
 [XemiJobs - Heroku](https://xemijobs-616b41a185c0.herokuapp.com/) 
 
 
----
 
-### Table of Contents
+## Table of Contents
 
 - [Introduction](#introduction)
 - [Features](#features)
@@ -50,9 +51,8 @@
 - [Bugs and Challenges](#bugs-and-challenges)
 - [Acknowledgement](#acknowledgement)
 
----
 
-### Introduction
+## Introduction
 
 XemiJobs is a job search platform designed to connect employers with potential candidates. This project was born out of my frequent personal use of job search websites, which sparked the idea to create a platform that could facilitate the hiring process more efficiently. The website allows companies to post job vacancies and manage applications, while job seekers can browse listings, apply for jobs, and manage their applications—all from a desktop interface.
 
@@ -60,10 +60,7 @@ The concept for XemiJobs emerged from my own experiences and the desire to build
 
 I'm incredibly proud of how this project has developed and hope it can serve as a useful resource for anyone involved in the job search or hiring process.
 
----
-
-
-### Features
+## Features
 
 - **User Registration and Authentication:** Secure registration and login for job seekers and employers, with role-based access control to ensure users see only what they need.
 - **Job Listings Management:** Employers can create, update, and delete job listings. The listings are displayed dynamically on the platform, allowing job seekers to browse through the latest opportunities.
@@ -72,36 +69,30 @@ I'm incredibly proud of how this project has developed and hope it can serve as 
 - **Real-Time Job Count:** The platform features a hero section that displays the current number of job listings, updated in real-time, offering users an up-to-date view of available opportunities.
 - **Advanced Search and Filters:** Job seekers can search for positions based on various criteria like job title, location, and company, with results being dynamically updated.
 
----
-
-### Development Tools
+## Development Tools
 
 - **Custom Jinja Widgets:** A collection of reusable Jinja widgets has been created to streamline the development process. These widgets automatically adapt to the type of data being passed, ensuring a consistent aesthetic across the entire platform. This approach not only speeds up development but also maintains a high level of visual and functional uniformity throughout the site.
 - **Modular Design:** The platform is built using a modular architecture in Flask, which allows for easy extension and maintenance. Each module is self-contained, facilitating rapid development and testing of individual components without affecting the entire application.
 - **Consistent Aesthetic:** By leveraging these custom widgets, the design remains consistent, providing a unified look and feel across all pages and components, which enhances the overall user experience.
 
----
+## Technologies Used
 
-### Technologies Used
-
-#### Backend
+### Backend
 - <img src="xemijobs/static/imgs/readme-pics/flask-icon.ico" width="18px"> **Flask:** The core framework for the backend of the application, used for handling routing, sessions, and integrating with the database.
-- <img src="xemijobs/static/imgs/readme-pics/flask-login-icon.ico" width="18px"> **Flask-Login:** Employed to manage user sessions and authentication, ensuring secure access control throughout the platform.
-- <img src="xemijobs/static/imgs/readme-pics/flask-pymongo-icon.ico" width="18px"> **Flask-PyMongo:** Utilized for integrating Flask with MongoDB, facilitating database operations directly from the Flask application.
+- <img src="xemijobs/static/imgs/readme-pics/login-icon.ico" width="18px"> **Flask-Login:** Employed to manage user sessions and authentication, ensuring secure access control throughout the platform.
+- <img src="xemijobs/static/imgs/readme-pics/mongo-icon.ico" width="18px"> **Flask-PyMongo:** Utilized for integrating Flask with MongoDB, facilitating database operations directly from the Flask application.
 
-#### Database
-- <img src="xemijobs/static/imgs/readme-pics/mongodb-icon.ico" width="18px"> **MongoDB:** The primary database used to store user data, job listings, and application details, chosen for its flexibility and scalability.
+### Database
+- <img src="xemijobs/static/imgs/readme-pics/mongo-icon.ico" width="18px"> **MongoDB:** The primary database used to store user data, job listings, and application details, chosen for its flexibility and scalability.
 
-#### Frontend
+### Frontend
 - <img src="xemijobs/static/imgs/readme-pics/html_icon.ico" width="18px"> **HTML:** The foundation for structuring the web pages, providing the semantic markup needed for the site's content.
 - <img src="xemijobs/static/imgs/readme-pics/css-icon.ico" width="18px"> **CSS:** Applied to style and layout the web pages, ensuring a consistent and visually appealing user interface across the application.
 - <img src="xemijobs/static/imgs/readme-pics/js-icon.ico" width="18px"> **JavaScript:** Employed to add interactivity and dynamic elements to the site, enhancing the user experience with features like form validation and asynchronous content updates.
 - <img src="xemijobs/static/imgs/readme-pics/bootstrap-icon.ico" width="18px"> **Bootstrap:** Integrated to utilize its responsive grid system and pre-built components, ensuring the site is mobile-friendly and adaptable to different screen sizes.
 
 
----
-
-### Project Structure
+## Project Structure
 
 - <img src="xemijobs/static/imgs/readme-pics/red-folder-icon.ico" width="18px"> **Root Directory**
     
@@ -200,19 +191,18 @@ I'm incredibly proud of how this project has developed and hope it can serve as 
     - <img src="xemijobs/static/imgs/readme-pics/txt-filetype-icon.ico" width="18px"> `requirements.txt` (List of Python dependencies)
     - <img src="xemijobs/static/imgs/readme-pics/txt-filetype-icon.ico" width="18px"> `runtime.txt` (Specifies Python version for deployment)
 
-#### CSS Management for Project Structure
+### CSS Management for Project Structure
 
 [Not ready yet]
 
----
 
-### Wireframes
+## Wireframes
 
 [Not ready yet]
 
----
 
-### Colors
+
+## Colors
 
 The color palette for this project has been carefully selected to ensure a professional and clean aesthetic, aligning with the brand identity and enhancing user experience. Below is a breakdown of the primary colors used across the application:
 
@@ -238,11 +228,11 @@ The color palette for this project has been carefully selected to ensure a profe
 
 This color palette was chosen not only for its visual appeal but also for its contribution to a cohesive and user-friendly interface, reinforcing the professional and serious tone of the application.
 
-#### Color Customization Process
+### Color Customization Process
 
 [Not ready yet]
 
-### User-Friendly Approach
+## User-Friendly Approach
 
 The user-centric approach was a key consideration throughout the design and development of this platform. The primary goal is to create an intuitive, accessible, and efficient experience for all users, whether they are job seekers or employers. The following principles and strategies were applied to achieve this:
 
@@ -261,25 +251,24 @@ The user-centric approach was a key consideration throughout the design and deve
 This user-focused approach ensures that the platform is not only functional but also enjoyable to use, encouraging users to return and engage with the service regularly.
 
 
----
 
-### User Experience
+## User Experience
 
-#### Key Principles
+### Key Principles
 
 - **Intuitive Design:** Ensure the platform is easy to navigate for both job seekers and employers.
 - **Responsive Interface:** Adapt the interface for various devices, providing a seamless experience across platforms.
 
-### User Stories
+## User Stories
 
-#### First-Time Users
+### First-Time Users
 1. **As a First-Time User,** I want to easily understand the purpose of the website, so I can decide if it meets my needs for job searching or posting job vacancies.
    - *Acceptance Criteria:* Upon landing on the homepage, I should see a clear and concise explanation of the platform's features and benefits.
 
 2. **As a First-Time User,** I want to quickly register on the platform, so I can start using the available services without any hassle.
    - *Acceptance Criteria:* The registration process should be straightforward, with a simple form requiring only necessary information, and should be completed within a few steps.
 
-#### Job Seekers
+### Job Seekers
 1. **As a Job Seeker,** I want to search for jobs that match my skills and location, so I can find relevant opportunities quickly.
    - *Acceptance Criteria:* The search functionality should allow me to filter jobs by keywords, location, job type, and other relevant criteria.
 
@@ -289,7 +278,7 @@ This user-focused approach ensures that the platform is not only functional but 
 3. **As a Job Seeker,** I want to track the status of my job applications, so I can stay informed about the progress and next steps.
    - *Acceptance Criteria:* The dashboard should provide a clear overview of my submitted applications, including their status (e.g., pending, reviewed, interview scheduled).
 
-#### Employers
+### Employers
 1. **As an Employer,** I want to post job vacancies quickly and efficiently, so I can attract potential candidates without unnecessary delays.
    - *Acceptance Criteria:* The job posting form should be user-friendly, allowing me to input all necessary details such as job title, description, requirements, and salary range.
 
@@ -297,20 +286,19 @@ This user-focused approach ensures that the platform is not only functional but 
    - *Acceptance Criteria:* The platform should offer basic analytics, such as the number of views per job posting, number of applications received, and other relevant metrics.
 
 
-#### Customization and Flexibility
+### Customization and Flexibility
 
 [Not ready yet]
 
-#### Future Enhancements
+### Future Enhancements
 
 - **Recommendation System:** Suggest jobs to seekers based on their profile and application history.
 - **Analytics for Employers:** Provide insights into job postings and applicant demographics.
 
----
 
-### Testing
+## Testing
 
-#### HTML Validation
+### HTML Validation
 
 We ensured that the HTML structure of XemiJobs adheres strictly to web standards. We utilized the W3C Validator to validate our HTML code, striving to minimize and eliminate all possible errors. I'm proud to report that the validation results showed **zero errors**.
 
@@ -323,11 +311,12 @@ Here’s the validation result:
   <img src="xemijobs/static/imgs/readme-pics/markup-val.png" style="display: block; margin: auto;" alt="HTML Validation Result showing zero errors">
 </details>
 
-**You can also view the validation result directly on the [W3C Markup Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fxemijobs-616b41a185c0.herokuapp.com).**
-
 ---
 
-#### CSS Validation
+**You can also view the validation result directly on the [W3C Markup Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fxemijobs-616b41a185c0.herokuapp.com).**
+
+
+### CSS Validation
 
 <p>
     <a href="https://jigsaw.w3.org/css-validator/check/referer">
@@ -348,10 +337,12 @@ Here’s the validation result:
   <img src="xemijobs/static/imgs/readme-pics/css-val.png" style="display: block; margin: auto;" alt="CSS Validation Result showing zero errors">
 </details>
 
+---
+
+
 **You can also view the validation result directly on the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fxemijobs-616b41a185c0.herokuapp.com&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en).**
 
----
-#### Accessibility
+### Accessibility
 
 Ensuring accessibility is a key priority for XemiJobs. We've taken great care to make sure our platform is inclusive and usable by as many people as possible, regardless of their abilities or the devices they are using.
 
@@ -364,10 +355,9 @@ Throughout the development process, we adhered to the Web Content Accessibility 
 
 These efforts help ensure that our site is not only compliant with accessibility standards but also provides an inclusive user experience. We continue to monitor and improve the accessibility of XemiJobs as we develop new features and enhancements.
 
----
 
 
-#### Wave Validation
+### Wave Validation
 
 We conducted a thorough accessibility audit using the WAVE (Web Accessibility Evaluation Tool). The results were highly satisfactory, especially for the main page, where we encountered zero errors. However, we did find a few contrast issues, primarily related to the navigation elements within the carousel.
 
@@ -398,9 +388,8 @@ Specifically, we altered the colors of the "4" and "3" on the 403 page and the "
 
 **Note:** We are fully aware of the contrast issues highlighted by the WAVE Validation Tool. Our team is committed to addressing these in future updates to ensure an even higher level of accessibility across the entire platform. We appreciate the insights provided by the tool and will use this feedback to guide our ongoing improvements.
 
----
 
-#### Lighthouse Validation
+### Lighthouse Validation
 
 Our Lighthouse validation results have been very promising, with high scores across most categories. One area where we observed a slightly lower score is in SEO, and we are actively working on improvements in this area to achieve even better results. Lighthouse has been instrumental in guiding the organization of our files and optimizations for performance.
 
@@ -413,67 +402,199 @@ Additionally, Lighthouse suggested reducing the CSS payload, which we are consid
 
 While our desktop version scores are very high, the mobile version, though still passing, shows some room for improvement. We are committed to enhancing these aspects to ensure an optimal user experience across all devices.
 
----
 
-#### JSHint Validation
-
-[Not ready yet]
-
-#### Device Testing
+### JSHint Validation
 
 [Not ready yet]
 
-#### Browser Compatibility
+
+### PEP8 Validation
 
 [Not ready yet]
 
-#### User Stories Testing
+
+### Device Testing
+
+The website has undergone thorough testing across a variety of devices, including desktop computers, tablets, and smartphones. We focused on ensuring that the responsiveness of the site is consistent and effective across all screen sizes, providing an optimal user experience regardless of the device used.
+
+To achieve this, we employed media queries to adapt the layout for different screen sizes. This approach ensures that when the device's dimensions fall within specific ranges, certain elements will reposition themselves, maintaining readability and proper alignment. 
+
+For instance, on smaller screens, such as smartphones, we adjusted the distribution of content to ensure that all elements are easily accessible and clearly visible, avoiding any overlap or readability issues. The result is a fluid and intuitive experience across devices, meeting our goal of a responsive design that performs well on all tested platforms.
+
+
+### Browser Compatibility
+
+We have conducted extensive testing to ensure that the website is fully compatible across a range of web browsers. Specifically, the site has been tested on:
+
+- <img src="xemijobs/static/imgs/readme-pics/google-icon.ico" width="18px"> **Google Chrome**
+- <img src="xemijobs/static/imgs/readme-pics/edge-icon.ico" width="18px"> **Microsoft Edge**
+- <img src="xemijobs/static/imgs/readme-pics/opera-icon.ico" width="18px"> **Opera**
+- <img src="xemijobs/static/imgs/readme-pics/firefox-icon.ico" width="18px"> **Mozilla Firefox**
+- <img src="xemijobs/static/imgs/readme-pics/safari-icon.ico" width="18px"> **Safari**
+
+In each browser, the website performs smoothly, maintaining consistent functionality and appearance. We focused on ensuring that all features, from user registration to job application processes, operate seamlessly regardless of the browser used.
+
+No significant issues were encountered during the tests, confirming that our site is accessible and reliable across these popular browsers. This ensures that users can interact with the platform without any unexpected disruptions, regardless of their preferred browser.
+
+
+### User Stories Testing
+
+#### First-Time Users
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result**|
+|-------------|------------|---------------------|------------------|
+| **Platform Introduction**| Visit the home page and read introductory content             | Clear understanding of the platform's purpose                     | Works as expected   |
+| **User Registration**     | Complete the registration form and submit                    | Registration completed quickly with minimal steps                 | Works as expected   |
+
+#### Job Seekers
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result**|
+|-------------|------------|---------------------|------------------|
+| **Job Search**           | Use the search bar to filter jobs by keyword, location, and job type | Display of relevant job listings that match the criteria            | Works as expected   |
+| **Job Details View**     | Click on a job listing to view more details                   | Display of comprehensive job details, including requirements and company information | Works as expected   |
+| **Application Tracking** | Navigate to the dashboard to view the status of job applications | Clear overview of application status (e.g., pending, reviewed, interview scheduled) | Works as expected   |
+
+#### Employers
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result**|
+|-------------|------------|---------------------|------------------|
+| **Job Posting**          | Complete and submit the job posting form                     | Job vacancy is posted with all required details                   | Works as expected   |
+| **Job Posting Analytics**| Access the dashboard to view analytics for job postings      | Display of basic analytics, such as views per job and number of applications received | Works as expected   |
+
+
+## Collaborative Efforts
 
 [Not ready yet]
 
----
 
-### Collaborative Efforts
+## Current State and Future Plans
 
-[Not ready yet]
-
----
-
-### Current State and Future Plans
-
-#### Current State
+### Current State
 
 The platform is currently in development with basic functionalities for user registration, job listing management, and application tracking implemented.
 
-#### Future Plans
+### Future Plans
 
 - **Enhanced Security:** Implement two-factor authentication and other security measures.
 - **Advanced Search:** Improve the search functionality with more filters and sorting options.
 - **User Feedback:** Integrate a feedback system for continuous improvement.
 
----
 
-### Deployment
+## Deployment
 
-[Not ready yet]
+### Prerequisites
 
----
+Before you begin, make sure you have the following:
 
-### License
-
-[Not ready yet]
-
----
-
-### Bugs and Challenges
-
-[Not ready yet]
+1. A **Heroku account**. If you don’t have one, you can sign up for free at [Heroku](https://www.heroku.com).
+2. Your project should include the following files:
+   - `Procfile`: Specifies the commands that are executed by the app on startup.
+   - `requirements.txt`: Lists all the Python dependencies for your project.
+   - `runtime.txt`: (optional) Specifies the Python version.
+   - `.gitignore`: Ensures that unnecessary files aren’t uploaded to Heroku.
+   - `config.py`: Your configuration file that holds essential settings, like database connection strings.
 
 ---
 
-### Acknowledgement
+### Step-by-Step Deployment Instructions
+
+1. **Create a New Heroku App:**
+   - Log in to your Heroku account at [Heroku Dashboard](https://dashboard.heroku.com/).
+   - Click on the **New** button in the upper right corner, then select **Create New App**.
+   - Enter a unique app name (Heroku will check the availability of the name) and choose your preferred region (United States or Europe).
+   - Click **Create App**.
+
+2. **Connect Your GitHub Repository:**
+   - Once your app is created, you’ll be taken to the app’s dashboard.
+   - Navigate to the **Deploy** tab.
+   - In the **Deployment method** section, select **GitHub**.
+   - You’ll be prompted to connect your GitHub account if you haven’t done so already.
+   - Once connected, search for the repository you want to deploy (e.g., `XemiJobs`).
+   - Click **Connect**.
+
+3. **Configure Deployment Settings:**
+   - In the **Automatic Deploys** section, you can choose to enable automatic deployment from the `main` branch. This means that every time you push changes to `main`, Heroku will automatically redeploy your app.
+   - For a first-time deployment, it’s often safer to start with **Manual Deploy**. In the **Manual Deploy** section, select the branch you want to deploy (usually `main`) and click **Deploy Branch**.
+
+4. **Setup Environment Variables:**
+   - Navigate to the **Settings** tab in your Heroku app’s dashboard.
+   - Click on **Reveal Config Vars**.
+   - Add any necessary environment variables that your app requires (e.g., `FLASK_APP`, `FLASK_ENV`, `SECRET_KEY`, `DATABASE_URL`).
+   - These variables should match what’s defined in your `config.py` or `.env` file locally.
+
+5. **Heroku Build and Deployment:**
+   - After you trigger a deploy (either manually or automatically), Heroku will start the build process.
+   - You can view the build process in real-time within the Heroku dashboard.
+   - If the deployment is successful, you’ll see a confirmation message and a **View** button that will take you to your live app.
+
+6. **Check Your Application:**
+   - Once the deployment is complete, visit the live app by clicking on the **View** button or navigating to `https://your-app-name.herokuapp.com/`.
+   - Test the various features of your app to ensure everything is working as expected.
+
+7. **Further Customization and Monitoring:**
+   - Heroku provides a rich set of tools for monitoring your app’s performance, scaling the number of dynos (containers), and managing your app's logs.
+   - You can explore these options within the Heroku dashboard to optimize and maintain your deployment.
+
+---
+
+### Troubleshooting Tips
+
+- **Dependencies Issues:** Ensure that all your dependencies are correctly listed in `requirements.txt`. Any missing dependency could cause the deployment to fail.
+- **Database Configuration:** If your app uses a database, make sure the `DATABASE_URL` is correctly configured in your environment variables.
+- **Build Failures:** Check the build logs for any errors. Heroku provides detailed logs that can help identify where things went wrong.
+
+
+
+## License
+
+XEMIJOBS is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
+![License](/xemijobs/static/imgs/readme-pics/license.jpg)
+
+You are free to:
+
+- **Share:** Copy and redistribute the material in any medium or format.
+
+- **Adapt:** Remix, transform, and build upon the material.
+
+Under the following terms:
+
+- **Attribution:** You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+
+- **NonCommercial:** You may not use the material for commercial purposes.
+
+- **ShareAlike:** If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
+
+For more information about the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License, visit [here](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+
+
+## Bugs and Challenges
 
 [Not ready yet]
+
+
+## Acknowledgement
+
+I feel incredibly fortunate to have had access to a wealth of information available on the internet throughout the development of XemiJobs. Over the course of this project, I’ve encountered countless resources, from videos to blog posts, that have been instrumental in guiding me through various challenges. Unfortunately, due to the sheer volume of content I’ve consumed, I’ve lost track of many of the specific links. Nonetheless, I want to express my gratitude to all the creators who have shared their knowledge and experiences online, making the learning process smoother.
+
+A significant portion of the success of this project can be attributed to the excellent documentation provided for the tools and libraries I’ve used. The official documentation for Flask, Flask-WTF, and Flask-PyMongo has been particularly invaluable. These resources not only provided the in-depth knowledge I needed to implement features but also offered solutions to specific issues that arose during development. The documentation is well-written, clear, and incredibly useful, serving as a robust foundation for the project.
+
+What made the documentation even more beneficial was the inclusion of code snippets directly within the documentation itself. Whenever I needed to perform a task, such as inserting data into a MongoDB collection using PyMongo, I could simply search through the documentation, find a relevant snippet, and copy-paste it into my project. This approach significantly sped up the development process and ensured that I was implementing best practices as recommended by the official sources. The convenience and reliability of these snippets reinforced just how critical high-quality documentation can be for a project.
+
+While tutorials and videos have been helpful as introductory material, offering quick insights and practical examples, the real depth of understanding came from diving into the official documentation. The step-by-step guides, detailed explanations, and readily available snippets have been indispensable.
+
+#### Key Documentation Resources:
+- [Flask Documentation](https://flask.palletsprojects.com/)
+- [Flask-WTF Documentation](https://flask-wtf.readthedocs.io/)
+- [Flask-PyMongo Documentation](https://flask-pymongo.readthedocs.io/)
+
+#### Additional Resources:
+- [Python Flask Authentication Tutorial - Learn Flask Login (by: Arpan Neupane)](https://www.youtube.com/watch?v=71EU8gnZqZQ)
+- [Creating a User Login System Using Python, Flask and MongoDB (by: Pretty Printed)](https://www.youtube.com/watch?v=vVx1737auSE)
+- [Flask and MongoDB w/ Flask-pymongo | Project Setup (by: Code With Prince)](https://www.youtube.com/watch?v=tJxMPvzkCyo&list=PLU7aW4OZeUzwN0TsZLZUuzhc0f7OVVBcT)
+- [Flask Blueprints Make Your Apps Modular & Professional (by: NeuralNine)](https://www.youtube.com/watch?v=_LMiUOYDxzE)
+
 
 ---
 
