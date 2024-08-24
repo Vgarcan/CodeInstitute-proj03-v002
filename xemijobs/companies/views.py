@@ -13,30 +13,6 @@ companies = Blueprint(
     "companies", __name__, template_folder="templates", static_folder="static"
 )
 
-
-@companies.route("/")
-def index():
-    """
-    This function handles the rendering of the company's homepage.
-
-    Parameters:
-    None
-
-    Returns:
-    render_template: A rendered HTML template for the company's homepage.
-
-    Function Steps:
-    1. Attempt to print the current user's username and role.
-    2. If an exception occurs during the print statement, print an error message.
-    3. Render the 'companies/index.html' template.
-    """
-    try:
-        print(current_user.username, "role ====> ", current_user.role)
-    except Exception as e:
-        print(f"Error: {e}")
-    return render_template("companies/index.html")
-
-
 @companies.route("/register", methods=["GET", "POST"])
 def register():
     """

@@ -231,7 +231,8 @@ def list_of_users(page=1):
     data = User.get_all_users(offset, per_page)
     if data is None:
         flash("No users found!", "info")
-    flash(f"Total users retrieved: {len(data)}")
+        return redirect(url_for("main.index"))
+
     return render_template(
         "users/users-list.html", data=data, page=page, d_type="users"
     )

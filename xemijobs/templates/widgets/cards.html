@@ -10,15 +10,18 @@
                         <img src="{{ item.image }}" class="img-fluid rounded-circle me-3" alt="Image" style="width: 60px; height: 60px;">
                         {% endif %}
                         <div>
-                            <h5 class="card-title">
+                            <h3 class="card-title">
                                 {% if item.post_title %} 
                                     {{ item.post_title }}
                                 {% elif item.username %}
                                     {{ item.username }}
                                 {% endif %}
-                            </h5>
-                            {% if item.company_name %}
-                            <h6 class="text-muted">{{ item.company_name }}</h6>
+                            </h3>
+                            {% if item.comp_name %}
+                                <h4 class="text-muted">{{ item.comp_name }}</h4>
+                            {% endif %}
+                            {% if item.position %}
+                                <h4 class="text-muted">{{ item.position }}</h4>
                             {% endif %}
                         </div>
                     </div>

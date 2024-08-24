@@ -24,16 +24,16 @@ def job_list(page):
     # PAGINATION = 9
     per_page = 9 + 1  # add ONE to check if pagination forward is needed
     offset = (page - 1) * (per_page - 1)
-    # data = rawdata[offset:offset + per_page]
 
     listed_jobs = Job.get_all_jobs(offset, per_page)
-    print(" offset value = ", offset)
-    print(" per_page value = ", per_page)
+ 
     for j in listed_jobs:
         print(j.id)
     return render_template(
-        "jobs/jobs-list.html", data=listed_jobs, page=page, d_type="jobs"
-    )
+        "jobs/jobs-list.html",
+        data=listed_jobs,
+        page=page,
+        d_type="jobs")
 
 
 @jobs.route("/search")
@@ -52,7 +52,6 @@ def search(page=1):
     # PAGINATION = 9
     per_page = 9 + 1  # add ONE to check if pagination forward is needed
     offset = (page - 1) * (per_page - 1)
-    # data = rawdata[offset:offset + per_page]
 
     query = request.args.get("q")
     print(query)
@@ -114,9 +113,6 @@ def create_job():
             "comp_id": current_user.id,
         }
 
-        # print (datetime.now())
-        # print (form.ends_on.data)
-
         try:
             Job.create_new_job(job_data=job_data)
             flash("Job created successfully", "success")
@@ -155,7 +151,6 @@ def edit_job(adv_id):
             "salary": form.salary.data,
             "job_type": form.job_type.data,
             "description": form.description.data,
-            # 'published_on': datetime.now(),
             "ends_on": datetime.strptime(str(form.ends_on.data), "%Y-%m-%d").replace(
                 hour=0, minute=00, second=00, microsecond=000000
             ),
