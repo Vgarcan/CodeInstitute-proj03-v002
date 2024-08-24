@@ -214,7 +214,7 @@ I'm incredibly proud of how this project has developed and hope it can serve as 
 ## Wireframes
 
 [Not ready yet]
-### Wireframes fo Desktop
+### Wireframes for Desktop
 <details>
   <summary>Wireframe for Homepage</summary>
   <img src="xemijobs/static/imgs/readme-pics/wf-home.png" style="display: block; margin: auto;" alt="Wireframe for index page - Desktop">
@@ -222,7 +222,7 @@ I'm incredibly proud of how this project has developed and hope it can serve as 
 
 <details>
   <summary>Wireframe for Dashboard</summary>
-  <img src="xemijobs/static/imgs/readme-pics/wf-home-resp.png" style="display: block; margin: auto;" alt="Wireframe for Dashboard pages - Desktop">
+  <img src="xemijobs/static/imgs/readme-pics/wf-dash.png" style="display: block; margin: auto;" alt="Wireframe for Dashboard pages - Desktop">
 </details>
 
 ### Wireframes for Responsive Devices
@@ -538,26 +538,34 @@ Before you begin, make sure you have the following:
 1. **Create a New Heroku App:**
    - Log in to your Heroku account at [Heroku Dashboard](https://dashboard.heroku.com/).
    - Click on the **New** button in the upper right corner, then select **Create New App**.
+   ![Heroku Dashboard](/xemijobs/static/imgs/readme-pics/heroku-1.png)
    - Enter a unique app name (Heroku will check the availability of the name) and choose your preferred region (United States or Europe).
    - Click **Create App**.
+   ![Heroku Dashboard](/xemijobs/static/imgs/readme-pics/heroku-2.png)
 
 2. **Connect Your GitHub Repository:**
    - Once your app is created, you’ll be taken to the app’s dashboard.
    - Navigate to the **Deploy** tab.
+   ![Heroku Dashboard](/xemijobs/static/imgs/readme-pics/heroku-3.png)
    - In the **Deployment method** section, select **GitHub**.
    - You’ll be prompted to connect your GitHub account if you haven’t done so already.
    - Once connected, search for the repository you want to deploy (e.g., `XemiJobs`).
    - Click **Connect**.
+   ![Heroku Dashboard](/xemijobs/static/imgs/readme-pics/heroku-4.png)
+
 
 3. **Configure Deployment Settings:**
    - In the **Automatic Deploys** section, you can choose to enable automatic deployment from the `main` branch. This means that every time you push changes to `main`, Heroku will automatically redeploy your app.
    - For a first-time deployment, it’s often safer to start with **Manual Deploy**. In the **Manual Deploy** section, select the branch you want to deploy (usually `main`) and click **Deploy Branch**.
+   ![Heroku Dashboard](/xemijobs/static/imgs/readme-pics/heroku-7.png)
 
 4. **Setup Environment Variables:**
    - Navigate to the **Settings** tab in your Heroku app’s dashboard.
+   ![Heroku Dashboard](/xemijobs/static/imgs/readme-pics/heroku-5.png)
    - Click on **Reveal Config Vars**.
    - Add any necessary environment variables that your app requires (e.g., `FLASK_APP`, `FLASK_ENV`, `SECRET_KEY`, `DATABASE_URL`).
    - These variables should match what’s defined in your `config.py` or `.env` file locally.
+   ![Heroku Dashboard](/xemijobs/static/imgs/readme-pics/heroku-6.png)
 
 5. **Heroku Build and Deployment:**
    - After you trigger a deploy (either manually or automatically), Heroku will start the build process.

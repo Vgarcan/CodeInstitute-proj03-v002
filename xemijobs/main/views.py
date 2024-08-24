@@ -13,23 +13,23 @@ def index():
     carousel = [
         {
             'img_src': "imgs/banner.jpg",
-            'img_alt': '',
-            'header': 'Display the TITLE',
-            'text': 'And display a CAPTATION too.'
+            'img_alt': 'Banner #1',
+            'header': 'Join XemiJobs',
+            'text': 'Find the perfect job for you'
         },
         {
             'img_src': "imgs/banner2.jpg",
-            'img_alt': '',
-            'header': ' You can only show the TITLE',
+            'img_alt': 'Banner #2',
+            'header': 'Always looking for professionals',
         },
         {
             'img_src': "imgs/banner3.jpg",
-            'img_alt': '',
-            'text': ' Or just show the CAPTATION in this section.\nYou can display nothing, like the next'
+            'img_alt': 'Banner #3',
+            'text': 'The best companies are looking for talented people'
         },
         {
             'img_src': "imgs/banner2.jpg",
-            'img_alt': '',
+            'img_alt': 'Banner #4',
         },
     ]
     total_jobs = get_total_jobs()
