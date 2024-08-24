@@ -325,11 +325,6 @@ a:hover {
     color: var(--secondary-text-color);
 }
 
-.card-footer {
-    background-color: var(--background-color);
-    border-top: 1px solid var(--light-gray-color);
-}
-
 .btn-primary:hover {
     background-color: var(--hover-accent-color);
 }

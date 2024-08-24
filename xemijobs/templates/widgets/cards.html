@@ -8,6 +8,14 @@
                     <div class="d-flex align-items-center mb-3">
                         {% if item.image %}
                         <img src="{{ item.image }}" class="img-fluid rounded-circle me-3" alt="Image" style="width: 60px; height: 60px;">
+                        {% else %}
+                            {% if item.ends_on %}
+                                <img src="{{ url_for('static', filename='imgs/none-img-comp.webp') }}" class="img-fluid rounded-circle me-3" alt="Image" style="width: 60px; height: 60px;">
+                            {% elif item.role == 'company' %}
+                                <img src="{{ url_for('static', filename='imgs/none-img-comp.webp') }}" class="img-fluid rounded-circle me-3" alt="Image" style="width: 60px; height: 60px;">
+                            {% elif item.role == 'user' %}
+                                <img src="{{ url_for('static', filename='imgs/none-img-user.webp') }}" class="img-fluid rounded-circle me-3" alt="Image" style="width: 60px; height: 60px;">
+                            {% endif %}
                         {% endif %}
                         <div>
                             <h3 class="card-title">
@@ -38,13 +46,13 @@
                     <p class="card-text">{{ item.description | truncate(100) }}</p>
                     {% endif %}
                 </div>
-                <div class="card-footer text-center">
+                <div class="card-footer">
                     {% if item.ends_on %}
-                        <a href="{{ url_for('jobs.job_detail', adv_id=item.id) }}" class="btn btn-primary btn-sm">Job Details</a>
+                        <a href="{{ url_for('jobs.job_detail', adv_id=item.id) }}" class="btn btn-primary w-100 h-100">Job Details</a>
                     {% elif item.role == 'user' %}
-                        <a href="{{ url_for('users.user_info', user_id=item.id) }}" class="btn btn-primary btn-sm">User Details</a>
+                        <a href="{{ url_for('users.user_info', user_id=item.id) }}" class="btn btn-primary w-100 h-100">User Details</a>
                     {% elif item.role == 'company' %}
-                        <a href="{{ url_for('users.user_info', user_id=item.id) }}" class="btn btn-primary btn-sm">Company Details</a>
+                        <a href="{{ url_for('users.user_info', user_id=item.id) }}" class="btn btn-primary w-100 h-100">Company Details</a>
                     {% endif %}
                 </div>
             </div>
