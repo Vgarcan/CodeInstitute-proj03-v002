@@ -185,6 +185,8 @@ I'm incredibly proud of how this project has developed and hope it can serve as 
                 - <img src="xemijobs/static/imgs/readme-pics/html-filetype-icon.ico" width="18px"> `404.html`
                 - <img src="xemijobs/static/imgs/readme-pics/html-filetype-icon.ico" width="18px"> `403.html`
                 - <img src="xemijobs/static/imgs/readme-pics/html-filetype-icon.ico" width="18px"> `401.html`
+                - <img src="xemijobs/static/imgs/readme-pics/html-filetype-icon.ico" width="18px"> `tnc.html`
+                - <img src="xemijobs/static/imgs/readme-pics/html-filetype-icon.ico" width="18px"> `about-us.html`
                 - <img src="xemijobs/static/imgs/readme-pics/html-filetype-icon.ico" width="18px"> `index.html`
                 - <img src="xemijobs/static/imgs/readme-pics/html-filetype-icon.ico" width="18px"> `widgets-collection.html`
 

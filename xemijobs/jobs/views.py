@@ -14,7 +14,7 @@ jobs = Blueprint('jobs', __name__, template_folder='templates', static_folder='s
 def job_list(page):
     # PAGINATION = 9
     per_page = 9 + 1 # add ONE to check if pagination forward is needed
-    offset = (page - 1) * per_page
+    offset = (page - 1) * (per_page - 1)
     # data = rawdata[offset:offset + per_page]
     
     listed_jobs = Job.get_all_jobs(offset, per_page)
@@ -22,7 +22,7 @@ def job_list(page):
     print(" per_page value = ", per_page)
     for j in listed_jobs:
         print (j.id)
-    return render_template("jobs/jobs-list.html",data=listed_jobs, page=page)
+    return render_template("jobs/jobs-list.html", data=listed_jobs, page=page, d_type='jobs')
 
 @jobs.route('/search')
 def search(page=1):

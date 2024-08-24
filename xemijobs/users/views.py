@@ -223,15 +223,16 @@ def list_of_users(page=1):
     """
 
     # PAGINATION = 9
-    per_page = 9
-    offset = (page - 1) * per_page
+    per_page = 9 + 1 # add ONE to check if pagination forward is needed
+    offset = (page - 1) * (per_page - 1)
     # data = rawdata[offset:offset + per_page]
+    
 
     data = User.get_all_users(offset, per_page)
     if data is None:
         flash('No users found!', 'info')
-
-    return render_template('users/users-list.html', data=data, page=page) 
+    flash(f"Total users retrieved: {len(data)}")
+    return render_template('users/users-list.html', data=data, page=page, d_type= 'users') 
 
 
 # display user's information
