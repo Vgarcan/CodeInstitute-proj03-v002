@@ -1,21 +1,29 @@
 from flask import flash
 from flask_login import UserMixin, current_user
 from ..extensions import mongo
-from bson import ObjectId, BSON
-from xemijobs.extensions import login_manager
+from bson import ObjectId
+
 
 class User(UserMixin):
     def __init__(self, username, password, _id, role):
         self.username = username
         self.password = password
-        self.id = str(_id) 
+        self.id = str(_id)
         self.role = role
-    
-    
+
     def get_id(self):
+        """
+        Returns the unique identifier of the user.
+
+        Parameters:
+        None. This method does not take any parameters.
+
+        Returns:
+        str: The unique identifier of the user. This identifier is a string representation of the ObjectId.
+        """
         return self.id
 
-#! CRUD-functions
+    #! CRUD-functions
 
     ## Create
     #! no Login needed
@@ -40,14 +48,9 @@ class User(UserMixin):
         It is assumed that the caller will handle any necessary validation.
         """
 
-        new_user_data = {
-            'username': username,
-            'password': password,
-            'role': role
-        }
-        
-        mongo.db.users.insert_one(new_user_data)
+        new_user_data = {"username": username, "password": password, "role": role}
 
+        mongo.db.users.insert_one(new_user_data)
 
     ## Read
     #! no Login needed
@@ -67,18 +70,17 @@ class User(UserMixin):
         Exception: If any error occurs during the database query.
         """
         try:
-            user_data = mongo.db.users.find_one({'_id': ObjectId(user_id)})
+            user_data = mongo.db.users.find_one({"_id": ObjectId(user_id)})
             if user_data:
                 return User(
-                    username=user_data['username'], 
-                    password=user_data['password'],
-                    _id=str(user_data['_id']),
-                    role=user_data['role']
+                    username=user_data["username"],
+                    password=user_data["password"],
+                    _id=str(user_data["_id"]),
+                    role=user_data["role"],
                 )
         except Exception as e:
             print("==============> Exception in get_by_id:", e)
             return None
-   
 
     @staticmethod
     def get(username):
@@ -95,30 +97,29 @@ class User(UserMixin):
         Raises:
         None
         """
-        user_data = mongo.db.users.find_one({'username': username})
+        user_data = mongo.db.users.find_one({"username": username})
         if user_data:
             return User(
-                username=user_data['username'], 
-                password=user_data['password'],
-                _id=str(user_data['_id']),
-                role=user_data['role']
+                username=user_data["username"],
+                password=user_data["password"],
+                _id=str(user_data["_id"]),
+                role=user_data["role"],
             )
         return None
- 
+
     @staticmethod
     def get_all_users(offset, per_page):
-    
+
         users_data = mongo.db.users.find().skip(offset).limit(per_page)
         return [
             User(
-                username=user_data['username'],
-                password=user_data['password'],
-                _id=str(user_data['_id']),
-                role=user_data['role']
+                username=user_data["username"],
+                password=user_data["password"],
+                _id=str(user_data["_id"]),
+                role=user_data["role"],
             )
             for user_data in users_data
         ]
-
 
     ## Update
     #! only USERS
@@ -144,12 +145,10 @@ class User(UserMixin):
         current_user_id = str(current_user.get_id())
         try:
             mongo.db.users.update_one(
-                {'_id': ObjectId(current_user_id)},
-                {"$set": profile_data}
+                {"_id": ObjectId(current_user_id)}, {"$set": profile_data}
             )
         except Exception as e:
-            flash(f'Error in user.models.UPDATE_PROFILE: {e}', 'error')
-        
+            flash(f"Error in user.models.UPDATE_PROFILE: {e}", "error")
 
     ## Delete
     #! only USERS
@@ -172,4 +171,4 @@ class User(UserMixin):
         It retrieves the unique ID of the current user and uses it to delete the corresponding user document in the database.
         """
         current_user_id = str(current_user.get_id())
-        mongo.db.users.delete_one({'_id': ObjectId(current_user_id)})
+        mongo.db.users.delete_one({"_id": ObjectId(current_user_id)})

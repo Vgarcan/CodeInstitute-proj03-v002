@@ -1,25 +1,36 @@
-from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask import Blueprint, render_template, redirect, url_for, flash
 from flask_login import login_user, logout_user, login_required, current_user
 from .forms import RegistrationForm, LoginForm, ProfileForm
 from .models import User
-# from ..applications.models import Application #! find bettet option
+
 from werkzeug.security import generate_password_hash, check_password_hash
-from ..extensions import mongo, ObjectId,get_table_info
+from ..extensions import mongo, ObjectId, get_table_info
 from ..decoratros import role_checker
 
 
-users = Blueprint('users', __name__, template_folder='templates', static_folder='static')
+users = Blueprint(
+    "users", __name__, template_folder="templates", static_folder="static"
+)
 
 
-@users.route('/')
+@users.route("/")
 def index():
-    return render_template('users/index.html')
+    """
+    Render the home page of the application.
+
+    Parameters:
+    None
+
+    Returns:
+    render_template: A rendered HTML template for the home page.
+    """
+    return render_template("users/index.html")
 
 
-@users.route('/register', methods=['GET', 'POST'])
+@users.route("/register", methods=["GET", "POST"])
 def register():
     """
-    Handles user registration.
+    Handle user registration.
 
     Parameters:
     form (RegistrationForm): The form object containing the user's registration details.
@@ -33,30 +44,24 @@ def register():
     if form.validate_on_submit():
         username = form.username.data
         password = generate_password_hash(form.password.data)
-        role = 'user'
-        print(f"Registering user: {username}")
+        role = "user"
 
-        existing_user = mongo.db.users.find_one({'username': username})
-        print(f"Existing user: {existing_user}")
+        existing_user = mongo.db.users.find_one({"username": username})
 
         # If the user doesn't exist, insert them into the database
         if existing_user == None:
-            print(f"Inserting user: {username}")
             User.create_new_user(username, password, role)
-            flash('User registered successfully!', 'success')
-            return redirect(url_for('users.login'))
-        
-        elif existing_user['username'] == username :
-            flash('Username already exists!', 'danger')
-            return redirect(url_for('users.register'))
-    
-    for field_name, field_object in form._fields.items():
-            print(f"Field Name: {field_name}, Field Label: {field_object.label.text}")
-    
-    return render_template('users/register.html', form=form)
+            flash("User registered successfully!", "success")
+            return redirect(url_for("users.login"))
+
+        elif existing_user["username"] == username:
+            flash("Username already exists!", "danger")
+            return redirect(url_for("users.register"))
+
+    return render_template("users/register.html", form=form)
 
 
-@users.route('/login', methods=['GET', 'POST'])
+@users.route("/login", methods=["GET", "POST"])
 def login():
     """
     Handles user login.
@@ -73,35 +78,35 @@ def login():
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
-        
+
         user_data = User.get(username)
         try:
-            print('==============>>>>', user_data.username)
+            print("==============>>>>", user_data.username)
         except Exception as e:
-            flash(f'Invalid username or password!\n{e}', 'danger')
-            return redirect(url_for('users.login'))
-        
+            flash(f"Invalid username or password!\n{e}", "danger")
+            return redirect(url_for("users.login"))
+
         # Check if user exists and password is correct
         ## check_password_hash() ches if the hashed passwords marches given password
         if user_data and check_password_hash(user_data.password, password):
             # Create a User object and log in the user
             user = User.get_by_id(user_data.id)
             login_user(user)
-            
+
             # Display success flash message and redirect to dashboard
-            flash('Logged in successfully!', 'success')
-            return redirect(url_for('users.dashboard'))
+            flash("Logged in successfully!", "success")
+            return redirect(url_for("users.dashboard"))
         else:
             # Display error flash message
-            flash('Invalid username or password!', 'danger')
+            flash("Invalid username or password!", "danger")
 
     # Render the login template with the form
-    return render_template('users/login.html', form=form)
+    return render_template("users/login.html", form=form)
 
 
-@users.route('/logout')
+@users.route("/logout")
 @login_required
-@role_checker('user')
+@role_checker("user")
 def logout():
     """
     Logs out the current user.
@@ -116,34 +121,37 @@ def logout():
     redirect: A redirect response to the login page (`users.login`)
     """
     logout_user()
-    flash('You have been logged out!', 'success')
-    return redirect(url_for('users.login'))
+    flash("You have been logged out!", "success")
+    return redirect(url_for("users.login"))
 
 
-@users.route('/dashboard')
+@users.route("/dashboard")
 @login_required
-@role_checker('user')
+@role_checker("user")
 def dashboard():
 
-    table = get_table_info(current_user.id, current_user.role) 
-    print(table)
+    table = get_table_info(current_user.id, current_user.role)
     if table != []:
-        table_headers = [record for record in table[0].__dict__ if record != 'user_id' and record != 'id']
+        table_headers = [
+            record
+            for record in table[0].__dict__
+            if record != "user_id" and record != "id"
+        ]
 
         table_data = [record.__dict__ for record in table]
 
-        print(table_headers)
-        print(table_data)
-
-        print (current_user.username)
-        return render_template('users/dashboard.html', table_data=table_data, table_headers=table_headers)
+        return render_template(
+            "users/dashboard.html", table_data=table_data, table_headers=table_headers
+        )
     elif table == []:
-        return render_template('users/dashboard.html', table_data=None, table_headers=None)
+        return render_template(
+            "users/dashboard.html", table_data=None, table_headers=None
+        )
 
 
-@users.route('/profile', methods=['GET', 'POST'])
+@users.route("/profile", methods=["GET", "POST"])
 @login_required
-@role_checker('user')
+@role_checker("user")
 def profile():
     """
     Handles user profile updates.
@@ -163,53 +171,47 @@ def profile():
         current_password = form.current_password.data
         new_password = form.new_password.data
 
-        print(check_password_hash(current_user.password, current_password))
         if check_password_hash(current_user.password, current_password):
             # If the new password is provided
             if new_password:
                 # Hash the new password
                 hashed_password = generate_password_hash(new_password)
-                print("New password is being logged")
             # If the new password is not provided
             else:
                 # Keep the current password if new is not provided
                 hashed_password = current_user.password
 
-            print(f"UPDATING TO USER: {username}")
-            profile_data = {
-                'username': form.username.data,
-                'password': hashed_password
-            }
+            profile_data = {"username": form.username.data, "password": hashed_password}
 
-            existing_user = User.get(profile_data['username'])
-            print(f"USER: {existing_user}")
+            existing_user = User.get(profile_data["username"])
 
             # Check if the username already exists and it's not the current user's username
             if existing_user and str(ObjectId(existing_user.id)) != current_user.id:
-                flash('Username already exists!', 'danger')
-                return redirect(url_for('users.profile'))
+                flash("Username already exists!", "danger")
+                return redirect(url_for("users.profile"))
 
             # Update user information in the database
-            try: 
+            try:
                 User.update_profile(profile_data=profile_data)
-                flash('Profile updated successfully!', 'success')
+                flash("Profile updated successfully!", "success")
             except Exception as e:
-                print(f"Error updating user: {e}")
-                flash('Error updating user!', 'danger')
-                return redirect(url_for('users.profile'))
+                flash("Error updating user!", "danger")
+                return redirect(url_for("users.profile"))
+            return redirect(url_for("users.dashboard"))
 
-            
-
-            return redirect(url_for('users.dashboard'))
         else:
-            flash('Invalid password!', 'danger')
-            return redirect(url_for('users.profile'))
+            flash("Invalid password!", "danger")
+            return redirect(url_for("users.profile"))
 
-    return render_template('users/profile.html', form=form, data=current_user, passed_info=current_user.__dict__)
+    return render_template(
+        "users/profile.html",
+        form=form,
+        data=current_user,
+        passed_info=current_user.__dict__,
+    )
 
 
-
-@users.route('/users-list/<int:page>')
+@users.route("/users-list/<int:page>")
 def list_of_users(page=1):
     """
     This function retrieves a list of all users from the database and renders a template with the user data.
@@ -223,29 +225,25 @@ def list_of_users(page=1):
     """
 
     # PAGINATION = 9
-    per_page = 9 + 1 # add ONE to check if pagination forward is needed
+    per_page = 9 + 1  # add ONE to check if pagination forward is needed
     offset = (page - 1) * (per_page - 1)
-    # data = rawdata[offset:offset + per_page]
-    
 
     data = User.get_all_users(offset, per_page)
     if data is None:
-        flash('No users found!', 'info')
+        flash("No users found!", "info")
     flash(f"Total users retrieved: {len(data)}")
-    return render_template('users/users-list.html', data=data, page=page, d_type= 'users') 
+    return render_template(
+        "users/users-list.html", data=data, page=page, d_type="users"
+    )
 
 
 # display user's information
-
-@users.route('/user-info/<string:user_id>')
+@users.route("/user-info/<string:user_id>")
 def user_info(user_id):
-  
+
     user_data = User.get_by_id(user_id)
-    print(user_data)
     if user_data == None:
-        flash('User not found!', 'danger')
-        return redirect(url_for('users.list_of_users'))
-    
-    
-    
-    return render_template('users/show-user.html', data=user_data)
+        flash("User not found!", "danger")
+        return redirect(url_for("users.list_of_users"))
+
+    return render_template("users/show-user.html", data=user_data)

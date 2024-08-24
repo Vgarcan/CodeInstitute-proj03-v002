@@ -1,15 +1,27 @@
 from flask_login import UserMixin, current_user
 from ..extensions import mongo
-from bson import ObjectId, BSON
-from xemijobs.extensions import login_manager
+from bson import ObjectId
+
 
 class Company(UserMixin):
     def __init__(self, username, password, _id, role):
+        """
+        Initialize a new instance of the Company class.
+
+        Parameters:
+        username (str): The unique username of the company.
+        password (str): The password for the company.
+        _id (str): The unique identifier of the company.
+        role (str): The role of the company (e.g., 'admin', 'employee').
+
+        Returns:
+        None
+        """
         self.username = username
         self.password = password
         self.id = str(_id)
-        self.role = role 
-    
+        self.role = role
+
     @staticmethod
     def get(username):
         """
@@ -31,21 +43,29 @@ class Company(UserMixin):
         else:
             print("Company not found.")
         """
-        user_data = mongo.db.companies.find_one({'username': username})
+        user_data = mongo.db.companies.find_one({"username": username})
         if user_data:
             return Company(
-                username=user_data['username'], 
-                password=user_data['password'],
-                _id=str(user_data['_id']),
-                role=user_data['role']
+                username=user_data["username"],
+                password=user_data["password"],
+                _id=str(user_data["_id"]),
+                role=user_data["role"],
             )
         return None
-        
- 
+
     def get_id(self):
+        """
+        Returns the unique identifier of the company.
+
+        Parameters:
+        None. This method does not take any parameters.
+
+        Returns:
+        str: The unique identifier of the company. This identifier is a string representation of the ObjectId.
+        """
         return self.id
 
-#! CRUD-functions
+    #! CRUD-functions
 
     ## Create
     #! no Login needed
@@ -68,13 +88,8 @@ class Company(UserMixin):
         Example:
         Company.create_new_user('john_doe', 'password123', 'admin')
         """
-        new_user_data = {
-            'username': username,
-            'password': password,
-            'role': role
-        }
+        new_user_data = {"username": username, "password": password, "role": role}
         mongo.db.companies.insert_one(new_user_data)
-
 
     ## Read
     #! no Login needed
@@ -101,21 +116,20 @@ class Company(UserMixin):
         """
         try:
             # Attempt to find the company in the database using the provided user_id
-            user_data = mongo.db.companies.find_one({'_id': ObjectId(user_id)})
-            
+            user_data = mongo.db.companies.find_one({"_id": ObjectId(user_id)})
+
             # If a company is found, create a new Company object and return it
             if user_data:
                 return Company(
-                    username=user_data['username'], 
-                    password=user_data['password'],
-                    _id=str(user_data['_id']),
-                    role=user_data['role']
+                    username=user_data["username"],
+                    password=user_data["password"],
+                    _id=str(user_data["_id"]),
+                    role=user_data["role"],
                 )
         except Exception as e:
             # If an error occurs, print the error message and return None
             print("==============> Exception in get_by_id:", e)
             return None
-   
 
     @staticmethod
     def get(username):
@@ -138,16 +152,15 @@ class Company(UserMixin):
         else:
             print("Company not found.")
         """
-        user_data = mongo.db.companies.find_one({'username': username})
+        user_data = mongo.db.companies.find_one({"username": username})
         if user_data:
             return Company(
-                username=user_data['username'], 
-                password=user_data['password'],
-                _id=str(user_data['_id']),
-                role=user_data['role']
+                username=user_data["username"],
+                password=user_data["password"],
+                _id=str(user_data["_id"]),
+                role=user_data["role"],
             )
         return None
-    
 
     ## Update
     #! only COMPANIES
@@ -181,10 +194,9 @@ class Company(UserMixin):
         current_user_id = str(current_user.get_id())
         # Update the user's profile in the database
         mongo.db.companies.update_one(
-            {'_id': ObjectId(current_user_id)},
-            {"$set": profile_data})
-        
-    
+            {"_id": ObjectId(current_user_id)}, {"$set": profile_data}
+        )
+
     ## Delete
     #! only COMPANIES
     @staticmethod
@@ -215,4 +227,4 @@ class Company(UserMixin):
         # Retrieve the current user's ID
         current_user_id = str(current_user.get_id())
         # Delete the user from the database
-        mongo.db.companies.delete_one({'_id': ObjectId(current_user_id)})
+        mongo.db.companies.delete_one({"_id": ObjectId(current_user_id)})

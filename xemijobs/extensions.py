@@ -5,6 +5,7 @@ from bson import BSON, ObjectId
 mongo = PyMongo()
 login_manager = LoginManager()
 
+
 @login_manager.user_loader
 def load_user(user_id):
     """
@@ -19,19 +20,19 @@ def load_user(user_id):
     """
     from .users.models import User
     from .companies.models import Company
-    
+
     # Tries to load a User
     user = User.get_by_id(user_id)
     if user:
         return user
-    
+
     ##! If the user is null:
-    
+
     # Tries to load a Company
     company = Company.get_by_id(user_id)
     if company:
         return company
-    
+
     return None
 
 
@@ -55,57 +56,98 @@ def get_info_for(collection, id):
     from .users.models import User
     from .companies.models import Company
 
+    if collection == "users":
+        return User.get_by_id(id).username.replace("_", " ").capitalize()
+    elif collection == "companies":
+        return Company.get_by_id(id).username.replace("_", " ").capitalize()
+    elif collection == "jobs":
+        return Job.get_by_id(id).post_title.replace("_", " ").capitalize()
 
-    if collection == 'users':
-        return User.get_by_id(id).username.replace('_', ' ').capitalize()
-    elif collection == 'companies':
-        return Company.get_by_id(id).username.replace('_', ' ').capitalize()
-    elif collection == 'jobs':
-        return Job.get_by_id(id).post_title.replace('_', ' ').capitalize()
 
-def get_table_info(id,role, adv_id = None):
-    if role == 'user':
+def get_table_info(id, role, adv_id=None):
+    """
+    Retrieves data for a table based on the user's role and additional parameters.
+
+    Parameters:
+    id (str): The unique identifier of the user or company.
+    role (str): The role of the user or company. It can be either 'user' or 'company'.
+    adv_id (str, optional): The unique identifier of the advertisement (for companies).
+        If not provided, it defaults to None.
+
+    Returns:
+    list or None: A list containing the data for the table, or None if the role is not recognized.
+        If the role is 'user', it retrieves all applications submitted by the user.
+        If the role is 'company' and adv_id is None, it retrieves all job listings for the company.
+        If the role is 'company' and adv_id is not None, it retrieves all applications for the specified advertisement.
+    """
+    if role == "user":
         from .applications.models import Application
+
         table = Application.get_all_applications(id, role)
         return table
-    elif role == 'company':
-        if adv_id == None:
+    elif role == "company":
+        if adv_id is None:
             from .jobs.models import Job
+
             table = Job.get_comp_jobs(id)
             return table
-        elif adv_id != None:
+        elif adv_id is not None:
             from .applications.models import Application
+
             print("=======================> " + adv_id)
             table = Application.get_all_applications(adv_id, role)
             return table
-        
+
+
 def get_total_jobs():
+    """
+    This function retrieves the total number of job listings in the application.
+
+    Parameters:
+    None
+
+    Returns:
+    int: The total number of job listings in the application.
+    """
     from .jobs.models import Job
-    print("total josbs in EXTENSIONS.PY = ",Job.number_of_jobs())
+
+    print("total josbs in EXTENSIONS.PY = ", Job.number_of_jobs())
     return Job.number_of_jobs()
 
+
 def get_adds_for_info(id):
+    """
+    This function retrieves the total number of job listings, applications, and interviews scheduled for a company.
+
+    Parameters:
+    id (str): The unique identifier of the company for which to retrieve the information.
+
+    Returns:
+    list: A list containing three integers:
+        0. The total number of job listings for the company.
+        1. The total number of applications submitted for the company's job listings.
+        2. The total number of interviews scheduled for the company's job listings.
+    """
     from .jobs.models import Job
 
-    # get all ids from all jobs
+    # Get all job IDs associated with the company
     all_adds = Job.get_comp_jobs(id)
     id_list = [add.get_id() for add in all_adds]
     total_adds = len(id_list)
 
-    # for each id in list add all applications
+    # For each job ID, retrieve all applications and count the total number of applications and interviews scheduled
     from .applications.models import Application
-    appl_total=0
-    interviews_total=0
+
+    appl_total = 0
+    interviews_total = 0
 
     for add_id in id_list:
-        all_appl_for_add = Application.get_all_applications(add_id, 'company')
+        all_appl_for_add = Application.get_all_applications(add_id, "company")
         appl_total += len(all_appl_for_add)
 
-        # for each application check inteview_scheduled total
+        # For each application, check if the status is 'interview_scheduled' and increment the interviews total
         for app in all_appl_for_add:
-            if app.status == 'interview_scheduled':
+            if app.status == "interview_scheduled":
                 interviews_total += 1
-    
-    return [total_adds, appl_total, interviews_total]
 
-    
+    return [total_adds, appl_total, interviews_total]

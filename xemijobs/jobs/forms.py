@@ -12,10 +12,4 @@ class JobForm(FlaskForm):
     job_type = SelectField('Job Type', validators=[DataRequired()],choices=["Full-time", "Part-time", "Remote"], name='job_type')
     description = StringField('Description', validators=[DataRequired(), Length(min=4, max=500)], name='description')
     ends_on = DateField('Ends on:', validators=[DataRequired()], format='%Y-%m-%d', name='ends_on')
-
-    # # data added in views 
-    # published_on
-    # comp_name
-    # comp_id
-    
     submit = SubmitField('Create New Job!')
