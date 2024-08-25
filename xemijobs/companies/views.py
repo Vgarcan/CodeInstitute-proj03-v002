@@ -287,6 +287,7 @@ def profile():
         username = form.username.data
         current_password = form.current_password.data
         new_password = form.new_password.data
+        theme = form.theme.data
 
         print(check_password_hash(current_user.password, current_password))
         if check_password_hash(current_user.password, current_password):
@@ -300,7 +301,7 @@ def profile():
                 hashed_password = current_user.password
 
         print(f"UPDATING USER: {username}")
-        profile_data = {"username": form.username.data, "password": hashed_password}
+        profile_data = {"username": form.username.data, "password": hashed_password, "theme": form.theme.data}
 
         existing_user = Company.get(profile_data["username"])
         print(f"USER: {existing_user}")

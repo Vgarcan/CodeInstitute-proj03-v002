@@ -4,7 +4,7 @@ from bson import ObjectId
 
 
 class Company(UserMixin):
-    def __init__(self, username, password, _id, role):
+    def __init__(self, username, password, _id, role, theme = ''):
         """
         Initialize a new instance of the Company class.
 
@@ -21,6 +21,7 @@ class Company(UserMixin):
         self.password = password
         self.id = str(_id)
         self.role = role
+        self.theme = theme
 
     @staticmethod
     def get(username):
@@ -50,6 +51,7 @@ class Company(UserMixin):
                 password=user_data["password"],
                 _id=str(user_data["_id"]),
                 role=user_data["role"],
+                theme=user_data["theme"],
             )
         return None
 
@@ -88,7 +90,7 @@ class Company(UserMixin):
         Example:
         Company.create_new_user('john_doe', 'password123', 'admin')
         """
-        new_user_data = {"username": username, "password": password, "role": role}
+        new_user_data = {"username": username, "password": password, "role": role, 'theme': ''}
         mongo.db.companies.insert_one(new_user_data)
 
     ## Read
@@ -125,6 +127,7 @@ class Company(UserMixin):
                     password=user_data["password"],
                     _id=str(user_data["_id"]),
                     role=user_data["role"],
+                    theme=user_data["theme"],
                 )
         except Exception as e:
             # If an error occurs, print the error message and return None
@@ -159,6 +162,7 @@ class Company(UserMixin):
                 password=user_data["password"],
                 _id=str(user_data["_id"]),
                 role=user_data["role"],
+                theme=user_data["theme"],
             )
         return None
 

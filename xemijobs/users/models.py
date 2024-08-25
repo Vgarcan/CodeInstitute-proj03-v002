@@ -5,11 +5,12 @@ from bson import ObjectId
 
 
 class User(UserMixin):
-    def __init__(self, username, password, _id, role):
+    def __init__(self, username, password, _id, role, theme = '' ):
         self.username = username
         self.password = password
         self.id = str(_id)
         self.role = role
+        self.theme = theme
 
     def get_id(self):
         """
@@ -48,7 +49,7 @@ class User(UserMixin):
         It is assumed that the caller will handle any necessary validation.
         """
 
-        new_user_data = {"username": username, "password": password, "role": role}
+        new_user_data = {"username": username, "password": password, "role": role, 'theme': ''}
 
         mongo.db.users.insert_one(new_user_data)
 
@@ -77,6 +78,7 @@ class User(UserMixin):
                     password=user_data["password"],
                     _id=str(user_data["_id"]),
                     role=user_data["role"],
+                    theme=user_data["theme"],
                 )
         except Exception as e:
             print("==============> Exception in get_by_id:", e)
@@ -104,6 +106,7 @@ class User(UserMixin):
                 password=user_data["password"],
                 _id=str(user_data["_id"]),
                 role=user_data["role"],
+                theme=user_data["theme"],
             )
         return None
 
@@ -117,6 +120,7 @@ class User(UserMixin):
                 password=user_data["password"],
                 _id=str(user_data["_id"]),
                 role=user_data["role"],
+                theme=user_data["theme"],
             )
             for user_data in users_data
         ]

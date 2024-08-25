@@ -1,4 +1,3 @@
-
 <div class="container my-4">
     <div class="row">
         {% for item in data[0:9] %}
@@ -7,14 +6,14 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-3">
                         {% if item.image %}
-                        <img src="{{ item.image }}" class="img-fluid rounded-circle me-3" alt="Image" style="width: 60px; height: 60px;">
+                            <img src="{{ item.image }}" class="card-img-top me-3" alt="Image">
                         {% else %}
                             {% if item.ends_on %}
-                                <img src="{{ url_for('static', filename='imgs/none-img-comp.webp') }}" class="img-fluid rounded-circle me-3" alt="Image" style="width: 60px; height: 60px;">
+                                <img src="{{ url_for('static', filename='imgs/none-img-comp.webp') }}" class="card-img-top me-3" alt="Image">
                             {% elif item.role == 'company' %}
-                                <img src="{{ url_for('static', filename='imgs/none-img-comp.webp') }}" class="img-fluid rounded-circle me-3" alt="Image" style="width: 60px; height: 60px;">
+                                <img src="{{ url_for('static', filename='imgs/none-img-comp.webp') }}" class="card-img-top me-3" alt="Image">
                             {% elif item.role == 'user' %}
-                                <img src="{{ url_for('static', filename='imgs/none-img-user.webp') }}" class="img-fluid rounded-circle me-3" alt="Image" style="width: 60px; height: 60px;">
+                                <img src="{{ url_for('static', filename='imgs/none-img-user.webp') }}" class="card-img-top me-3" alt="Image">
                             {% endif %}
                         {% endif %}
                         <div>
@@ -34,16 +33,16 @@
                         </div>
                     </div>
                     {% if item.location %}
-                    <p class="card-text"><strong>{{ item.location }}</strong></p>
+                        <p class="card-text"><strong>{{ item.location }}</strong></p>
                     {% endif %}
                     {% if item.job_type %}
-                    <p class="card-text"><strong>{{ item.job_type }}</strong></p>
+                        <p class="card-text"><strong>{{ item.job_type }}</strong></p>
                     {% endif %}
                     {% if item.salary %}
-                    <p class="card-text"><strong>£{{ item.salary }}</strong></p>
+                        <p class="card-text"><strong>£{{ item.salary }}</strong></p>
                     {% endif %}
                     {% if item.description %}
-                    <p class="card-text">{{ item.description | truncate(100) }}</p>
+                        <p class="card-text">{{ item.description | truncate(100) }}</p>
                     {% endif %}
                 </div>
                 <div class="card-footer">

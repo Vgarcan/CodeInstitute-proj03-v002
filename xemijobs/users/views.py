@@ -165,11 +165,14 @@ def profile():
     flash: If the username already exists, display a flash message.
     """
     form = ProfileForm()
+    for key, value in current_user.__dict__.items():
+        print ('==========> ', key, ' : ', value)
 
     if form.validate_on_submit():
         username = form.username.data
         current_password = form.current_password.data
         new_password = form.new_password.data
+        theme = form.theme.data
 
         if check_password_hash(current_user.password, current_password):
             # If the new password is provided
@@ -181,7 +184,7 @@ def profile():
                 # Keep the current password if new is not provided
                 hashed_password = current_user.password
 
-            profile_data = {"username": form.username.data, "password": hashed_password}
+            profile_data = {"username": form.username.data, "password": hashed_password, "theme": form.theme.data}
 
             existing_user = User.get(profile_data["username"])
 

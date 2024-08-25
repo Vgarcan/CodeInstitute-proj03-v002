@@ -77,6 +77,8 @@ def job_detail(adv_id):
     and is named 'view-job.html'. The function passes the job details to the template.
     """
     job_details = Job.get_by_id(adv_id)
+    for key, value in job_details.__dict__.items():
+        print("=============>", key, ":", value)
     return render_template("jobs/view-job.html", data=job_details)
 
 

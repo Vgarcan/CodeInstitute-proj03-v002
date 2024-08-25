@@ -22,25 +22,6 @@
 }
 
 
-/* :root {
-    --primary-color: #2D3748;
-    --warning-color: #f6ca3b;
-    --secondary-color: #4F46E5;
-    --accent-color: #22C55E;
-    --background-color: #ececec;
-    --main-text-color: #2D3748;
-    --secondary-text-color: #737373;
-    --white-color: #FFFFFF;
-    --secondary-color-transparency: #4f46e5a8;
-    --accent-color-transparency: #22c55e68;
-    --light-gray-color: #f2f2f2;
-    --hover-accent-color: #1DA957;
-    --hover-button-color: #df9368;
-    --white-text-shadow: 1px 1px 2px var(--secondary-text-color);
-    --transparent: #000000;
-} */
-
-
 /* NEON BLUE LIGHT */
 
 .neon-blue-theme {
@@ -309,7 +290,10 @@ a:hover {
 }
 
 .card-img-top {
-    border-bottom: 1px solid var(--light-gray-color);
+    border-radius: 50%;
+    height: 6.4rem;
+    width: auto;
+    padding-bottom: 1.5rem;
 }
 
 .card-body {
@@ -327,6 +311,11 @@ a:hover {
 
 .btn-primary:hover {
     background-color: var(--hover-accent-color);
+}
+
+.text-muted {
+    color: var(--secondary-text-color) !important;
+    font-size: 1rem;
 }
 
 
