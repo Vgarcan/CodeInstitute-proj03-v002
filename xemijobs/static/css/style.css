@@ -717,6 +717,14 @@ i {
     background-size: cover;
 }
 
+.para-about {
+    min-height: 250px;
+    background-image: url('/static/imgs/banner2.jpg');
+    /* Create the parallax scrolling effect */
+    background-attachment: cover;
+    background-position: center;
+}
+
 .para-dash-comp {
     background-image: url('/static/imgs/banner.jpg');
     min-height: 200px;
@@ -729,6 +737,16 @@ i {
 
 .para-new-job {
     background-image: url('/static/imgs/city-blue-01.webp');
+    min-height: 200px;
+}
+
+.para-prof-user {
+    background-image: url('/static/imgs/office-green-01.webp');
+    min-height: 200px;
+}
+
+.para-prof-comp {
+    background-image: url('/static/imgs/office-green-02.webp');
     min-height: 200px;
 }
 
