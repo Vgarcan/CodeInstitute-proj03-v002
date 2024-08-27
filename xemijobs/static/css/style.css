@@ -709,11 +709,31 @@ i {
 
 .parallax {
     min-height: 450px;
+    background-image: url('/static/imgs/parallax-1.webp');
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.para-dash-comp {
+    background-image: url('/static/imgs/banner.jpg');
+    min-height: 200px;
+}
+
+.para-dash-user {
+    background-image: url('/static/imgs/office-blue-01.webp');
+    min-height: 200px;
+}
+
+.para-new-job {
+    background-image: url('/static/imgs/city-blue-01.webp');
+    min-height: 200px;
+}
+
+.white-parallax {
+    min-height: 100px;
 }
 
 #gl-cards {
@@ -811,5 +831,8 @@ section div {
     }
     #gl-cards>.rightimg {
         display: none;
+    }
+    .feat-alt>svg {
+        left: 2.6rem;
     }
 }

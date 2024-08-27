@@ -27,6 +27,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('main.index') }}">Home</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('jobs.job_list', page=1 ) }}">View Jobs</a>
+                </li>
                 {% if current_user.is_authenticated %}
                     {% if current_user.role == 'user' %}
                         <li class="nav-item">
@@ -38,6 +41,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('users.logout') }}">Logout</a>
                         </li>
+                        
                     {% elif current_user.role == 'company' %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('companies.dashboard') }}">Company Dashboard</a>

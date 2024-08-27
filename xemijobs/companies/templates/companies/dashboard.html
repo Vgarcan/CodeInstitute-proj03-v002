@@ -4,7 +4,17 @@
 
 {% block main_content %}
 
-    <h2>this is company's DASHBOARD</h2>
+    <section class="parallax para-dash-comp mb-3 align-items-center">
+
+        <div class="hero-section text-center text-white d-flex justify-content-center">
+            <div class="px-4 pt-5 my-3 text-center">
+                <div class="banner-title p-2">
+                        <h2 class="display-4 fw-bold ">Welcome <span>{{current_user.username | capitalize}}</span> to your Dashboard</h2>
+                </div>
+            </div>
+        </div>
+    
+    </section>
     {% if current_user.role == 'company' %}
         <div class="container">
             <div class="row">

@@ -666,11 +666,12 @@ Under the following terms:
 
 For more information about the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License, visit [here](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
-
-
 ## Bugs and Challenges
 
 [Not ready yet]
+
+- Update job : problems with textfields and selectfield using Jinja expressions.
+
 
 
 ## Acknowledgement
