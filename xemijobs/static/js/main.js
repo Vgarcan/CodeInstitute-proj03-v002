@@ -1,8 +1,30 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const toggler = document.querySelector('.navbar-toggler');
-    const navbarCollapse = document.querySelector('#navbarNav');
+document.addEventListener('DOMContentLoaded',
+    /**
+     * This function initializes the responsive behavior of the navigation bar.
+     * It adds a click event listener to the navbar toggler element, which toggles the collapse class on the navbar collapse element.
+     *
+     * @function
+     * @returns {void}
+     */
+    function() {
+        /**
+         * The navbar toggler element.
+         * @type {HTMLElement}
+         */
+        const toggler = document.querySelector('.navbar-toggler');
 
-    toggler.addEventListener('click', function() {
-        navbarCollapse.classList.toggle('collapse');
+        /**
+         * The navbar collapse element.
+         * @type {HTMLElement}
+         */
+        const navbarCollapse = document.querySelector('#navbarNav');
+
+        toggler.addEventListener('click', function() {
+            /**
+             * Toggles the 'collapse' class on the navbar collapse element.
+             */
+            navbarCollapse.classList.toggle('collapse');
+        });
     });
-});
+
+// Animations

@@ -208,6 +208,10 @@ a:hover {
     margin-bottom: 1.2rem;
 }
 
+.form-group textarea {
+    height: 17rem;
+}
+
 
 /* BTN */
 
@@ -775,6 +779,11 @@ i {
 .bg-jp .alt-num {
     color: var(--hover-button-color);
     text-shadow: var(--white-text-shadow);
+}
+
+section div {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
 }
 
 

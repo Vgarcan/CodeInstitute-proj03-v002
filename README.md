@@ -642,6 +642,7 @@ While tutorials and videos have been helpful as introductory material, offering 
 - [Creating a User Login System Using Python, Flask and MongoDB (by: Pretty Printed)](https://www.youtube.com/watch?v=vVx1737auSE)
 - [Flask and MongoDB w/ Flask-pymongo | Project Setup (by: Code With Prince)](https://www.youtube.com/watch?v=tJxMPvzkCyo&list=PLU7aW4OZeUzwN0TsZLZUuzhc0f7OVVBcT)
 - [Flask Blueprints Make Your Apps Modular & Professional (by: NeuralNine)](https://www.youtube.com/watch?v=_LMiUOYDxzE)
+- [Learn Intersection Observer In 15 Minutes (by:Web Dev Simplified)](https://www.youtube.com/watch?v=2IbRtjez6ag&t=139s)
 
 
 ---
