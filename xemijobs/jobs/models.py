@@ -184,20 +184,18 @@ class Job:
     def get_jobs_by_query(q, offset, per_page):
         mongo.db.jobs.create_index(
             [
-                ("post_title", "text"),
-                ("location", "text"),
-                ("salary", "text"),
-                ("job_type", "text"),
-                ("description", "text"),
-                ("comp_name", "text"),
+                ("post_title", ("text").lower()),
+                ("location", ("text").lower()),
+                ("salary", ("text").lower()),
+                ("job_type", ("text").lower()),
+                ("description", ("text").lower()),
+                ("comp_name", ("text").lower()),
             ]
         )
 
+        
         jobs_data = (
-            mongo.db.jobs.find({"$text": {"$search": q}})
-            .sort("published_on", -1)
-            .skip(offset)
-            .limit(per_page)
+            mongo.db.jobs.find({"$text": {"$search": q.lower()}}).sort("published_on", -1).skip(offset).limit(per_page)
         )
         return [
             Job(

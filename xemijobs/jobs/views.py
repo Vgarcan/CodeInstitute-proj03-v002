@@ -36,7 +36,7 @@ def job_list(page):
         d_type="jobs")
 
 
-@jobs.route("/search")
+@jobs.route("/search/<int:page>")
 def search(page=1):
     """
     This function handles the search functionality for job advertisements. It retrieves a paginated list of job advertisements
@@ -57,11 +57,14 @@ def search(page=1):
     print(query)
     results = []
     if query:
-        results = Job.get_jobs_by_query(query, offset=offset, per_page=per_page)
+        results = Job.get_jobs_by_query(
+            query,
+            offset=offset,
+            per_page=per_page)
 
     for j in results:
         print(j.id)
-    return render_template("jobs/jobs-list.html", data=results, page=page)
+    return render_template("jobs/jobs-list.html", data=results, page=page, d_type="jobs")
 
 
 @jobs.route("/job-detail/<adv_id>")
