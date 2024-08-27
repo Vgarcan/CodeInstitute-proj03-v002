@@ -208,7 +208,7 @@ a:hover {
     margin-bottom: 1.2rem;
 }
 
-.form-group textarea {
+.form-group .desc-field {
     height: 17rem;
 }
 

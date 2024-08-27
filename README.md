@@ -215,29 +215,57 @@ I'm incredibly proud of how this project has developed and hope it can serve as 
 
 ## Wireframes
 
-[Not ready yet]
-### Wireframes for Desktop
+The wireframes for this project served as a crucial guide during the development process, essentially acting as a blueprint for the design and layout of the website. Our focus was primarily on two key pages: the index and the dashboards. Given the repetitive nature of the dashboards, the same design was utilised for both user and company dashboards, with slight variations depending on the specific information displayed to each type of user. This was efficiently managed using Jinja templating, which allowed us to dynamically serve content based on the user type.
+
+We decided to highlight only two wireframes in this README as they are the most critical to the overall user experience. Other pages did not require such detailed wireframing and allowed for more creative freedom during development.
+
+### Index Page Overview
+The homepage starts with a compelling call to action, featuring a parallax effect designed to captivate visitors. This section offers users the option to either register or browse existing job listings. To enhance the professional image of the site, we included a Top 5 list showcasing the most popular companies on our platform, which adds credibility.
+
+Following this, the About Us section provides a brief introduction to the purpose of the site, helping visitors quickly understand what the site is about.
+
+To further build trust, we incorporated a testimonials section where current users share their experiences, making it easier for new visitors to relate and feel confident in using the platform.
+
+At the bottom of the page, we included a pricing section, clearly explaining that user registration is free, while companies are charged a fee. Each pricing option is linked to relevant benefits, with buttons that guide users or companies to the appropriate registration pages.
+
+Finally, the page concludes with a footer that reinforces credibility and includes essential links such as About Us, Terms and Conditions, and a quick contact area, making it easy for users to reach out if needed.
+#### Wireframes for Homepage
+---
 <details>
-  <summary>Wireframe for Homepage</summary>
+  <summary>Wireframe for Homepage Desktop</summary>
   <img src="xemijobs/static/imgs/readme-pics/wf-home.png" style="display: block; margin: auto;" alt="Wireframe for index page - Desktop">
 </details>
 
 <details>
-  <summary>Wireframe for Dashboard</summary>
-  <img src="xemijobs/static/imgs/readme-pics/wf-dash.png" style="display: block; margin: auto;" alt="Wireframe for Dashboard pages - Desktop">
-</details>
-
-### Wireframes for Responsive Devices
-<details>
-  <summary>Wireframe for Homepage</summary>
+  <summary>Wireframe for Homepage Responsive</summary>
   <img src="xemijobs/static/imgs/readme-pics/wf-home-resp.png" style="display: block; margin: auto;" alt="Wireframe for index page - Mobile">
 </details>
 
+### Dashboard Page Overview
+The **dashboard** page is thoughtfully organised into two main sections, ensuring clarity and ease of use for both users and companies. The layout dynamically adjusts based on the type of user, with content managed via Jinja templating and data passed from the views.
+
+1. **Information Tiles**: The first section displays three prominent **information tiles**, arranged horizontally on desktop and transitioning to a vertical stack on mobile devices for optimal readability. These tiles provide a quick overview:
+   - **For Users**: The tiles show the total number of applications submitted, the number of applications shortlisted, and the number of scheduled interviews.
+   - **For Companies**: The tiles display the total number of job postings created, the number of applications received, and the number of scheduled interviews.
+
+2. **Detailed Information Table**: Below the tiles, a detailed table provides further insights:
+   - **For Users**: The table allows users to track the status of their applications, offering a clear view of each submission.
+   - **For Companies**: The table initially displays a summary of all job postings. By interacting with the table, companies can drill down into specific job postings to view detailed application data for each position. 
+
+#### Wireframes for Dashboard
+---
 <details>
-  <summary>Wireframe for Dashboard</summary>
-  <img src="xemijobs/static/imgs/readme-pics/wf-dash-resp.png" style="display: block; margin: auto;" alt="Wireframe for Dashboard pages - Mobile">
+  <summary>Wireframe for Dashboard Desktop</summary>
+  <img src="xemijobs/static/imgs/readme-pics/wf-dash.png" style="display: block; margin: auto;" alt="Wireframe for Dashboard pages - Desktop">
 </details>
 
+<details>
+  <summary>Wireframe for Dashboard Responsive</summary>
+  <img src="xemijobs/static/imgs/readme-pics/wf-dash-resp.png" style="display: block; margin: auto;" alt="Wireframe for index page - Mobile">
+</details>
+
+#### Mobile first design
+To ensure a seamless experience across devices, Bootstrap is used to make the dashboard fully responsive. On mobile devices, the table features horizontal scrolling to prevent content compression, maintaining clarity and usability. Additionally, each table row highlights with a colour change on hover, making it easier for users to track their interactions as they navigate the dashboard.
 
 ## Colors
 
@@ -265,9 +293,20 @@ The color palette for this project has been carefully selected to ensure a profe
 
 This color palette was chosen not only for its visual appeal but also for its contribution to a cohesive and user-friendly interface, reinforcing the professional and serious tone of the application.
 
+
 ### Color Customization Process
 
-[Not ready yet]
+The colour customization process in this project was designed to offer flexibility and personalisation for both users and companies. We implemented a series of **CSS Variables** to define various colour palettes, allowing users to choose a theme that suits their preferences directly from their profile page.
+
+Key elements of the colour customization process include:
+
+- **Multiple Colour Palettes**: We created several distinct colour palettes, each with its unique style—ranging from more traditional to modern and alternative designs. The default palette, known as the **root palette**, is the primary theme that all users see upon first visiting the site.
+
+- **User-Selectable Themes**: Once registered, users and companies have the option to customise their experience by selecting from the available colour palettes. This feature is accessible through the profile page, where users can easily switch between the pre-designed themes to match their personal or brand preferences.
+
+- **CSS Variables**: The different colour palettes are implemented using CSS Variables, which allows for dynamic and flexible styling of various elements across the site. This ensures a consistent and responsive design while providing a personalised experience for each user.
+
+This approach to colour customization not only enhances the aesthetic appeal of the site but also allows for a tailored user experience, making the platform more engaging and adaptable to individual preferences.
 
 ## User-Friendly Approach
 
@@ -445,13 +484,23 @@ While our desktop version scores are very high, the mobile version, though still
 
 ### JSHint Validation
 
-[Not ready yet]
+Although our project doesn't include an extensive amount of JavaScript, we have ensured that the code we do have is fully validated using **JSHint**. We are pleased to report that our JavaScript code has passed the validation process with a 100% clean bill of health—no errors whatsoever.
 
+In addition to being error-free, the JavaScript code is thoroughly commented and documented. This will make it easier for future developers to understand the purpose and function of each part of the code.
+
+We have also utilised **jQuery** in the project, and we're happy to confirm that it, too, has successfully passed through JSHint validation without any issues.
 
 ### PEP8 Validation
 
-[Not ready yet]
+In line with the **PEP8** convention, we have taken steps to ensure that our code is well-structured and maintainable. Specifically, we have:
 
+- Ensured that all functions are appropriately commented to clarify their purpose and functionality.
+- Maintained a two-line separation between functions and classes to improve readability.
+- Made efforts to eliminate unnecessary code to keep the codebase clean and efficient.
+
+While conducting our PEP8 validation, we did identify a few issues that need attention. We are committed to addressing these in the future and continuously improving our codebase. Given the scope of our project, maintaining perfect PEP8 compliance is challenging, but we strive to adhere to these standards as closely as possible.
+
+To assist in this process, we utilised the formatter tool from [codebeautify.org](https://codebeautify.org/python-formatter-beautifier#). This tool has been instrumental in helping us format and beautify our Python code, and we would like to acknowledge the valuable contribution of CodeBeautify in this regard.
 
 ### Device Testing
 
@@ -471,6 +520,8 @@ We have conducted extensive testing to ensure that the website is fully compatib
 - <img src="xemijobs/static/imgs/readme-pics/opera-icon.ico" width="18px"> **Opera**
 - <img src="xemijobs/static/imgs/readme-pics/firefox-icon.ico" width="18px"> **Mozilla Firefox**
 - <img src="xemijobs/static/imgs/readme-pics/safari-icon.ico" width="18px"> **Safari**
+
+<img src="xemijobs/static/imgs/readme-pics/browser-test.png" style="display: block; margin: auto;" alt="Browser testing picture">
 
 In each browser, the website performs smoothly, maintaining consistent functionality and appearance. We focused on ensuring that all features, from user registration to job application processes, operate seamlessly regardless of the browser used.
 

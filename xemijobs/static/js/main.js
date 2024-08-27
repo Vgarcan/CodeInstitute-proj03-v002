@@ -26,5 +26,3 @@ document.addEventListener('DOMContentLoaded',
             navbarCollapse.classList.toggle('collapse');
         });
     });
-
-// Animations

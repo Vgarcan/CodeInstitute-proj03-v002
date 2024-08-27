@@ -4,7 +4,7 @@ from bson import ObjectId
 
 
 class Company(UserMixin):
-    def __init__(self, username, password, _id, role, theme = ''):
+    def __init__(self, username, password, _id, role, theme=""):
         """
         Initialize a new instance of the Company class.
 
@@ -90,7 +90,12 @@ class Company(UserMixin):
         Example:
         Company.create_new_user('john_doe', 'password123', 'admin')
         """
-        new_user_data = {"username": username, "password": password, "role": role, 'theme': ''}
+        new_user_data = {
+            "username": username,
+            "password": password,
+            "role": role,
+            "theme": "",
+        }
         mongo.db.companies.insert_one(new_user_data)
 
     ## Read

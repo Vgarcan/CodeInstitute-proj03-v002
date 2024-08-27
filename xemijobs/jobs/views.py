@@ -143,6 +143,8 @@ def edit_job(adv_id):
     """
 
     job_details = Job.get_by_id(adv_id)
+    for key, value in job_details.__dict__.items():
+        print("=============>", key, ":", value)
 
     form = JobForm()
 
