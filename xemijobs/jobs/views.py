@@ -57,14 +57,25 @@ def search(page=1):
     print(query)
     results = []
     if query:
-        results = Job.get_jobs_by_query(
-            query,
-            offset=offset,
-            per_page=per_page)
+        try:
+            results = Job.get_jobs_by_query(
+                query,
+                offset=offset,
+                per_page=per_page)
+            if len(results) == 0:
+                flash(f"No jobs found for: {query}", "error")
+                return redirect(url_for("jobs.search", page=1))
+            
+            return render_template("jobs/jobs-list.html", data=results, page=page, d_type="jobs")
+        except Exception as e:
+            flash(f"An error occurred while searching: {str(e)}", "error")
+            return redirect(url_for("jobs.search", page=1))
+            
+    else:
+        flash("Please type a query in the search bar", "info")
+        return redirect(url_for("jobs.job_list", page=1))
 
-    for j in results:
-        print(j.id)
-    return render_template("jobs/jobs-list.html", data=results, page=page, d_type="jobs")
+    
 
 
 @jobs.route("/job-detail/<adv_id>")

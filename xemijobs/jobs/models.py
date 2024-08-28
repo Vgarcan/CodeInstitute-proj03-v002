@@ -195,7 +195,10 @@ class Job:
 
         
         jobs_data = (
-            mongo.db.jobs.find({"$text": {"$search": q.lower()}}).sort("published_on", -1).skip(offset).limit(per_page)
+            mongo.db.jobs.find(
+                {"$text": {"$search": q.lower()}}
+                ).sort("published_on", -1).skip(offset).limit(per_page)
+
         )
         return [
             Job(
