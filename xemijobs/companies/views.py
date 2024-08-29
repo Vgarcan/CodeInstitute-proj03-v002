@@ -283,6 +283,8 @@ def profile():
     """
     form = ProfileForm()
 
+    
+
     if form.validate_on_submit():
         username = form.username.data
         current_password = form.current_password.data
@@ -301,7 +303,7 @@ def profile():
                 hashed_password = current_user.password
 
         print(f"UPDATING USER: {username}")
-        profile_data = {"username": form.username.data, "password": hashed_password, "theme": form.theme.data}
+        profile_data = {"username": form.username.data, "password": hashed_password, "theme": theme}
 
         existing_user = Company.get(profile_data["username"])
         print(f"USER: {existing_user}")
@@ -320,6 +322,10 @@ def profile():
 
         flash("Profile updated successfully!", "success")
         return redirect(url_for("companies.dashboard"))
+
+    # populate the form fields
+    
+    form.theme.data = current_user.theme
 
     return render_template(
         "companies/profile.html", form=form, passed_info=current_user.__dict__

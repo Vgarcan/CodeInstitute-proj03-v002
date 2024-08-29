@@ -184,6 +184,10 @@ def edit_job(adv_id):
             print("There was an error creating ======> " + str(e))
             flash("Job was not updated: " + str(e), "error")
             return redirect(url_for("jobs.edit_job", adv_id=adv_id))
+        
+    # populate the form fields
+    form.job_type.data = job_details.job_type
+    form.description.data = job_details.description
 
     return render_template("jobs/create-job.html", form=form, passed_info=job_details)
 

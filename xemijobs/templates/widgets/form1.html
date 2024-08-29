@@ -7,6 +7,11 @@
                     {% if field.name == 'ends_on' %}
                         {{ field.label(class="form-label") }}
                         {{ field(class="form-control", placeholder=field.label.text, value=passed_info[field.name].strftime('%Y-%m-%d')) }}
+                    {% elif field.name == 'current_password' %}
+                        <span>To apply changes introduce your <b>Current Password</b></span>
+                        <hr>
+                        {{ field.label(class="form-label") }}
+                        {{ field(class="form-control", placeholder=field.label.text) }}
                     {% else %}
                         {{ field.label(class="form-label") }}
                         {{ field(class="form-control", placeholder=field.label.text, value=passed_info[field.name]) }}

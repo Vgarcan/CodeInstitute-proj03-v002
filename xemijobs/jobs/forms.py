@@ -10,6 +10,6 @@ class JobForm(FlaskForm):
     location = StringField('Location', validators=[DataRequired(), Length(min=4, max=25)], name='location')
     salary = IntegerField('Salary', validators=[DataRequired()], name='salary')
     job_type = SelectField('Job Type', validators=[DataRequired()],choices=["Full-time", "Part-time", "Remote"], name='job_type')
-    description = StringField('Description', validators=[DataRequired(), Length(min=4, max=1500)], name='description')
+    description = TextAreaField('Description', validators=[DataRequired(), Length(min=4, max=1500)], name='description')
     ends_on = DateField('Ends on:', validators=[DataRequired()], format='%Y-%m-%d', name='ends_on')
     submit = SubmitField('Create New Job!')

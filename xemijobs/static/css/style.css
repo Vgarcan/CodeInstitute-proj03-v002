@@ -208,7 +208,7 @@ a:hover {
     margin-bottom: 1.2rem;
 }
 
-.form-group .desc-field {
+.form-group textarea {
     height: 17rem;
 }
 
@@ -481,10 +481,8 @@ a:hover {
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    /* filter: invert(100%); */
     background-color: var(--secondary-color-transparency);
     border-radius: 50%;
-    /* Change to white */
 }
 
 .carousel-control-prev:hover .carousel-control-prev-icon,
@@ -582,14 +580,12 @@ i {
     color: var(--alter-text-color);
     text-shadow: var(--white-text-shadow);
     font-size: 1.18rem;
-    /* margin-bottom: 1rem; */
 }
 
 .xemi-statisic h5 {
     color: var(--hover-button-color);
     text-shadow: var(--white-text-shadow);
     font-size: 2.6rem;
-    /* margin-bottom: 1rem; */
 }
 
 
@@ -634,9 +630,7 @@ i {
 .testimonial-card>div {
     border-radius: 10px;
     box-shadow: var(--white-text-shadow);
-    /* padding: 1rem; */
     margin-bottom: 1rem;
-    /* margin-right: 0.1rem; */
     background-color: var(--white-color);
 }
 
@@ -710,7 +704,6 @@ i {
 .parallax {
     min-height: 450px;
     background-image: url('/static/imgs/parallax-1.webp');
-    /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: top;
     background-repeat: no-repeat;
@@ -720,7 +713,6 @@ i {
 .para-about {
     min-height: 250px;
     background-image: url('/static/imgs/banner2.jpg');
-    /* Create the parallax scrolling effect */
     background-attachment: cover;
     background-position: center;
 }
@@ -759,11 +751,6 @@ i {
     z-index: 1;
     overflow: hidden;
 }
-
-
-/* #gl-cards h2 {
-    z-index: 1;
-} */
 
 #gl-cards>.leftimg {
     position: absolute;

@@ -32,7 +32,6 @@ class ProfileForm(FlaskForm):
     username = StringField(
         "Username", validators=[DataRequired(), Length(min=2, max=20)]
     )
-    current_password = PasswordField("Current Password", validators=[Optional()])
     theme = SelectField(
         "Choose your theme",
         validators=[DataRequired()],
@@ -45,4 +44,5 @@ class ProfileForm(FlaskForm):
     confirm_password = PasswordField(
         "Confirm New Password", validators=[Optional(), EqualTo("new_password")]
     )
+    current_password = PasswordField("Current Password", validators=[Optional()])
     submit = SubmitField("Update Profile")
