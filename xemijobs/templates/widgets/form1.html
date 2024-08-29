@@ -11,7 +11,10 @@
                         <span>To apply changes introduce your <b>Current Password</b></span>
                         <hr>
                         {{ field.label(class="form-label") }}
-                        {{ field(class="form-control", placeholder=field.label.text) }}
+                        {{ field(class="form-control required", placeholder=field.label.text) }}
+                    {% elif field.type == "SelectField" %}
+                        {{ field.label(class="form-label") }}
+                        {{ field(class="form-control") }}
                     {% else %}
                         {{ field.label(class="form-label") }}
                         {{ field(class="form-control", placeholder=field.label.text, value=passed_info[field.name]) }}

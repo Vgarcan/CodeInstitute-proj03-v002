@@ -713,7 +713,6 @@ i {
 .para-about {
     min-height: 250px;
     background-image: url('/static/imgs/banner2.jpg');
-    background-attachment: cover;
     background-position: center;
 }
 

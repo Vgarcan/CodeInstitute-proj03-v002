@@ -2,8 +2,6 @@ from flask import Blueprint, render_template, redirect, url_for, flash
 from flask_login import login_user, logout_user, login_required, current_user
 from .forms import RegistrationForm, LoginForm, ProfileForm
 from .models import Company
-
-# from ..applications.models import Application
 from werkzeug.security import generate_password_hash, check_password_hash
 from ..extensions import mongo, ObjectId, get_table_info, get_adds_for_info
 from ..decoratros import role_checker
@@ -241,6 +239,7 @@ def adv_dash(adv_id):
             table_data=table_data,
             table_headers=table_headers,
             display_info=get_adds_for_info(current_user.id),
+            go_back=True
         )
     elif table == []:
         return render_template(
@@ -248,6 +247,7 @@ def adv_dash(adv_id):
             table_data=None,
             table_headers=None,
             display_info=get_adds_for_info(current_user.id),
+            go_back=True
         )
 
 
@@ -295,15 +295,23 @@ def profile():
         if check_password_hash(current_user.password, current_password):
             # If the new password is provided
             if new_password:
-                # Hash the new password
-                hashed_password = generate_password_hash(new_password)
+                try:
+                    # Hash the new password
+                    hashed_password = generate_password_hash(new_password)
+                except Exception as e:
+                    flash('Error generating new password', 'error')
+                    return redirect(url_for("companies.profile"))
             # If the new password is not provided
             else:
                 # Keep the current password if new is not provided
                 hashed_password = current_user.password
 
         print(f"UPDATING USER: {username}")
-        profile_data = {"username": form.username.data, "password": hashed_password, "theme": theme}
+        profile_data = {
+            "username": form.username.data,
+            "password": hashed_password,
+            "theme": theme
+            }
 
         existing_user = Company.get(profile_data["username"])
         print(f"USER: {existing_user}")

@@ -50,11 +50,22 @@
     <br>
 
     <div class="container">
-        <div class="row">
-            {% if table_data != None %}
-                {% include "widgets/table-green.html" %}
-            {% endif %}        
+        <div class='container text-center '>
+            {% if go_back == True %}
+                <a href={{ url_for('companies.dashboard')}} class="btn btn-primary m-3 ">Go back to Adverts</a>
+            {% endif %}
         </div>
+        {% if table_data != None %}
+            <div class="row">
+                {% include "widgets/table-green.html" %}
+            </div>
+            <div class='container text-center '>
+                {% if go_back == True and table_data | length > 6 %}
+                    <a href={{ url_for('companies.dashboard')}} class="btn btn-primary m-3 ">Go back to Adverts</a>
+                {% endif %}
+            </div>
+        {% endif %}        
     </div>
+    
 {% endblock main_content %}
 

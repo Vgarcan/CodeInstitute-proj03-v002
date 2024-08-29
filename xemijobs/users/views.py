@@ -177,14 +177,18 @@ def profile():
         if check_password_hash(current_user.password, current_password):
             # If the new password is provided
             if new_password:
-                # Hash the new password
-                hashed_password = generate_password_hash(new_password)
+                try:
+                    # Hash the new password
+                    hashed_password = generate_password_hash(new_password)
+                except Exception as e:
+                    flash(f"Error generating new password", "danger")
+                    return redirect(url_for("users.profile"))
             # If the new password is not provided
             else:
                 # Keep the current password if new is not provided
                 hashed_password = current_user.password
 
-            profile_data = {"username": form.username.data, "password": hashed_password, "theme": form.theme.data}
+            profile_data = {"username": username, "password": hashed_password, "theme": theme}
 
             existing_user = User.get(profile_data["username"])
 
