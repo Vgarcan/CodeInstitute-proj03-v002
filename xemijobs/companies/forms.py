@@ -44,5 +44,7 @@ class ProfileForm(FlaskForm):
     confirm_password = PasswordField(
         "Confirm New Password", validators=[EqualTo("new_password")]
     )
-    current_password = PasswordField("Current Password", validators=[DataRequired()])
+    current_password = PasswordField(
+        "Current Password", validators=[DataRequired()]
+    )
     submit = SubmitField("Update Profile")

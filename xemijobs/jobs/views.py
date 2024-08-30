@@ -26,14 +26,12 @@ def job_list(page):
     offset = (page - 1) * (per_page - 1)
 
     listed_jobs = Job.get_all_jobs(offset, per_page)
- 
+
     for j in listed_jobs:
         print(j.id)
     return render_template(
-        "jobs/jobs-list.html",
-        data=listed_jobs,
-        page=page,
-        d_type="jobs")
+        "jobs/jobs-list.html", data=listed_jobs, page=page, d_type="jobs"
+    )
 
 
 @jobs.route("/search/<int:page>")
@@ -58,24 +56,21 @@ def search(page=1):
     results = []
     if query:
         try:
-            results = Job.get_jobs_by_query(
-                query,
-                offset=offset,
-                per_page=per_page)
+            results = Job.get_jobs_by_query(query, offset=offset, per_page=per_page)
             if len(results) == 0:
                 flash(f"No jobs found for: {query}", "error")
                 return redirect(url_for("jobs.search", page=1))
-            
-            return render_template("jobs/jobs-list.html", data=results, page=page, d_type="jobs")
+
+            return render_template(
+                "jobs/jobs-list.html", data=results, page=page, d_type="jobs"
+            )
         except Exception as e:
             flash(f"An error occurred while searching: {str(e)}", "error")
             return redirect(url_for("jobs.search", page=1))
-            
+
     else:
         flash("Please type a query in the search bar", "info")
         return redirect(url_for("jobs.job_list", page=1))
-
-    
 
 
 @jobs.route("/job-detail/<adv_id>")
@@ -184,7 +179,7 @@ def edit_job(adv_id):
             print("There was an error creating ======> " + str(e))
             flash("Job was not updated: " + str(e), "error")
             return redirect(url_for("jobs.edit_job", adv_id=adv_id))
-        
+
     # populate the form fields
     form.job_type.data = job_details.job_type
     form.description.data = job_details.description

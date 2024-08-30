@@ -11,6 +11,7 @@ companies = Blueprint(
     "companies", __name__, template_folder="templates", static_folder="static"
 )
 
+
 @companies.route("/register", methods=["GET", "POST"])
 def register():
     """
@@ -239,7 +240,7 @@ def adv_dash(adv_id):
             table_data=table_data,
             table_headers=table_headers,
             display_info=get_adds_for_info(current_user.id),
-            go_back=True
+            go_back=True,
         )
     elif table == []:
         return render_template(
@@ -247,7 +248,7 @@ def adv_dash(adv_id):
             table_data=None,
             table_headers=None,
             display_info=get_adds_for_info(current_user.id),
-            go_back=True
+            go_back=True,
         )
 
 
@@ -283,8 +284,6 @@ def profile():
     """
     form = ProfileForm()
 
-    
-
     if form.validate_on_submit():
         username = form.username.data
         current_password = form.current_password.data
@@ -299,7 +298,7 @@ def profile():
                     # Hash the new password
                     hashed_password = generate_password_hash(new_password)
                 except Exception as e:
-                    flash('Error generating new password', 'error')
+                    flash("Error generating new password", "error")
                     return redirect(url_for("companies.profile"))
             # If the new password is not provided
             else:
@@ -312,8 +311,8 @@ def profile():
             profile_data = {
                 "username": form.username.data,
                 "password": hashed_password,
-                "theme": theme
-                }
+                "theme": theme,
+            }
         except Exception as e:
             print(f"Error updating user: {e}")
             flash("Error updating user!", "danger")
@@ -338,7 +337,7 @@ def profile():
         return redirect(url_for("companies.dashboard"))
 
     # populate the form fields
-    
+
     form.theme.data = current_user.theme
 
     return render_template(

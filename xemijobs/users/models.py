@@ -5,7 +5,7 @@ from bson import ObjectId
 
 
 class User(UserMixin):
-    def __init__(self, username, password, _id, role, theme = '' ):
+    def __init__(self, username, password, _id, role, theme=""):
         self.username = username
         self.password = password
         self.id = str(_id)
@@ -49,7 +49,12 @@ class User(UserMixin):
         It is assumed that the caller will handle any necessary validation.
         """
 
-        new_user_data = {"username": username, "password": password, "role": role, 'theme': ''}
+        new_user_data = {
+            "username": username,
+            "password": password,
+            "role": role,
+            "theme": "",
+        }
 
         mongo.db.users.insert_one(new_user_data)
 

@@ -313,6 +313,10 @@ a:hover {
     color: var(--secondary-text-color);
 }
 
+.card .text-desc {
+    white-space: pre-line;
+}
+
 .btn-primary:hover {
     background-color: var(--hover-accent-color);
 }

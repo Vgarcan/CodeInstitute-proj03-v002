@@ -193,12 +193,11 @@ class Job:
             ]
         )
 
-        
         jobs_data = (
-            mongo.db.jobs.find(
-                {"$text": {"$search": q.lower()}}
-                ).sort("published_on", -1).skip(offset).limit(per_page)
-
+            mongo.db.jobs.find({"$text": {"$search": q.lower()}})
+            .sort("published_on", -1)
+            .skip(offset)
+            .limit(per_page)
         )
         return [
             Job(
@@ -255,9 +254,7 @@ class Job:
         >>> Job.update_job('5f17c1234567890123456789', **job_data)
         """
         try:
-            mongo.db.jobs.update_one(
-                {"_id": ObjectId(job_id)}, {"$set": job_data}
-            )
+            mongo.db.jobs.update_one({"_id": ObjectId(job_id)}, {"$set": job_data})
         except Exception as e:
             raise Exception("Error updating job ", e)
 

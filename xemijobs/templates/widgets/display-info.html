@@ -30,39 +30,42 @@
     </div>
 
     
-    
-    <!-- Ubicación -->
-    {% if data.location %}
-        <p class="card-text"><strong>{{ data.location }}</strong></p>
-    {% endif %}
-    
-    <!-- Tipo de trabajo -->
-    {% if data.job_type %}
-        <p class="card-text"><strong>{{ data.job_type }}</strong></p>
-    {% endif %}
-    
-    <!-- Salario -->
-    {% if data.salary %}
-        <p class="card-text"><strong>£{{ data.salary }}</strong></p>
-    {% endif %}
-    
-    <!-- Descripción -->
-    {% if data.description %}
-        <p class="card-text">{{ data.description }}</p>
-    {% endif %}
-    
-    <!-- Fecha de finalización -->
-    {% if data.ends_on %}
-        <p class="card-text"><strong>Ends on:</strong> {{ data.ends_on }}</p>
-    {% endif %}
-    
-    <!-- Fecha de publicación -->
-    {% if data.published_on %}
-        <p class="card-text"><strong>Published on:</strong> {{ data.published_on }}</p>
-    {% endif %}
-    
-    <!-- Botón de aplicar si existe 'ends_on' -->
-    {% if data.ends_on %}
-        <a href="{{ url_for('applications.apply', adv_id=data.id) }}" class="btn btn-primary w-100 mt-3">Apply for this job</a>
-    {% endif %}
+    <div class="card-display mx-3">
+
+        
+        <!-- location -->
+        {% if data.location %}
+            <p class="card-text"><strong>{{ data.location }}</strong></p>
+        {% endif %}
+        
+        <!-- Job Type -->
+        {% if data.job_type %}
+            <p class="card-text"><strong>{{ data.job_type }}</strong></p>
+        {% endif %}
+        
+        <!-- Salary -->
+        {% if data.salary %}
+            <p class="card-text"><strong>£{{ data.salary }}</strong></p>
+        {% endif %}
+        
+        <!-- Description -->
+        {% if data.description %}
+            <p class="card-text text-desc">{{ data.description }}</p>
+        {% endif %}
+        
+        <!-- Ends On -->
+        {% if data.ends_on %}
+            <p class="card-text"><strong>Ends on:</strong> {{ data.ends_on }}</p>
+        {% endif %}
+        
+        <!-- Published On -->
+        {% if data.published_on %}
+            <p class="card-text"><strong>Published on:</strong> {{ data.published_on }}</p>
+        {% endif %}
+        
+        <!-- If 'ends_on' in DATA show APPLY BUTTON -->
+        {% if data.ends_on %}
+            <a href="{{ url_for('applications.apply', adv_id=data.id) }}" class="btn btn-primary w-100 mt-3">Apply for this job</a>
+        {% endif %}
+    </div>
 </div>

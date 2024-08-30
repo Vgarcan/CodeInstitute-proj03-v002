@@ -166,7 +166,7 @@ def profile():
     """
     form = ProfileForm()
     for key, value in current_user.__dict__.items():
-        print ('==========> ', key, ' : ', value)
+        print("==========> ", key, " : ", value)
 
     if form.validate_on_submit():
         username = form.username.data
@@ -189,7 +189,11 @@ def profile():
                 hashed_password = current_user.password
             try:
 
-                profile_data = {"username": username, "password": hashed_password, "theme": theme}
+                profile_data = {
+                    "username": username,
+                    "password": hashed_password,
+                    "theme": theme,
+                }
             except Exception as e:
                 flash(f"Error updating user!", "danger")
                 return redirect(url_for("users.profile"))
