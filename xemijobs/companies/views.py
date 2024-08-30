@@ -307,11 +307,17 @@ def profile():
                 hashed_password = current_user.password
 
         print(f"UPDATING USER: {username}")
-        profile_data = {
-            "username": form.username.data,
-            "password": hashed_password,
-            "theme": theme
-            }
+        try:
+
+            profile_data = {
+                "username": form.username.data,
+                "password": hashed_password,
+                "theme": theme
+                }
+        except Exception as e:
+            print(f"Error updating user: {e}")
+            flash("Error updating user!", "danger")
+            return redirect(url_for("companies.profile"))
 
         existing_user = Company.get(profile_data["username"])
         print(f"USER: {existing_user}")

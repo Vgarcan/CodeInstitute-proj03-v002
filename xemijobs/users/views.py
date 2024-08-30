@@ -187,9 +187,12 @@ def profile():
             else:
                 # Keep the current password if new is not provided
                 hashed_password = current_user.password
+            try:
 
-            profile_data = {"username": username, "password": hashed_password, "theme": theme}
-
+                profile_data = {"username": username, "password": hashed_password, "theme": theme}
+            except Exception as e:
+                flash(f"Error updating user!", "danger")
+                return redirect(url_for("users.profile"))
             existing_user = User.get(profile_data["username"])
 
             # Check if the username already exists and it's not the current user's username
