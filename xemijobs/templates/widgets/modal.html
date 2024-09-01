@@ -15,7 +15,7 @@
                     <br>
                 {% endfor %}
             </div>
-            {% if modal_data.footer %}
+            {% if modal_data.footer_active == True %}
             <div class="modal-footer">
                 {% if modal_data.footer %} {{ modal_data.footer }} {% endif %}
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -427,6 +427,8 @@ a:hover {
     background-color: var(--light-gray-color);
     border-color: var(--light-gray-color);
     color: var(--primary-color);
+    text-shadow: none;
+    font-weight: 500;
 }
 
 .modal-footer .btn-secondary:hover {
@@ -439,6 +441,7 @@ a:hover {
     background-color: var(--accent-color);
     border-color: var(--accent-color);
     color: var(--white-color);
+    font-weight: 500;
 }
 
 .modal-footer .btn-primary:hover {

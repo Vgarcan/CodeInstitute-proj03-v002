@@ -128,6 +128,7 @@
                             'modal_id': 'del-modal-user' ,
                             'body': ["You are about to delete your APPLICATION for this job."," Do you want to proceed?"],
                             'btn_text': 'DELETE',
+                            'footer_active': True,
                             'btn_class': 'btn-danger',
                             'btn_link': url_for('applications.delete_user_appl', appli_id= context.id)
                         } %}
@@ -180,6 +181,7 @@
                                     {% set modal_data = {
                                         'modal_id': 'del-modal-company' ,
                                         'body': ["You are about to delete an ADVERT and all its associated APPLICATIONS."," Do you want to proceed?"],
+                                        'footer_active': True,
                                         'btn_text': 'DELETE',
                                         'btn_class': 'btn-danger',
                                         'btn_link': url_for('applications.delete_all_appls_from_adv', adv_id= context.id)
@@ -188,6 +190,7 @@
                                     {% set modal_data = {
                                         'modal_id': 'del-modal-company' ,
                                         'body': ["You are about to delete this APPLICATIONS."," Do you want to proceed?"],
+                                        'footer_active': True,
                                         'btn_text': 'DELETE',
                                         'btn_class': 'btn-danger',
                                         'btn_link': url_for('applications.delete_user_appl', appli_id= context.id)
