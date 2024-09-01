@@ -35,6 +35,10 @@ def register():
         2.5. If the user already exists, display a flash message and redirect to the registration page.
     3. If the form is not submitted or contains errors, render the registration template with the form.
     """
+    
+    if current_user.is_authenticated and current_user.role == 'company':
+        return redirect(url_for("companies.dashboard"))
+
     form = RegistrationForm()
     if form.validate_on_submit():
         username = form.username.data
@@ -85,6 +89,9 @@ def login():
             2.5.1. Display an error flash message.
     3. If the form is not submitted or contains errors, render the login template with the form.
     """
+    if current_user.is_authenticated and current_user.role == 'company':
+        return redirect(url_for("companies.dashboard"))
+
     form = LoginForm()
     if form.validate_on_submit():
         username = form.username.data

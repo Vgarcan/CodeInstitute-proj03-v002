@@ -40,6 +40,9 @@ def register():
     redirect: If the user is successfully registered, redirect to the login page.
     flash: If the username already exists, display a flash message.
     """
+    if current_user.is_authenticated and current_user.role == 'user':
+        return redirect(url_for("users.dashboard"))
+    
     form = RegistrationForm()
     if form.validate_on_submit():
         username = form.username.data
@@ -74,6 +77,10 @@ def login():
     redirect: If the user is successfully logged in, redirect to the dashboard page.
     flash: If the username or password is invalid, display a flash message.
     """
+
+    if current_user.is_authenticated and current_user.role == 'user':
+        return redirect(url_for("users.dashboard"))
+
     form = LoginForm()
     if form.validate_on_submit():
         username = form.username.data

@@ -9,14 +9,19 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             {% endif %}
-            <div class="modal-body">
-                {{ modal_data.body }}
+            <div class="modal-body text-center">
+                {% for sentence in modal_data.body  %}
+                    {{ sentence }}
+                    <br>
+                {% endfor %}
             </div>
+            {% if modal_data.footer %}
             <div class="modal-footer">
                 {% if modal_data.footer %} {{ modal_data.footer }} {% endif %}
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <a href="{{ modal_data.btn_link }}" class="btn btn-primary {{ modal_data.btn_class }}">{{ modal_data.btn_text }}</a>
             </div>
+            {% endif %}
         </div>
     </div>
 </div>

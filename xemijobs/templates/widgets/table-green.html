@@ -126,7 +126,7 @@
                         </td>
                         {% set modal_data = {
                             'modal_id': 'del-modal-user' ,
-                            'body': "You are about to delete your APPLICATION for this job.\n Do you want to proceed?",
+                            'body': ["You are about to delete your APPLICATION for this job."," Do you want to proceed?"],
                             'btn_text': 'DELETE',
                             'btn_class': 'btn-danger',
                             'btn_link': url_for('applications.delete_user_appl', appli_id= context.id)
@@ -179,7 +179,7 @@
                                 {% if table_headers|length != 5 %}
                                     {% set modal_data = {
                                         'modal_id': 'del-modal-company' ,
-                                        'body': "You are about to delete an ADVERT and all its associated APPLICATIONS.\n Do you want to proceed?",
+                                        'body': ["You are about to delete an ADVERT and all its associated APPLICATIONS."," Do you want to proceed?"],
                                         'btn_text': 'DELETE',
                                         'btn_class': 'btn-danger',
                                         'btn_link': url_for('applications.delete_all_appls_from_adv', adv_id= context.id)
@@ -187,7 +187,7 @@
                                 {% else %}
                                     {% set modal_data = {
                                         'modal_id': 'del-modal-company' ,
-                                        'body': "You are about to delete this APPLICATIONS.\n Do you want to proceed?",
+                                        'body': ["You are about to delete this APPLICATIONS."," Do you want to proceed?"],
                                         'btn_text': 'DELETE',
                                         'btn_class': 'btn-danger',
                                         'btn_link': url_for('applications.delete_user_appl', appli_id= context.id)

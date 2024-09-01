@@ -17,6 +17,29 @@
 
     </section>
 
+    <div class="container d-flex justify-content-center">
+            
+        {# stablish the target ID for the modal to use #}
+        {% set mod_btn = {
+            'target_id':'exampleModal',
+            'color': 'success',
+            'icon': 'bi bi-person-vcard',
+            'txt':'Test USER Credentials'
+        } %}
+        {% include 'widgets/modal-button.html' %}
+
+    </div> 
+    {# stablish the the info for the modal #}
+    {% set modal_data= {
+        'modal_id': 'exampleModal',
+        'title': 'Test User',
+        'body': ['username: Test_user01','password: Test001'] ,
+        
+    } %}
+    {% include 'widgets/modal.html' %}
+    
+    
+    {# include FORM1.HTML for Login #}
     {% set form_action = url_for('users.login') %}
     {% set submit_text = "Log In" %}
     {% include 'widgets/form1.html' %}
