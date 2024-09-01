@@ -552,24 +552,25 @@ No significant issues were encountered during the tests, confirming that our sit
 | **Job Posting**          | Complete and submit the job posting form                     | Job vacancy is posted with all required details                   | Works as expected   |
 | **Job Posting Analytics**| Access the dashboard to view analytics for job postings      | Display of basic analytics, such as views per job and number of applications received | Works as expected   |
 
-
-## Collaborative Efforts
-
-[Not ready yet]
-
-
 ## Current State and Future Plans
 
 ### Current State
 
-The platform is currently in development with basic functionalities for user registration, job listing management, and application tracking implemented.
+XemiJobs is currently in a solid development stage, with several core functionalities fully operational. Users can register, log in, and manage their profiles seamlessly. The platform supports comprehensive job listing management, allowing employers to post, update, and track job vacancies, while job seekers can easily search for jobs, view detailed job descriptions, and manage their applications. The dynamic dashboards for both employers and job seekers provide real-time insights and easy access to key metrics, enhancing the overall user experience. The platform's modular architecture and responsive design ensure that it runs smoothly across various devices, providing a consistent and efficient user experience.
 
 ### Future Plans
 
-- **Enhanced Security:** Implement two-factor authentication and other security measures.
-- **Advanced Search:** Improve the search functionality with more filters and sorting options.
-- **User Feedback:** Integrate a feedback system for continuous improvement.
+As we continue to develop and refine XemiJobs, several enhancements and new features are planned to improve the platform's functionality and user experience:
 
+1. **Enhanced Security:** We are committed to enhancing the security of our platform by implementing two-factor authentication and additional security measures. This will further protect user accounts and ensure the integrity of the platform.
+
+2. **Advanced Search:** To help users find job opportunities more effectively, we plan to expand the search functionality with additional filters and sorting options. This will allow job seekers to refine their searches based on more specific criteria, making it easier to find relevant job postings.
+
+3. **User Feedback System:** We aim to introduce a feedback system that allows users to share their experiences and suggestions directly through the platform. This will help us gather valuable insights for continuous improvement and better meet the needs of our users.
+
+4. **User-Uploaded Images:** We are working on enabling a feature that allows users, both companies and individuals, to upload their own profile image or logo. While the code to handle image uploads is already in place, it is not yet fully operational. In the interim, a default image is displayed depending on the type of user. For example, if a company or user has not uploaded an image, a standard placeholder will automatically be shown. This ensures that there is always an image associated with each profile, even if the custom upload feature is not utilised or is temporarily unavailable.
+
+These planned enhancements will not only add new capabilities to XemiJobs but also improve overall user satisfaction by providing a more secure, customisable, and user-friendly experience.
 
 ## Deployment
 
@@ -668,11 +669,15 @@ For more information about the Creative Commons Attribution-NonCommercial-ShareA
 
 ## Bugs and Challenges
 
-[Not ready yet]
+### Bugs
 
-- Update job : problems with textfields and selectfield using Jinja expressions.
+During the development of XemiJobs, we have encountered only one notable bug. The issue lies within the search functionality, where the search engine is supposed to allow users to search for job listings by salary, text, title, and company name. Unfortunately, the search engine does not currently return results when searching by company name. If a user enters a company name into the search bar, the system fails to locate the relevant job postings. Although this bug is minor, we recognise its importance and are actively working to resolve it as soon as possible. At present, the underlying cause of the issue is unclear, as the code appears to be correct.
 
+### Challenges
 
+The development process of XemiJobs presented numerous challenges, particularly related to the modular system we implemented. Early on, we faced significant difficulties with modularisation, which required us to make numerous adjustments to our approach. One of the key solutions we adopted was the creation of an `extensions.py` file. This file is responsible for handling imports and configurations that are then passed to the views, helping us keep the view files clean and focused. For instance, rather than importing certain packages directly in the views, we handle these imports in the `extensions.py` file, which then sends the necessary components to the views. This approach streamlined our code and made it more manageable.
+
+Additionally, understanding how to create custom functions in Jinja proved to be particularly challenging. These custom Jinja functions, which we also manage through the `extensions.py` file, required significant effort to implement correctly. Despite these difficulties, we managed to overcome these challenges and are proud of the solutions we developed to enhance the overall functionality and maintainability of the platform.
 
 ## Acknowledgement
 
@@ -695,8 +700,3 @@ While tutorials and videos have been helpful as introductory material, offering 
 - [Flask and MongoDB w/ Flask-pymongo | Project Setup (by: Code With Prince)](https://www.youtube.com/watch?v=tJxMPvzkCyo&list=PLU7aW4OZeUzwN0TsZLZUuzhc0f7OVVBcT)
 - [Flask Blueprints Make Your Apps Modular & Professional (by: NeuralNine)](https://www.youtube.com/watch?v=_LMiUOYDxzE)
 - [Learn Intersection Observer In 15 Minutes (by:Web Dev Simplified)](https://www.youtube.com/watch?v=2IbRtjez6ag&t=139s)
-
-
----
-
-This document serves as an initial guide for understanding the structure and goals of XemiJobs. It will be updated continuously as the project progresses and more details are finalized.

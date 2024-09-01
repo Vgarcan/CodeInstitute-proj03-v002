@@ -26,23 +26,23 @@ def index():
 
     carousel = [
         {
-            "img_src": "imgs/banner.jpg",
+            "img_src": "imgs/banner.webp",
             "img_alt": "Banner #1",
             "header": "Join XemiJobs",
             "text": "Find the perfect job for you",
         },
         {
-            "img_src": "imgs/banner2.jpg",
+            "img_src": "imgs/banner2.webp",
             "img_alt": "Banner #2",
             "header": "Always looking for professionals",
         },
         {
-            "img_src": "imgs/banner3.jpg",
+            "img_src": "imgs/banner3.webp",
             "img_alt": "Banner #3",
             "text": "The best companies are looking for talented people",
         },
         {
-            "img_src": "imgs/banner2.jpg",
+            "img_src": "imgs/banner2.webp",
             "img_alt": "Banner #4",
         },
     ]
