@@ -223,6 +223,9 @@ def profile():
         else:
             flash("Invalid password!", "danger")
             return redirect(url_for("users.profile"))
+        
+    # populate the form fields
+    form.theme.data = current_user.theme
 
     return render_template(
         "users/profile.html",

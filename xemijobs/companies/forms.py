@@ -35,7 +35,19 @@ class ProfileForm(FlaskForm):
     theme = SelectField(
         "Choose your theme",
         validators=[DataRequired()],
-        choices=["None", "neon-blue-theme", "pink-theme"],
+        choices=[
+            "None",
+            "neon-blue-theme",
+            "pink-theme",
+            "dark-elegant-theme",
+            "modern-sophisticated-theme",
+            "fresh-vibrant-theme",
+            "sunset-breeze-theme",
+            "ocean-mist-theme",
+            "tropical-twilight-theme",
+            "midnight-bloom-theme",
+            "serene-dawn-theme"
+            ],
         name="theme",
     )
     new_password = PasswordField(

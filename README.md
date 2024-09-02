@@ -208,10 +208,14 @@ I'm incredibly proud of how this project has developed and hope it can serve as 
     - <img src="xemijobs/static/imgs/readme-pics/txt-filetype-icon.ico" width="18px"> `requirements.txt` (List of Python dependencies)
     - <img src="xemijobs/static/imgs/readme-pics/txt-filetype-icon.ico" width="18px"> `runtime.txt` (Specifies Python version for deployment)
 
+
 ### CSS Management for Project Structure
 
+In our project, we have opted to use a single CSS file, `styles.css`, for managing all the styling across the application. Initially, we experimented with injecting CSS through Jinja templates, but we encountered significant issues due to the use of CSS variables. These variables are defined within `styles.css`, and their proper functioning is crucial for the consistent application of themes across the site.
 
+By consolidating all styles into one file, we ensure that the management of themes is straightforward. If we need to switch themes or make adjustments, we only need to modify this single CSS file, allowing for a seamless transition to a completely new look and feel for the entire application. This approach not only simplifies maintenance but also reinforces our commitment to code reuse and consistency.
 
+Moreover, having a single CSS file helps us avoid the complications associated with the injection of styles using Jinja, ensuring that our CSS variables work as intended throughout the application.
 
 ## Wireframes
 
@@ -362,11 +366,6 @@ This user-focused approach ensures that the platform is not only functional but 
 
 2. **As an Employer,** I want to view analytics related to my job postings, so I can understand the effectiveness of my job ads and make informed decisions about future postings.
    - *Acceptance Criteria:* The platform should offer basic analytics, such as the number of views per job posting, number of applications received, and other relevant metrics.
-
-
-### Customization and Flexibility
-
-[Not ready yet]
 
 ### Future Enhancements
 
