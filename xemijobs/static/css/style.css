@@ -903,12 +903,12 @@ i {
 
 .para-about {
     min-height: 250px;
-    background-image: url('/static/imgs/banner2.jpg');
+    background-image: url('/static/imgs/banner2.webp');
     background-position: center;
 }
 
 .para-dash-comp {
-    background-image: url('/static/imgs/banner.jpg');
+    background-image: url('/static/imgs/banner.webp');
     min-height: 200px;
 }
 
