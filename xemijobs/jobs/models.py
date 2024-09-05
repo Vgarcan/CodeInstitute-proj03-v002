@@ -162,7 +162,28 @@ class Job:
 
     @staticmethod
     def get_comp_jobs(comp_id):
+        """
+        Retrieve all job posts associated with a specific company from the database.
 
+        Parameters:
+        comp_id (str): The unique identifier of the company whose job posts will be retrieved.
+
+        Returns:
+        list: A list of Job objects. Each Job object represents a job post associated with the given company.
+              The list is sorted by the 'published_on' field in descending order.
+
+        Note:
+        This function does not require a user to be logged in.
+        It retrieves all job posts associated with the given company identifier from the 'jobs' collection in the database.
+        The results are sorted by the 'published_on' field in descending order.
+
+        Example:
+        >>> jobs = Job.get_comp_jobs('5f17c1234567890123456789')
+        >>> print(len(jobs))
+        10
+        >>> print(jobs[0].post_title)
+        "Software Developer"
+        """
         jobs_data = mongo.db.jobs.find({"comp_id": comp_id}).sort("published_on", -1)
         return [
             Job(
@@ -180,8 +201,28 @@ class Job:
             for job_data in jobs_data
         ]
 
+
     @staticmethod
     def get_jobs_by_query(q, offset, per_page):
+        """
+        Retrieve job posts from the database based on a search query.
+
+        This function uses MongoDB's text search feature to find job posts that match the given search query.
+        It creates a text index on the specified fields and then performs a search operation using the "$text" operator.
+        The results are sorted by the "published_on" field in descending order, and pagination is applied using the "skip" and "limit" methods.
+
+        Parameters:
+        q (str): The search query. This parameter is case-insensitive.
+        offset (int): The number of job posts to skip before starting to return results.
+        per_page (int): The maximum number of job posts to return in a single page.
+
+        Returns:
+        list: A list of Job objects. Each Job object represents a job post that matches the search query.
+
+        Note:
+        This function does not require a user to be logged in.
+        It retrieves job posts from the 'jobs' collection in the database.
+        """
         mongo.db.jobs.create_index(
             [
                 ("post_title", ("text")),
@@ -215,12 +256,46 @@ class Job:
             for job_data in jobs_data
         ]
 
+
     @staticmethod
     def number_of_jobs():
-
+        """
+        Retrieve the total number of job posts in the database.
+        Parameters:
+        None. This function does not take any parameters.
+        Returns:
+        int: The total number of job posts in the database.
+        """
         total = mongo.db.jobs.count_documents({})
         print(print("total josbs in MODELS.PY = ", total))
         return total
+    
+
+    @staticmethod
+    def number_of_jobs():
+        """
+        Retrieve the total number of job posts in the database.
+
+        Parameters:
+        None. This function does not take any parameters.
+
+        Returns:
+        int: The total number of job posts in the database.
+
+        Note:
+        This function does not require a user to be logged in.
+        It retrieves the total count of job posts from the 'jobs' collection in the database.
+        The count operation uses the MongoDB count_documents method.
+
+        Example:
+        >>> total_jobs = Job.number_of_jobs()
+        >>> print(total_jobs)
+        100
+        """
+        total = mongo.db.jobs.count_documents({})
+        print(print("total josbs in MODELS.PY = ", total))  # This print statement is redundant and should be removed
+        return total
+
 
     ## Update
     #! only COMPANIES

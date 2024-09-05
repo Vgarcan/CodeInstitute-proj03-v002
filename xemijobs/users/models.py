@@ -117,7 +117,24 @@ class User(UserMixin):
 
     @staticmethod
     def get_all_users(offset, per_page):
+        """
+        Retrieves a list of users from the database, with pagination support.
 
+        Parameters:
+        offset (int): The number of users to skip before starting to return results.
+            This is used for pagination, allowing retrieval of a specific subset of users.
+        per_page (int): The maximum number of users to return in a single page.
+            This is used for pagination, controlling the number of users displayed per page.
+
+        Returns:
+        list: A list of User objects representing the retrieved users.
+            Each User object contains the username, password, unique ID, role, and theme of a user.
+
+        Note:
+        This function uses the 'mongo' object to interact with the MongoDB database.
+        It retrieves user documents from the 'users' collection, skipping the specified number of users
+        and limiting the result to the specified number of users per page.
+        """
         users_data = mongo.db.users.find().skip(offset).limit(per_page)
         return [
             User(
@@ -129,6 +146,7 @@ class User(UserMixin):
             )
             for user_data in users_data
         ]
+
 
     ## Update
     #! only USERS
