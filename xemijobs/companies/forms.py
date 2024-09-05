@@ -46,8 +46,8 @@ class ProfileForm(FlaskForm):
             "ocean-mist-theme",
             "tropical-twilight-theme",
             "midnight-bloom-theme",
-            "serene-dawn-theme"
-            ],
+            "serene-dawn-theme",
+        ],
         name="theme",
     )
     new_password = PasswordField(
@@ -56,7 +56,5 @@ class ProfileForm(FlaskForm):
     confirm_password = PasswordField(
         "Confirm New Password", validators=[EqualTo("new_password")]
     )
-    current_password = PasswordField(
-        "Current Password", validators=[DataRequired()]
-    )
+    current_password = PasswordField("Current Password", validators=[DataRequired()])
     submit = SubmitField("Update Profile")

@@ -15,6 +15,7 @@
         </div>
     
     </section>
+    <!-- Display the Info tiles for the current user if role is company -->
     {% if current_user.role == 'company' %}
         <div class="container">
             <div class="row">
@@ -48,21 +49,27 @@
 
     <br>
     <br>
-
     <div class="container">
         <div class='container text-center '>
+            <!-- Button to go back to dashboard -->
             {% if go_back == True %}
                 <a href={{ url_for('companies.dashboard')}} class="btn btn-primary m-3 ">Go back to Adverts</a>
             {% endif %}
         </div>
+        <!-- display the table for the dashbopard -->
         {% if table_data != None %}
             <div class="row">
                 {% include "widgets/table-green.html" %}
             </div>
             <div class='container text-center '>
+                <!-- Button to go back to dashboard -->
                 {% if go_back == True and table_data | length > 6 %}
                     <a href={{ url_for('companies.dashboard')}} class="btn btn-primary m-3 ">Go back to Adverts</a>
                 {% endif %}
+            </div>
+        {% else %}
+            <div class="col-lg-12">
+                <p class="text-center">No data available yet.</p>
             </div>
         {% endif %}        
     </div>

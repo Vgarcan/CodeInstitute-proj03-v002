@@ -150,7 +150,10 @@ def profile():
     Decorators:
     @login_required: This decorator ensures that only authenticated users can access this route.
     """
-    return render_template("profile.html", user=current_user)
+    return render_template(
+        "profile.html",
+        user=current_user
+    )
 
 
 @main.route("/widgets/<int:page>")

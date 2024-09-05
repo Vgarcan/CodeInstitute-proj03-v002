@@ -17,7 +17,6 @@ def create_app():
     app.config.from_object("config.Config")
 
     # Initialize the EXTENSIONS
-    # mongo.init_app(app, uri= str(os.getenv('MONGO_URI')))
     mongo.init_app(app)
     login_manager.init_app(app)
 

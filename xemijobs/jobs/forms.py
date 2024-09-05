@@ -17,9 +17,15 @@ class JobForm(FlaskForm):
         name="post_title",
     )
     location = StringField(
-        "Location", validators=[DataRequired(), Length(min=4, max=25)], name="location"
+        "Location",
+        validators=[DataRequired(), Length(min=4, max=25)],
+        name="location"
     )
-    salary = IntegerField("Salary", validators=[DataRequired()], name="salary")
+    salary = IntegerField(
+        "Salary",
+        validators=[DataRequired()],
+        name="salary"
+        )
     job_type = SelectField(
         "Job Type",
         validators=[DataRequired()],
@@ -32,6 +38,9 @@ class JobForm(FlaskForm):
         name="description",
     )
     ends_on = DateField(
-        "Ends on:", validators=[DataRequired()], format="%Y-%m-%d", name="ends_on"
+        "Ends on:",
+        validators=[DataRequired()],
+        format="%Y-%m-%d",
+        name="ends_on"
     )
     submit = SubmitField("Create New Job!")

@@ -184,12 +184,12 @@ class Job:
     def get_jobs_by_query(q, offset, per_page):
         mongo.db.jobs.create_index(
             [
-                ("post_title", ("text").lower()),
-                ("location", ("text").lower()),
-                ("salary", ("text").lower()),
-                ("job_type", ("text").lower()),
-                ("description", ("text").lower()),
-                ("comp_name", ("text").lower()),
+                ("post_title", ("text")),
+                ("location", ("text")),
+                ("salary", ("text")),
+                ("job_type", ("text")),
+                ("description", ("text")),
+                ("company_name", ("text")),
             ]
         )
 
@@ -254,7 +254,10 @@ class Job:
         >>> Job.update_job('5f17c1234567890123456789', **job_data)
         """
         try:
-            mongo.db.jobs.update_one({"_id": ObjectId(job_id)}, {"$set": job_data})
+            mongo.db.jobs.update_one(
+                {"_id": ObjectId(job_id)},
+                {"$set": job_data}
+                )
         except Exception as e:
             raise Exception("Error updating job ", e)
 
@@ -282,7 +285,9 @@ class Job:
         Example:
         >>> Job.delete_job('5f17c1234567890123456789')
         """
-        mongo.db.jobs.delete_one({"_id": ObjectId(job_id)})
+        mongo.db.jobs.delete_one(
+            {"_id": ObjectId(job_id)}
+            )
 
     #! only COMPANIES
     @staticmethod
@@ -307,4 +312,6 @@ class Job:
         Example:
         >>> Job.delete_all_job('5f17c1234567890123456789')
         """
-        mongo.db.jobs.delete_many({"comp_id": comp_id})
+        mongo.db.jobs.delete_many(
+            {"comp_id": comp_id}
+            )

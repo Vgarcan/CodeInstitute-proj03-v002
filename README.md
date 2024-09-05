@@ -501,6 +501,16 @@ While conducting our PEP8 validation, we did identify a few issues that need att
 
 To assist in this process, we utilised the formatter tool from [codebeautify.org](https://codebeautify.org/python-formatter-beautifier#). This tool has been instrumental in helping us format and beautify our Python code, and we would like to acknowledge the valuable contribution of CodeBeautify in this regard.
 
+#### Note on PEP8 Validator Compliance
+
+We are aware that the PEP8 Validator might present some issues. While we have done our best to ensure PEP8 compliance, the complexity of this project has posed significant challenges in ensuring that everything is fully compliant. One known issue we've encountered relates to model validation under PEP8 standards.
+
+In particular, the validator has trouble with the comments we've introduced in the models. These comments are used to divide the model into different CRUD operations (Create, Read, Update, Delete). For example, all parts of the model that relate to reading are grouped under a comment labelled "Read". While this **improves readability for developers**, it may conflict with PEP8 compliance. We acknowledge this issue but aim to strike a balance between PEP8 compliance and project readability. This is especially important for ensuring the project is easy to understand and maintain by future developers.
+
+Another point of friction we've found with PEP8 involves comments that indicate whether a particular section of the model requires user authentication. We believe this improves clarity when navigating the script, even if it may not align perfectly with PEP8 standards. Additionally, some comments contain exclamation marks due to the usage of a specific package in **VSCode**, which helps make comments more visually distinct (e.g., by changing their colour to red). This visual distinction makes the script easier to read and highlights important sections for developers.
+
+While we are **fully aware** of these PEP8-related issues, we have **intentionally chosen** to leave the comments in place for the benefit of **human readability**, considering that developers are not machines. We believe this approach supports smoother navigation and understanding of the script.
+
 ### Device Testing
 
 The website has undergone thorough testing across a variety of devices, including desktop computers, tablets, and smartphones. We focused on ensuring that the responsiveness of the site is consistent and effective across all screen sizes, providing an optimal user experience regardless of the device used.
@@ -677,6 +687,14 @@ During the development of XemiJobs, we have encountered only one notable bug. Th
 The development process of XemiJobs presented numerous challenges, particularly related to the modular system we implemented. Early on, we faced significant difficulties with modularisation, which required us to make numerous adjustments to our approach. One of the key solutions we adopted was the creation of an `extensions.py` file. This file is responsible for handling imports and configurations that are then passed to the views, helping us keep the view files clean and focused. For instance, rather than importing certain packages directly in the views, we handle these imports in the `extensions.py` file, which then sends the necessary components to the views. This approach streamlined our code and made it more manageable.
 
 Additionally, understanding how to create custom functions in Jinja proved to be particularly challenging. These custom Jinja functions, which we also manage through the `extensions.py` file, required significant effort to implement correctly. Despite these difficulties, we managed to overcome these challenges and are proud of the solutions we developed to enhance the overall functionality and maintainability of the platform.
+
+We understand that the project we have created is quite complex, perhaps even more complex than necessary for its purpose. One of the key challenges we've encountered, as previously mentioned, relates to ensuring compliance with the PEP8 Validator. We have made every effort to ensure this works as expected.
+
+Another challenge involves the use of comments in both the script and the HTML files. For sections that are small and straightforward, we've opted not to include comments, as they are easy to read and understand on their own. However, for more complex sections, we have added comments where necessary to clarify how certain parts of the code function. We acknowledge that there may still be scripts or sections that lack sufficient information. We've reviewed the code multiple times to ensure readability, but we also understand that there could be areas where additional explanation or comments are needed.
+
+We are committed to addressing these issues in the future if they arise. While we've reviewed the code extensively, we recognise that the complexity of the project may have caused some things to be overlooked. We are fully committed to improving any aspects of the project that need further clarification or enhancement.
+
+This experience has taught us that for future projects, particularly ones that require a high level of modularity, we need to ensure that every aspect is thoroughly checked from the very beginning to prevent such issues.
 
 ## Acknowledgement
 
